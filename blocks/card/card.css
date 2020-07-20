@@ -1,0 +1,29 @@
+@import url(./__image/card__image.css);
+@import url(./__description/card__description.css);
+@import url(./__title/card__title.css);
+@import url(./__heart/card__heart.css);
+
+.card {
+    background: #FFFFFF;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 361px;
+    width: 282px;
+    background-size: 282px 282px;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+@media (max-width : 905px) {
+    .card {
+        margin-bottom: 21px;
+}
+}
+
+@media (max-width : 563px) {
+    .card {
+        margin-left: auto;
+        margin-right: auto;
+}
+}

@@ -1,0 +1,14 @@
+.popup__close {
+    height: 40.7px;
+    width: 40.7px;
+    background-image: url(../../../images/popupClose.svg);
+    background-position: center;
+    position: absolute;
+    top: 156px;
+    left: 66.41%;
+}
+
+.popup__close:hover {
+    cursor: pointer;
+    background-image: url(../../../images/popupCloseGray.svg);
+}

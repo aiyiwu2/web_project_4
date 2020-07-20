@@ -1,0 +1,16 @@
+.overlay_size_l {
+    min-width: 143px;
+    min-height: 43px;
+    margin-top: 2px;
+    margin-left: 2px;
+}
+
+.profile__addButton:hover .overlay_size_l {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+@media (max-width : 861px) {
+    .overlay_size_l {
+        min-width: calc(100% - 3px);
+    }
+}

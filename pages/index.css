@@ -1,0 +1,31 @@
+@import url(../styles/normalize.css);
+@import url(../styles/fonts.css);
+
+@import url(../blocks/page/page.css);
+
+@import url(../blocks/popup/popup.css);
+
+@import url(../blocks/header/header.css);
+@import url(../blocks/logo/logo.css);
+@import url(../blocks/profile/profile.css);
+@import url(../blocks/avatar/avatar.css);
+
+@import url(../blocks/overlay/overlay.css);
+
+@import url(../blocks/cards/cards.css);
+@import url(../blocks/card/card.css);
+
+@import url(../blocks/footer/footer.css);
+
+@import url(../blocks/logo/_black/logo_black.css);
+
+@import url(../blocks/overlay/_size/overlay_size_s.css);
+@import url(../blocks/overlay/_size/overlay_size_l.css);
+
+@import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/card/_place/card_place_yosemite.css);
+@import url(../blocks/card/_place/card_place_lake.css);
+@import url(../blocks/card/_place/card_place_mountain.css);
+@import url(../blocks/card/_place/card_place_latemar.css);
+@import url(../blocks/card/_place/card_place_vanoise.css);
+@import url(../blocks/card/_place/card_place_dibraies.css);

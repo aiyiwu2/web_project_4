@@ -1,0 +1,8 @@
+.overlay_size_s {
+    width: 21px;
+    height: 21px;
+}
+
+.profile__edit:hover .overlay_size_s {
+    background: rgba(0, 0, 0, 0.6);
+}
