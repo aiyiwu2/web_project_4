@@ -14,3 +14,9 @@
         padding-right: 24px;
     }
 }
+
+@media (max-width : 861px) {
+    .profile__info {
+        margin-top: 17px;
+    }
+}

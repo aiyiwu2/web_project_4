@@ -3,9 +3,10 @@
     width: 40.7px;
     background-image: url(../../../images/popupClose.svg);
     background-position: center;
-    position: absolute;
+    margin-left: 462px;
+    margin-top: -37px;
     top: 156px;
-    left: 66.41%;
+    left: 67.41%;
 }
 
 .popup__close:hover {
