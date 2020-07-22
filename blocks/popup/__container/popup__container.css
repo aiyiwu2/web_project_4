@@ -11,3 +11,9 @@
     align-items: center;
     color: black;
 }
+
+@media (max-width : 520px) {
+    .popup__container {
+        max-width: calc(430 / 520 * 100%);
+    }
+}
