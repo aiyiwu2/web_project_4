@@ -15,10 +15,3 @@
 @import url(../blocks/footer/footer.css);
 
 @import url(../blocks/popup/_opened/popup_opened.css);
-
-@import url(../blocks/card/_place/card_place_yosemite.css);
-@import url(../blocks/card/_place/card_place_lake.css);
-@import url(../blocks/card/_place/card_place_mountain.css);
-@import url(../blocks/card/_place/card_place_latemar.css);
-@import url(../blocks/card/_place/card_place_vanoise.css);
-@import url(../blocks/card/_place/card_place_dibraies.css);

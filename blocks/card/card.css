@@ -3,13 +3,6 @@
 @import url(./__title/card__title.css);
 @import url(./__heart/card__heart.css);
 
-@import url(./__image/_place/card__image_place_yosemite.css);
-@import url(./__image/_place/card__image_place_lake.css);
-@import url(./__image/_place/card__image_place_mountain.css);
-@import url(./__image/_place/card__image_place_latemar.css);
-@import url(./__image/_place/card__image_place_vanoise.css);
-@import url(./__image/_place/card__image_place_dibraies.css);
-
 .card {
     background: #FFFFFF;
     border-radius: 10px;
