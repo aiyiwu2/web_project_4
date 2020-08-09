@@ -34,13 +34,9 @@
 
                     <div class="profile__info">
 
-                        <h1 class="profile__title">
-                            Jacques Cousteau
-                        </h1>
+                        <h1 class="profile__title">Jacques Cousteau</h1>
 
-                        <p class="profile__subtitle">
-                            Explorer
-                        </p>
+                        <p class="profile__subtitle">Explorer</p>
 
                         <button class="profile__edit">
 
@@ -58,129 +54,6 @@
 
                 <section class="cards">
 
-                    <div class="card">
-
-                        <div class="card__image" style="background-image:url('images/yosemite.jpg')">
-
-                        </div>
-                        
-                        <div class="card__description">
-
-                            <h2 class="card__title">Yosemite Valley</h2>
-
-                            <button class="card__heart">
-
-                            </button>
-
-                        </div>
-
-                        
-
-                    </div>
-
-                    <div class="card">
-
-                        <div class="card__image" style="background-image:url('images/lake.png')">
-
-                        </div>
-
-                        <div class="card__description">
-
-                            <h2 class="card__title">Lake Louise</h2>
-
-                            <button class="card__heart">
-                            
-                            </button>
-
-                        </div>
-
-                        
-                        
-                    </div>
-
-                    <div class="card">
-
-                        <div class="card__image" style="background-image:url('images/mountains.png')">
-
-                        </div>
-
-                        <div class="card__description">
-
-                            <h2 class="card__title">Bald Mountains</h2>
-
-                            <button class="card__heart">
-                            
-                            </button>
-
-                        </div>
-
-                        
-                        
-                    </div>
-
-                    <div class="card">
-
-                        <div class="card__image" style="background-image:url('images/latemar.png')">
-
-                        </div>
-
-                        <div class="card__description">
-
-                            <h2 class="card__title">Latemar</h2>
-
-                            <button class="card__heart">
-                            
-                            </button>
-
-                        </div>
-
-                        
-                        
-                    </div>
-
-                    <div class="card">
-
-                        <div class="card__image" style="background-image:url('images/vanois.png')">
-
-                        </div>
-
-                        <div class="card__description">
-
-                            <h2 class="card__title">Vanoise National Park</h2>
-
-                            <button class="card__heart">
-                            
-                            </button>
-
-                        </div>
-
-                        
-                        
-                    </div>
-
-                    <div class="card">
-
-                        <div class="card__image" style="background-image:url('images/dibraies.png')">
-
-                        </div>
-
-                        <div class="card__description">
-
-                            <h2 class="card__title">Lago di Braies</h2>
-
-                            <button class="card__heart">
-                            
-                            </button>
-
-                        </div>
-
-                        
-                        
-                    </div>
-
-
-
-
                 </section>
 
             </main>
@@ -195,16 +68,12 @@
 
             </footer>
 
-            <div class="popup">
+            <div class="popup popup_type_edit-profile">
 
                 <div class="popup__container">
 
                     <div class="popup__close">
 
-                        
-                        
-                         
-                    
                     </div>
 
                         <h3 class="popup__heading">
@@ -225,14 +94,79 @@
 
                 </div>
 
-                
+            </div>
+
+            <div class="popup popup_type_add-card">
+
+                <div class="popup__container">
+
+                    <div class="popup__close">
+
+                    </div>
+
+                        <h3 class="popup__heading">
+
+                            New place
+
+                        </h3>
+
+                    <form class="popup__form">
+
+                        <input type="text" placeholder="Title" class="popup__input popup__input_type_card-title">
+
+                        <input type="url" placeholder="Image link" class="popup__input popup__input_type_url">
+
+                        <button type="submit" value="Create" class="popup__save">Create</button>
+
+                    </form>
+
+                </div>
 
             </div>
     
-        
-        </div>
-    
+            <div class="popup popup_type_image">
 
+                <div class="popup__container popup__container_mode_image">
+
+                    <div class="popup__close popup__close_mode_image">
+
+                    </div>
+
+                    <figure class="popup__figure">
+                        <img src="" class="popup__image" alt="">
+                        <figcaption class="popup__image-title"></figcaption>
+                    </figure>    
+
+                </div>
+
+                
+
+            </div>
+        
+    
+        <template class="card-template">
+            <div class="card">
+
+                <button class="card__delete"></button>
+
+                <div class="card__image" src="" style="" alt="">
+
+                </div>
+                
+                <div class="card__description">
+
+                    <h2 class="card__title"></h2>
+
+                    <button class="card__heart">
+
+                    </button>
+
+                </div>
+
+            </div>
+        </template>
+            
+    </div>
     <script src="./script.js"></script>
 </body>
 </html>

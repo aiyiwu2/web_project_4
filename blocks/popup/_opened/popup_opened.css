@@ -1,5 +1,5 @@
 .popup_opened {
-    
+    visibility: visible;
     display: flex;
     flex-direction: column;
 }
