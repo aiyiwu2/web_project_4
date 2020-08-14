@@ -5,6 +5,7 @@
 @import url(./__input/popup__input.css);
 @import url(./__save/popup__save.css);
 @import url(./__image/popup__image.css);
+@import url(./__image-title.css/popup__image-title.css);
 
 @import url(./__container/_mode/popup__container_mode_image.css);
 @import url(./__close/_mode/popup__close_mode_image.css);
@@ -12,11 +13,10 @@
 .popup {
     position: fixed;
     background: rgba(0, 0, 0, 0.5);
-    min-width: 100%;
+    max-width: 100%;
     min-height: 100vh;
     z-index: 1;
     visibility: hidden;
-    transition: visibility 0s, opacity 0.5s linear;
 }
 
 @media (min-width: 1280px) {

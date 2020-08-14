@@ -1,6 +1,4 @@
 .popup__close_mode_image {
-    margin-left: 462px;
-    margin-top: -137px;
-    top: 56px;
-    left: 67.41%;
+    position: relative;
+    
 }

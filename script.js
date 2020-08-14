@@ -142,7 +142,7 @@
     list.prepend(cardElement);
   }
   
-  addCardSubmitButton.addEventListener("submit", event => {
+  addCardSubmitButton.addEventListener("click", event => {
     event.preventDefault();
     const cardTitle = document.querySelector('.popup__input_type_card-title');
     const cardLink = document.querySelector('.popup__input_type_url');
