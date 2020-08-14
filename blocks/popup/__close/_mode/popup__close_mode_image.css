@@ -1,6 +1,7 @@
 .popup__close_mode_image {
     position: absolute;
-    left: 200px;
+    right: -41px;
+    top: -41px;
     margin: 0;
     border: 1px solid blue;
 }
