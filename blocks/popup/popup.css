@@ -19,7 +19,7 @@
     z-index: 1;
     visibility: hidden;
     opacity: 0;
-    transition: visibility 0s .2s, opacity .2s linear;
+    transition: visibility 0s linear .2s, opacity .2s linear .2s;
 }
 
 @media (min-width: 1280px) {
