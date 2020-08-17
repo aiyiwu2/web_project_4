@@ -1,16 +1,11 @@
 # Project 4: Around The U.S.
 
-### Overview
+In this website, the user will be able to:
+- edit profile information
+- add a card with title and URL
+- like a card
+- delete a card
 
-* Figma
-* Images
+This website was created using HTML, CSS, and JS.
 
-**Figma**
-
-* [Link to the project in Figma](https://www.figma.com/file/mUgu8OSHWE0M6p6vfwmdu9/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
-
-**Images**
-
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-
-Have fun with JavaScript!
+[Link to website](https://aiyiwu2.github.io/web_project_4/)
