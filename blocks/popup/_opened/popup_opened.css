@@ -2,5 +2,7 @@
     visibility: visible;
     display: flex;
     flex-direction: column;
-    animation: fade-in 1s;
+    
+    transition: opacity .2s linear;
+    opacity: 1;
 }

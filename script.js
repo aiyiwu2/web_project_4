@@ -27,7 +27,7 @@
 
   function toggleModalWindow(modal) {
       modal.classList.toggle('popup_opened');
-      modal.classList.toggle('popup_closed');
+      
   }
 
   function formSubmitHandler(evt) {
