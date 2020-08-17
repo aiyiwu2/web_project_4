@@ -12,6 +12,7 @@
 @import url(./__close/_mode/popup__close_mode_image.css);
 
 .popup {
+    display: flex;
     position: fixed;
     background: rgba(0, 0, 0, 0.5);
     max-width: 100%;
@@ -19,7 +20,7 @@
     z-index: 1;
     visibility: hidden;
     opacity: 0;
-    transition: visibility 0s linear .2s, opacity .2s linear .2s;
+    transition: visibility 0s linear .2s, opacity .2s linear;
 }
 
 @media (min-width: 1280px) {
