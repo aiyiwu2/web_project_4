@@ -99,7 +99,7 @@
 
       const cardImage = cardElement.querySelector('.card__image');
       const cardTitle = cardElement.querySelector('.card__title');
-      const cardLikeButton = cardElement.querySelector('.card__heart');
+      const cardLikeButton = cardElement.getElementsByClassName('card__heart');
       const cardDeleteButton = cardElement.querySelector('.card__delete');
       
 

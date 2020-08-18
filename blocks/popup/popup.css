@@ -15,16 +15,10 @@
     display: flex;
     position: fixed;
     background: rgba(0, 0, 0, 0.5);
-    max-width: 100%;
+    width: 100%;
     min-height: 100vh;
     z-index: 1;
     visibility: hidden;
     opacity: 0;
     transition: visibility 0s linear .2s, opacity .2s linear;
-}
-
-@media (min-width: 1280px) {
-    .popup {
-        width: 1280px;
-    }
 }
