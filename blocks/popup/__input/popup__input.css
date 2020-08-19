@@ -18,3 +18,15 @@
     color: #000000;
 }
 
+@media (max-width : 494px) {
+    .popup__input {
+        width: 185px;
+        height: 24px;
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    .popup__input:first-of-type {
+        margin-bottom: 20px;
+    }
+}

@@ -9,3 +9,13 @@
     text-align: left;
     width: 358px;
 }
+
+@media (max-width : 494px) {
+    .popup__heading {
+        margin-top: 30px;
+        margin-bottom: 36px;
+        font-size: 18px;
+        line-height: 22px;
+        width: 185px;
+    }
+}

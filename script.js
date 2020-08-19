@@ -95,45 +95,46 @@
   const list = document.querySelector('.cards');
 
   initialCards.forEach(data => {
-      const cardElement = cardTemplate.cloneNode(true);
-
-      const cardImage = cardElement.querySelector('.card__image');
-      const cardTitle = cardElement.querySelector('.card__title');
-      const cardLikeButton = cardElement.getElementsByClassName('card__heart');
-      const cardDeleteButton = cardElement.querySelector('.card__delete');
-      
-
-      cardTitle.textContent = data.name;
-      cardImage.style.backgroundImage = `url(${data.link})`;
-
-      cardLikeButton.addEventListener('click', () => {
-        
-        cardLikeButton.classList.toggle('card__heart_mode_like');
-        
-      });
-
-      cardDeleteButton.addEventListener('click', () => {
-        const cardRemove = cardDeleteButton.closest('.card');
-        cardRemove.remove();
-      });
-
-      cardImage.addEventListener('click', () => {
-
-        const popupImage = imageModalWindow.querySelector('.popup__image');
-        const popupImageTitle = imageModalWindow.querySelector('.popup__image-title');
-
-        popupImage.src = data.link;
-        popupImageTitle.textContent = data.name;
-
-        toggleModalWindow(imageModalWindow);
-      });
-
-      list.prepend(cardElement);
-
-      
-
-      
+    newCard(data.name, data.link);
   });
+
+  function newCard(title, image) {
+    const cardElement = cardTemplate.cloneNode(true);
+
+    const cardImage = cardElement.getElementsByClassName('card__image')[0];
+    const cardTitle = cardElement.getElementsByClassName('card__title')[0];
+    const cardLikeButton = cardElement.getElementsByClassName('card__heart')[0];
+    const cardDeleteButton = cardElement.getElementsByClassName('card__delete')[0];
+    
+
+    cardTitle.textContent = title;
+    cardImage.setAttribute("alt", title);
+    cardImage.style.backgroundImage = `url(${image})`;
+
+    cardLikeButton.addEventListener('click', () => {
+      
+      cardLikeButton.classList.toggle('card__heart_mode_like');
+      
+    });
+
+    cardDeleteButton.addEventListener('click', () => {
+      const cardRemove = cardDeleteButton.closest('.card');
+      cardRemove.remove();
+    });
+
+    cardImage.addEventListener('click', () => {
+
+      const popupImage = imageModalWindow.getElementsByClassName('popup__image')[0];
+      const popupImageTitle = imageModalWindow.getElementsByClassName('popup__image-title')[0];
+
+      popupImage.src = data.link;
+      popupImageTitle.textContent = data.name;
+
+      toggleModalWindow(imageModalWindow);
+    });
+
+    list.prepend(cardElement);   
+}
 
   function addCard(cardTitle, cardLink) {
     const cardElement = cardTemplate.cloneNode(true);

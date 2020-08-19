@@ -11,3 +11,10 @@
     cursor: pointer;
     background-image: url(../../../images/popupCloseGray.svg);
 }
+
+@media (max-width : 494px) {
+    .popup__close {
+        margin-left: 275px;
+        margin-top: -40px;
+    }
+}
