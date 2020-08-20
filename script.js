@@ -14,23 +14,25 @@ const closeImagePopupButton = imageModalWindow.querySelector('.popup__close');
 
 //Buttons and other DOM elements
 const editForm = document.querySelector('.popup__form');
-const deleteCard = document.querySelector('.card__delete');
+const cardDelete = document.querySelector('.card__delete');
 const addCardSubmitButton = addCardModalWindow.querySelector('.popup__save');
 
 //profile
 const profileTitle = document.querySelector('.profile__title');
 const profileDescription = document.querySelector('.profile__subtitle');
+const popupImageTitle = imageModalWindow.getElementsByClassName('popup__image-title')[0];
 
 //form inputs
 const titleInputValue = editForm.querySelector('.popup__input_type_name');
 const descriptionInputValue = editForm.querySelector('.popup__input_type_bio');
+const cardLink = document.querySelector('.popup__input_type_url');
 
 function toggleModalWindow(modal) {
     modal.classList.toggle('popup_opened');
     
 }
 
-function formSubmitHandler(evt) {
+function handleFormSubmit(evt) {
     evt.preventDefault();
     profileTitle.textContent = titleInputValue.value;
     profileDescription.textContent = descriptionInputValue.value;
@@ -38,7 +40,7 @@ function formSubmitHandler(evt) {
 }
 
 
-editForm.addEventListener('submit', formSubmitHandler);
+editForm.addEventListener('submit', handleFormSubmit);
 
 profileEditButton.addEventListener('click', () => {
     if (!editProfileModalWindow.classList.contains('popup_opened')) {
@@ -101,7 +103,7 @@ initialCards.forEach(data => {
 function newCard(title, image) {
   const cardElement = cardTemplate.cloneNode(true);
 
-  const cardImage = cardElement.getElementsByClassName('card__image')[0];
+  const cardImage = cardElement.querySelector('.card__image');
   const cardTitle = cardElement.getElementsByClassName('card__title')[0];
   const cardLikeButton = cardElement.getElementsByClassName('card__heart')[0];
   const cardDeleteButton = cardElement.getElementsByClassName('card__delete')[0];
@@ -125,9 +127,10 @@ function newCard(title, image) {
   cardImage.addEventListener('click', () => {
 
     const popupImage = imageModalWindow.getElementsByClassName('popup__image')[0];
-    const popupImageTitle = imageModalWindow.getElementsByClassName('popup__image-title')[0];
+    
 
     popupImage.src = image;
+    popupImage.setAttribute("alt", title);
     popupImageTitle.textContent = title;
 
     toggleModalWindow(imageModalWindow);
@@ -136,34 +139,13 @@ function newCard(title, image) {
   list.prepend(cardElement);   
 }
 
-function addCard(cardTitle, cardLink) {
-const cardElement = cardTemplate.cloneNode(true);
-cardElement.querySelector('.card__title').textContent = cardTitle;
-cardElement.querySelector('.card__image').style.backgroundImage = `url('${cardLink}')`;
-//
-const delete22 = cardElement.getElementsByClassName('card__delete')[0];
-delete22.addEventListener("click", event => {
-  const cardRemove = cardElement.closest('.card');
-  cardRemove.remove();
-});
-
-const like22 = cardElement.getElementsByClassName('card__heart')[0];
-like22.addEventListener('click', () => {
-    
-  like22.classList.toggle('card__heart_mode_like');
-  
-});
-
-
-//
-list.prepend(cardElement);
-}
+//Hello Aygul, can you please explain to me further what I need to do here?
 
 
 addCardSubmitButton.addEventListener("click", event => {
   event.preventDefault();
   const cardTitle = document.querySelector('.popup__input_type_card-title');
-  const cardLink = document.querySelector('.popup__input_type_url');
+  
 
   newCard(cardTitle.value, cardLink.value);
   cardTitle.value = "";
