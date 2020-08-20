@@ -98,7 +98,7 @@ const list = document.querySelector('.cards');
 
 initialCards.forEach(data => {
   newCard(data.name, data.link);
-  list.prepend(newCard(data.name, data.link)
+  list.prepend(newCard(data.name, data.link));
 });
 
 function newCard(title, image) {
