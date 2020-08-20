@@ -98,6 +98,7 @@ const list = document.querySelector('.cards');
 
 initialCards.forEach(data => {
   newCard(data.name, data.link);
+  list.prepend(newCard(data.name, data.link)
 });
 
 function newCard(title, image) {
@@ -136,10 +137,10 @@ function newCard(title, image) {
     toggleModalWindow(imageModalWindow);
   });
 
-  list.prepend(cardElement);   
+  return cardElement;  
 }
 
-//Hello Aygul, can you please explain to me further what I need to do here?
+
 
 
 addCardSubmitButton.addEventListener("click", event => {
@@ -151,5 +152,7 @@ addCardSubmitButton.addEventListener("click", event => {
   cardTitle.value = "";
   cardLink.value = "";
   toggleModalWindow(addCardModalWindow);
+
+  list.prepend(newCard(cardTitle, cardLink);
 });
   
