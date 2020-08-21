@@ -22,3 +22,9 @@
     opacity: 0;
     transition: visibility 0s linear .2s, opacity .2s linear;
 }
+
+@media (min-width: 1280px) {
+    .popup {
+        width: 1280px;
+    }
+}
