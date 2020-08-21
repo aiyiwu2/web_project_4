@@ -148,11 +148,9 @@ addCardSubmitButton.addEventListener("click", event => {
   const cardTitle = document.querySelector('.popup__input_type_card-title');
   
 
-  newCard(cardTitle.value, cardLink.value);
+  list.prepend(newCard(cardTitle.value, cardLink.value));
   cardTitle.value = "";
   cardLink.value = "";
   toggleModalWindow(addCardModalWindow);
-
-  list.prepend(newCard(cardTitle, cardLink);
 });
   
