@@ -20,7 +20,7 @@ const addCardSubmitButton = addCardModalWindow.querySelector('.popup__save');
 //profile
 const profileTitle = document.querySelector('.profile__title');
 const profileDescription = document.querySelector('.profile__subtitle');
-const popupImageTitle = imageModalWindow.getElementsByClassName('popup__image-title')[0];
+const popupImageTitle = imageModalWindow.querySelector('.popup__image-title');
 
 //form inputs
 const titleInputValue = formEdit.querySelector('.popup__input_type_name');
@@ -29,7 +29,7 @@ const cardLink = document.querySelector('.popup__input_type_url');
 const cardTitle = document.querySelector('.popup__input_type_card-title');
 
 //image
-const popupImage = imageModalWindow.getElementsByClassName('popup__image')[0];
+const popupImage = imageModalWindow.querySelector('.popup__image');
 
 function toggleModalWindow(modal) {
     modal.classList.toggle('popup_opened');
@@ -108,11 +108,10 @@ initialCards.forEach(data => {
 function newCard(title, image) {
   const cardElement = cardTemplate.cloneNode(true);
 
-  const cardImage = cardElement.getElementsByClassName('card__image')[0];
-  const cardTitle = cardElement.getElementsByClassName('card__title')[0];
-  const cardLikeButton = cardElement.getElementsByClassName('card__heart')[0];
-  const cardDeleteButton = cardElement.getElementsByClassName('card__delete')[0];
-  
+  const cardImage = cardElement.querySelector('.card__image');
+  const cardTitle = cardElement.querySelector('.card__title');
+  const cardLikeButton = cardElement.querySelector('.card__heart');
+  const cardDeleteButton = cardElement.querySelector('.card__delete');
 
   cardTitle.textContent = title;
   cardImage.setAttribute("alt", title);
@@ -131,9 +130,6 @@ function newCard(title, image) {
 
   cardImage.addEventListener('click', () => {
 
-    
-    
-
     popupImage.src = image;
     popupImage.setAttribute("alt", title);
     popupImageTitle.textContent = title;
@@ -144,14 +140,9 @@ function newCard(title, image) {
   return cardElement;  
 }
 
-
-
-
 addCardSubmitButton.addEventListener("click", event => {
   event.preventDefault();
   
-  
-
   list.prepend(newCard(cardTitle.value, cardLink.value));
   cardTitle.value = "";
   cardLink.value = "";
