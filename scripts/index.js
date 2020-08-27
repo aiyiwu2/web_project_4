@@ -33,7 +33,39 @@ const popupImage = imageModalWindow.querySelector('.popup__image');
 
 function toggleModalWindow(modal) {
     modal.classList.toggle('popup_opened');
-    
+}
+
+function closeModal(modal) {
+  modal.classList.remove('popup_opened');
+};
+
+window.addEventListener('keydown', function(event) {
+  if (event.key == "Escape") {
+      closeModal(editProfileModalWindow);
+}
+});
+
+window.addEventListener('keydown', function(event) {
+  if (event.key == "Escape") {
+      closeModal(addCardModalWindow);
+}
+});
+
+window.addEventListener('keydown', function(event) {
+  if (event.key == "Escape") {
+      closeModal(imageModalWindow);
+}
+});
+
+function addClickListener(popup) {
+  const openPopup = document.querySelector('.popup_opened');
+  const thisPopupIsVisible = popup.classList.contains('popup_opened');
+  window.addEventListener('click', (evt) => {
+    console.log("click");
+    if (event.target === openPopup && thisPopupIsVisible) {
+      toggleModalWindow(popup);
+    }
+  });
 }
 
 function handleEditProfileFormSubmit(evt) {
@@ -69,6 +101,7 @@ addCardModalCloseButton.addEventListener('click', () => {
 imagePopupCloseButton.addEventListener('click', () => {
   toggleModalWindow(imageModalWindow);
 });
+
 
 const initialCards = [
   {
@@ -148,4 +181,26 @@ addCardSubmitButton.addEventListener("click", event => {
   cardLink.value = "";
   toggleModalWindow(addCardModalWindow);
 });
-  
+/* 
+window.onclick = function(event) {
+  if(event.target == editProfileModalWindow) {
+    toggleModal(editProfileModalWindow);
+  } else if(event.target == addCardModalWindow) {
+    toggleModal(addCardModalWindow);
+  } else if(event.target == imageModalWindow) {
+    toggleModal(imageModalWindow);
+  } else {
+    "break";
+  }
+ }
+ */
+function addClickListener(popup) {
+  const openPopup = document.querySelector('.popup_opened');
+  const thisPopupIsVisible = popup.classList.contains('popup_opened');
+  window.addEventListener('click', (evt) => {
+    if (event.target === openPopup && thisPopupIsVisible) {
+      toggleModalWindow(popup);
+    }
+  });
+}
+ 
