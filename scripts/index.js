@@ -57,17 +57,6 @@ window.addEventListener('keydown', function(event) {
 }
 });
 
-function addClickListener(popup) {
-  const openPopup = document.querySelector('.popup_opened');
-  const thisPopupIsVisible = popup.classList.contains('popup_opened');
-  window.addEventListener('click', (evt) => {
-    console.log("click");
-    if (event.target === openPopup && thisPopupIsVisible) {
-      toggleModalWindow(popup);
-    }
-  });
-}
-
 function handleEditProfileFormSubmit(evt) {
     evt.preventDefault();
     profileTitle.textContent = titleInputValue.value;
@@ -181,19 +170,7 @@ addCardSubmitButton.addEventListener("click", event => {
   cardLink.value = "";
   toggleModalWindow(addCardModalWindow);
 });
-/* 
-window.onclick = function(event) {
-  if(event.target == editProfileModalWindow) {
-    toggleModal(editProfileModalWindow);
-  } else if(event.target == addCardModalWindow) {
-    toggleModal(addCardModalWindow);
-  } else if(event.target == imageModalWindow) {
-    toggleModal(imageModalWindow);
-  } else {
-    "break";
-  }
- }
- */
+
 function addClickListener(popup) {
   const openPopup = document.querySelector('.popup_opened');
   const thisPopupIsVisible = popup.classList.contains('popup_opened');
@@ -203,4 +180,30 @@ function addClickListener(popup) {
     }
   });
 }
- 
+
+let lastModalOpened = null;
+
+const handlePressEsc = ({ keyCode }) => {
+  if (keyCode === 27) {
+    toggleModal(lastModalOpened);
+  }
+}
+const handleModalClick = ({ target }) => {
+  if (target.classList.contains('popup__close') ||
+      target.classList.contains('popup')) {
+    toggleModal(lastModalOpened);
+  }
+};
+const toggleModal = (modal) => {
+  const isModalOpened = modal.classList.contains('popup_opened');
+  modal.classList.toggle('popup_opened');
+  lastModalOpened = modal;
+  if (isModalOpened) {
+    document.addEventListener('keydown', handlePressEsc);
+    modal.addEventListener('click', handleModalClick);
+  } else {
+    document.removeEventListener('keydown', handlePressEsc);
+    modal.removeEventListener('click', handleModalClick);
+    lastModalOpened = null;
+  }
+}
