@@ -32,11 +32,37 @@ const cardTitle = document.querySelector('.popup__input_type_card-title');
 const popupImage = imageModalWindow.querySelector('.popup__image');
 
 function toggleModalWindow(modal) {
-    modal.classList.toggle('popup_opened');
+    if (modal.classList.contains("popup_opened")) {
+      closeModal(modal);
+    } else {
+      openModal(modal);
+    }
+}
+
+const handleModalClick = (target) => {
+  if (target.classList == 'popup_opened') {
+    toggleModalWindow("popup_opened");
+  }
+};
+
+function openModal(modal) {
+  modal.classList.add("popup_opened");
+  window.addEventListener("keydown", function(event) {
+    if (event.key = "Escape") {
+      toggleModalWindow("popup_opened");
+    }
+  })
+  window.addEventListener("click", handleModalClick);
 }
 
 function closeModal(modal) {
   modal.classList.remove('popup_opened');
+  window.removeEventListener("keydown", function(event) {
+    if (event.key = "Escape") {
+      toggleModalWindow("popup_opened");
+    }
+  })
+  window.removeEventListener("click", handleModalClick);
 };
 
 window.addEventListener('keydown', function(event) {
@@ -171,39 +197,3 @@ addCardSubmitButton.addEventListener("click", event => {
   toggleModalWindow(addCardModalWindow);
 });
 
-function addClickListener(popup) {
-  const openPopup = document.querySelector('.popup_opened');
-  const thisPopupIsVisible = popup.classList.contains('popup_opened');
-  window.addEventListener('click', (evt) => {
-    if (event.target === openPopup && thisPopupIsVisible) {
-      toggleModalWindow(popup);
-    }
-  });
-}
-
-let lastModalOpened = null;
-
-const handlePressEsc = ({ keyCode }) => {
-  if (keyCode === 27) {
-    toggleModal(lastModalOpened);
-  }
-}
-const handleModalClick = ({ target }) => {
-  if (target.classList.contains('popup__close') ||
-      target.classList.contains('popup')) {
-    toggleModal(lastModalOpened);
-  }
-};
-const toggleModal = (modal) => {
-  const isModalOpened = modal.classList.contains('popup_opened');
-  modal.classList.toggle('popup_opened');
-  lastModalOpened = modal;
-  if (isModalOpened) {
-    document.addEventListener('keydown', handlePressEsc);
-    modal.addEventListener('click', handleModalClick);
-  } else {
-    document.removeEventListener('keydown', handlePressEsc);
-    modal.removeEventListener('click', handleModalClick);
-    lastModalOpened = null;
-  }
-}
