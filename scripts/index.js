@@ -55,9 +55,18 @@ function closeModal(modal) {
   window.removeEventListener("click", handleModalClick);
 };
 
-function handleModalEsc(event, modal) {
+function handleModalEsc(event) {
   if (event.key == "Escape") {
-    closeModal(modal);
+    if (editProfileModalWindow.classList.contains("popup_opened")) {
+      toggleModalWindow(editProfileModalWindow);
+      document.removeEventListener("keydown", handleModalEsc);
+    } else if (addCardModalWindow.classList.contains("popup_opened")) {
+      toggleModalWindow(addCardModalWindow);
+      document.removeEventListener("keydown", handleModalEsc);
+    } else if (imageModalWindow.classList.contains("popup_opened")) {
+      toggleModalWindow(imageModalWindow);
+      document.removeEventListener("keydown", handleModalEsc);
+    }
 }
 }
 
