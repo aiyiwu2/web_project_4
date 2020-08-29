@@ -15,7 +15,7 @@ const imagePopupCloseButton = imageModalWindow.querySelector('.popup__close');
 //Buttons and other DOM elements
 const formEdit = document.querySelector('.popup__form');
 const cardDelete = document.querySelector('.card__delete');
-const addCardSubmitButton = addCardModalWindow.querySelector('.popup__save');
+const addCardSubmitButton = addCardModalWindow.querySelector('.popup__button');
 
 //profile
 const profileTitle = document.querySelector('.profile__title');
@@ -40,48 +40,33 @@ function toggleModalWindow(modal) {
 }
 
 const handleModalClick = (target) => {
-  if (target.classList == 'popup_opened') {
     toggleModalWindow("popup_opened");
-  }
 };
 
 function openModal(modal) {
   modal.classList.add("popup_opened");
-  window.addEventListener("keydown", function(event) {
-    if (event.key = "Escape") {
-      toggleModalWindow("popup_opened");
-    }
-  })
+  window.addEventListener("keydown", handleModalEsc(modal));
   window.addEventListener("click", handleModalClick);
 }
 
 function closeModal(modal) {
   modal.classList.remove('popup_opened');
-  window.removeEventListener("keydown", function(event) {
-    if (event.key = "Escape") {
-      toggleModalWindow("popup_opened");
-    }
-  })
+  window.removeEventListener("keydown", handleModalEsc(modal));
   window.removeEventListener("click", handleModalClick);
 };
 
-window.addEventListener('keydown', function(event) {
+function handleModalEsc(event, modal) {
   if (event.key == "Escape") {
-      closeModal(editProfileModalWindow);
+    closeModal(modal);
 }
-});
+}
 
-window.addEventListener('keydown', function(event) {
-  if (event.key == "Escape") {
-      closeModal(addCardModalWindow);
-}
-});
+window.addEventListener('keydown', handleModalEsc(editProfileModalWindow));
 
-window.addEventListener('keydown', function(event) {
-  if (event.key == "Escape") {
-      closeModal(imageModalWindow);
-}
-});
+window.addEventListener('keydown', handleModalEsc(addCardModalWindow));
+
+window.addEventListener('keydown', handleModalEsc(imageModalWindow));
+
 
 function handleEditProfileFormSubmit(evt) {
     evt.preventDefault();
