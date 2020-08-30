@@ -31,16 +31,28 @@ const cardTitle = document.querySelector('.popup__input_type_card-title');
 //image
 const popupImage = imageModalWindow.querySelector('.popup__image');
 
+let activeModal = null;
+
 function toggleModalWindow(modal) {
-    if (modal.classList.contains("popup_opened")) {
-      closeModal(modal);
+    const isModalOpened = modal.classList.contains("popup_opened");
+
+    activeModal = modal;
+    modal.classList.toggle("popup_opened");
+
+    if (isModalOpened) {
+      document.removeEventListener("keydown", handleModalEsc);
+      modal.removeEventListener("click", handleModalClick);
+      activeModal = null;
     } else {
-      openModal(modal);
+      document.addEventListener("keydown", handleModalEsc);
+      modal.addEventListener("click", handleModalClick);
     }
 }
 
-const handleModalClick = (target) => {
-    toggleModalWindow("popup_opened");
+const handleModalClick = ({ target }) => {
+    if (target.classList.contains("popup") || target.classList.contains("popup__close")) {
+      toggleModalWindow(activeModal);
+    }
 };
 
 function openModal(modal) {
@@ -57,16 +69,7 @@ function closeModal(modal) {
 
 function handleModalEsc(event) {
   if (event.key == "Escape") {
-    if (editProfileModalWindow.classList.contains("popup_opened")) {
-      toggleModalWindow(editProfileModalWindow);
-      document.removeEventListener("keydown", handleModalEsc);
-    } else if (addCardModalWindow.classList.contains("popup_opened")) {
-      toggleModalWindow(addCardModalWindow);
-      document.removeEventListener("keydown", handleModalEsc);
-    } else if (imageModalWindow.classList.contains("popup_opened")) {
-      toggleModalWindow(imageModalWindow);
-      document.removeEventListener("keydown", handleModalEsc);
-    }
+    toggleModalWindow(activeModal);
 }
 }
 
