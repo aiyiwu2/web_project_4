@@ -14,7 +14,6 @@ const imagePopupCloseButton = imageModalWindow.querySelector('.popup__close');
 
 //Buttons and other DOM elements
 const formEdit = document.querySelector('.popup__form');
-const cardDelete = document.querySelector('.card__delete');
 const addCardSubmitButton = addCardModalWindow.querySelector('.popup__button');
 
 //profile
@@ -55,30 +54,18 @@ const handleModalClick = ({ target }) => {
     }
 };
 
-function openModal(modal) {
-  modal.classList.add("popup_opened");
-  window.addEventListener("keydown", handleModalEsc(modal));
-  window.addEventListener("click", handleModalClick);
-}
-
-function closeModal(modal) {
-  modal.classList.remove('popup_opened');
-  window.removeEventListener("keydown", handleModalEsc(modal));
-  window.removeEventListener("click", handleModalClick);
-};
-
 function handleModalEsc(event) {
   if (event.key == "Escape") {
     toggleModalWindow(activeModal);
 }
 }
 
-window.addEventListener('keydown', handleModalEsc(editProfileModalWindow));
-
+window.addEventListener('keydown', handleModalEsc);
+/*
 window.addEventListener('keydown', handleModalEsc(addCardModalWindow));
 
 window.addEventListener('keydown', handleModalEsc(imageModalWindow));
-
+*/
 
 function handleEditProfileFormSubmit(evt) {
     evt.preventDefault();
