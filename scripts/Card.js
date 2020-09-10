@@ -22,8 +22,8 @@ function toggleModalWindow(modal) {
 
 const handlePreviewPicture = (data) => {
     popupImage.src = data.link;
-popupImage.setAttribute("alt", ${data.name});
-popupImageTitle.textContent = data.name;
+    popupImage.setAttribute("alt", title);
+    popupImageTitle.textContent = data.name;
 
 toggleModalWindow(imageModalWindow);
 }
@@ -37,11 +37,11 @@ class Card {
 
     _handleLikeIcon(event) {
       event.target.classList.toggle('card__heart_mode_like');
-    });
+    };
 
     _handleDeleteCard(event) {
       event.target.closest('.card').remove();
-    });
+    };
 
     _handlePreviewPicture() {
       popupImage.src = image;
@@ -49,7 +49,7 @@ class Card {
       popupImageTitle.textContent = title;
   
       toggleModalWindow(imageModalWindow);
-    });
+    };
 
     _addEventListeners() {
         const cardImage = this._card.querySelector('.card__image');
