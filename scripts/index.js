@@ -1,6 +1,30 @@
-//wrappers
+import FormValidator from './FormValidation.js';
+import Card from './Card.js';
+
+const defaultConfig = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible"
+};
+
 const addCardModalWindow = document.querySelector('.popup_type_add-card');
 const editProfileModalWindow = document.querySelector('.popup_type_edit-profile');
+
+const addCardForm = addCardModalWindow.querySelector('.popup__form');
+const editProfileForm = editProfileModalWindow.querySelector('.popup__form');
+
+const editFormValidator = new FormValidator(defaultConfig, editProfileForm);
+const addFormValidator = new FormValidator(defaultConfig, addCardForm);
+
+//editFormValidator.enableValidation();
+//addFormValidator.enableValidation();
+
+//wrappers
+//const addCardModalWindow = document.querySelector('.popup_type_add-card');
+//const editProfileModalWindow = document.querySelector('.popup_type_edit-profile');
 const imageModalWindow = document.querySelector('.popup_type_image');
 
 //openButtons
@@ -61,11 +85,6 @@ function handleModalEsc(event) {
 }
 
 window.addEventListener('keydown', handleModalEsc);
-/*
-window.addEventListener('keydown', handleModalEsc(addCardModalWindow));
-
-window.addEventListener('keydown', handleModalEsc(imageModalWindow));
-*/
 
 function handleEditProfileFormSubmit(evt) {
     evt.preventDefault();
@@ -150,9 +169,7 @@ function newCard(title, image) {
   cardImage.style.backgroundImage = `url(${image})`;
 
   cardLikeButton.addEventListener('click', () => {
-    
     cardLikeButton.classList.toggle('card__heart_mode_like');
-    
   });
 
   cardDeleteButton.addEventListener('click', () => {
@@ -161,7 +178,6 @@ function newCard(title, image) {
   });
 
   cardImage.addEventListener('click', () => {
-
     popupImage.src = image;
     popupImage.setAttribute("alt", title);
     popupImageTitle.textContent = title;
@@ -170,7 +186,7 @@ function newCard(title, image) {
   });
 
   return cardElement;  
-}
+};
 
 addCardSubmitButton.addEventListener("click", event => {
   event.preventDefault();
