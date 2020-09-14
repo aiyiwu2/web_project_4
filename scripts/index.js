@@ -17,7 +17,7 @@ const addCardForm = addCardModalWindow.querySelector('.popup__form');
 const editProfileForm = editProfileModalWindow.querySelector('.popup__form');
 
 const editFormValidator = new FormValidator(defaultConfig, editProfileForm);
-const addFormValidator = new FormValidator(defaultConfig, addCardForm);
+//const addFormValidator = new FormValidator(defaultConfig, addCardForm);
 
 //editFormValidator.enableValidation();
 //addFormValidator.enableValidation();

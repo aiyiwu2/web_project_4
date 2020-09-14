@@ -1,8 +1,19 @@
+const imageModalWindow = document.querySelector('.popup_type_image');
+const popupImage = imageModalWindow.querySelector('.popup__image');
+let activeModal = null;
+
+
 function handleModalEsc(event) {
-    if (event.key == "Escape") {
+    if (event.key === "Escape") {
       toggleModalWindow(activeModal);
   }
   }
+
+  const handleModalClick = ({ target }) => {
+    if (target.classList.contains("popup") || target.classList.contains("popup__close")) {
+      toggleModalWindow(activeModal);
+    }
+};
 
 function toggleModalWindow(modal) {
     const isModalOpened = modal.classList.contains("popup_opened");
@@ -20,17 +31,11 @@ function toggleModalWindow(modal) {
     }
 }
 
-const handlePreviewPicture = (data) => {
-    popupImage.src = data.link;
-    popupImage.setAttribute("alt", title);
-    popupImageTitle.textContent = data.name;
 
-toggleModalWindow(imageModalWindow);
-}
 
 class Card {
     constructor(data, cardTemplateSelector) {
-        this._text = data.text;
+        this._text = data.name;
         this._link = data.link;
         this._cardTemplate = document.querySelector(cardTemplateSelector).content.querySelector('.card');
     }
@@ -42,7 +47,7 @@ class Card {
     _handleDeleteCard(event) {
       event.target.closest('.card').remove();
     };
-
+//Can you please elaborate what I must do here?
     _handlePreviewPicture() {
       popupImage.src = image;
       popupImage.setAttribute("alt", title);
