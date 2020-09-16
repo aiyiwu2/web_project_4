@@ -47,7 +47,7 @@ class Card {
     _handleDeleteCard(event) {
       event.target.closest('.card').remove();
     };
-//Can you please elaborate what I must do here?
+
     _handlePreviewPicture() {
       popupImage.src = image;
       popupImage.setAttribute("alt", title);

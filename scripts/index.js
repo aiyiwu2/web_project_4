@@ -157,7 +157,8 @@ initialCards.forEach(data => {
 });
 
 function newCard(title, image) {
-  const cardElement = cardTemplate.cloneNode(true);
+  //const cardElement = cardTemplate.cloneNode(true);
+  const cardElement = new Card(initialCards, ".card-template");
 
   const cardImage = cardElement.querySelector('.card__image');
   const cardTitle = cardElement.querySelector('.card__title');
