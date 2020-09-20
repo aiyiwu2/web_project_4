@@ -17,7 +17,7 @@ const addCardForm = addCardModalWindow.querySelector('.popup__form');
 const editProfileForm = editProfileModalWindow.querySelector('.popup__form');
 
 const editFormValidator = new FormValidator(defaultConfig, editProfileForm);
-//const addFormValidator = new FormValidator(defaultConfig, addCardForm);
+const addFormValidator = new FormValidator(defaultConfig, addCardForm);
 
 //editFormValidator.enableValidation();
 //addFormValidator.enableValidation();
@@ -152,8 +152,9 @@ const cardTemplate = document.querySelector('.card-template').content.querySelec
 const list = document.querySelector('.cards');
 
 initialCards.forEach(data => {
-  const newCard = new Card(initialCards, ".card-template");
+  const newCard = new Card(data, ".card-template");
   newCard.getCardElement();
+  list.prepend(newCard(data.name, data.link));
   //newCard(data.name, data.link);
   //list.prepend(newCard(data.name, data.link));
 });
@@ -191,6 +192,14 @@ function newCard(title, image) {
   return cardElement;  
 };
 */
+
+export default function handleCardClick(data) {
+  popupImage.src = data.link;
+  popupImage.setAttribute("alt", data.name);
+  popupImageTitle.textContent = data.name;
+
+  toggleModalWindow(imageModalWindow);
+}
 
 addCardSubmitButton.addEventListener("click", event => {
   event.preventDefault();

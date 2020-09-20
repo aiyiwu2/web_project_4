@@ -1,6 +1,7 @@
-const imageModalWindow = document.querySelector('.popup_type_image');
-const popupImage = imageModalWindow.querySelector('.popup__image');
-let activeModal = null;
+import handleCardClick from "./index.js";
+import imageModalWindow from "./index.js";
+import popupImage from "./index.js";
+import activeModal from "./index.js";
 
 
 function handleModalEsc(event) {
@@ -37,6 +38,7 @@ class Card {
     constructor(data, cardTemplateSelector) {
         this._text = data.name;
         this._link = data.link;
+        this._data = data;
         this._cardTemplate = document.querySelector(cardTemplateSelector).content.querySelector('.card');
     }
 
@@ -49,9 +51,9 @@ class Card {
     };
 
     _handlePreviewPicture() {
-      popupImage.src = image;
-      popupImage.setAttribute("alt", title);
-      popupImageTitle.textContent = title;
+      popupImage.src = this._data.link;
+      popupImage.setAttribute("alt", this._text);
+      popupImageTitle.textContent = this._text;
   
       toggleModalWindow(imageModalWindow);
     };
@@ -65,7 +67,9 @@ class Card {
         
           cardDeleteButton.addEventListener('click', this._handleDeleteCard);
         
-          cardImage.addEventListener('click', this._handlePreviewPicture(data));
+          cardImage.addEventListener('click', () => {
+            handleCardClick(this._data);
+          });
     }
 
     getCardElement() {
