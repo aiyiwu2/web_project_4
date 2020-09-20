@@ -152,10 +152,12 @@ const cardTemplate = document.querySelector('.card-template').content.querySelec
 const list = document.querySelector('.cards');
 
 initialCards.forEach(data => {
-  newCard(data.name, data.link);
-  list.prepend(newCard(data.name, data.link));
+  const newCard = new Card(initialCards, ".card-template");
+  newCard.getCardElement();
+  //newCard(data.name, data.link);
+  //list.prepend(newCard(data.name, data.link));
 });
-
+/*
 function newCard(title, image) {
   //const cardElement = cardTemplate.cloneNode(true);
   const cardElement = new Card(initialCards, ".card-template");
@@ -188,6 +190,7 @@ function newCard(title, image) {
 
   return cardElement;  
 };
+*/
 
 addCardSubmitButton.addEventListener("click", event => {
   event.preventDefault();
