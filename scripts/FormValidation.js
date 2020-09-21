@@ -36,7 +36,7 @@ class FormValidator {
             buttonElement.disabled = false;
         }
     }
-    _setEventListeners() {
+    _setEventListeners(formElement) {
         const inputList = Array.from(this._formElement.querySelectorAll(this._settings.inputSelector));
     const buttonElement = formElement.querySelector(this._settings.submitButtonSelector);
 

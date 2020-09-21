@@ -1,4 +1,4 @@
-/*
+
 function showErrorMessage(input, form, {errorClass, inputErrorClass, ...rest}) {
     const error = document.querySelector("#" + input.id + "-error");
     error.textContent = input.validationMessage;
@@ -53,8 +53,8 @@ function enableValidation({formSelector, inputSelector, submitButtonSelector, ..
         })
     })
 }
-*/
 
+/*
 const showInputError = (formElement, inputElement, errorMessage, config) => {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.add(config.inputErrorClass);
@@ -114,7 +114,7 @@ const enableValidation = (config) => {
         setEventListeners(formElement, config);
     });
 };
-
+*/
 enableValidation({
     formSelector: ".popup__form",
     inputSelector: ".popup__input",

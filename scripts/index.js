@@ -201,12 +201,17 @@ export default function handleCardClick(data) {
   toggleModalWindow(imageModalWindow);
 }
 
-addCardSubmitButton.addEventListener("click", event => {
+addCardSubmitButton.addEventListener("click", submitButtonClick);
+
+function submitButtonClick(event, data) {
   event.preventDefault();
+
+  const newCard = new Card(data, ".card-template");
+  const newCardElement = newCard.getCardElement();
+  list.prepend(newCardElement);
   
-  list.prepend(newCard(cardTitle.value, cardLink.value));
+  //list.prepend(newCard(cardTitle.value, cardLink.value));
   cardTitle.value = "";
   cardLink.value = "";
   toggleModalWindow(addCardModalWindow);
-});
-
+}
