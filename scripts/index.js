@@ -153,8 +153,8 @@ const list = document.querySelector('.cards');
 
 initialCards.forEach(data => {
   const newCard = new Card(data, ".card-template");
-  newCard.getCardElement();
-  list.prepend(newCard(data.name, data.link));
+  const newCardElement = newCard.getCardElement();
+  list.prepend(newCardElement);
   //newCard(data.name, data.link);
   //list.prepend(newCard(data.name, data.link));
 });
