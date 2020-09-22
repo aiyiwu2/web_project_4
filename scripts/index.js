@@ -152,6 +152,7 @@ const cardTemplate = document.querySelector('.card-template').content.querySelec
 const list = document.querySelector('.cards');
 
 initialCards.forEach(data => {
+  console.log(data);
   const newCard = new Card(data, ".card-template");
   const newCardElement = newCard.getCardElement();
   list.prepend(newCardElement);
@@ -201,11 +202,15 @@ export default function handleCardClick(data) {
   toggleModalWindow(imageModalWindow);
 }
 
-addCardSubmitButton.addEventListener("click", submitButtonClick);
+//addCardSubmitButton.addEventListener("click", submitButtonClick);
+
+addCardSubmitButton.addEventListener("click", (event) => {
+  submitButtonClick(event, addCardModalWindow);
+});
 
 function submitButtonClick(event, data) {
   event.preventDefault();
-
+  console.log(data);
   const newCard = new Card(data, ".card-template");
   const newCardElement = newCard.getCardElement();
   list.prepend(newCardElement);
