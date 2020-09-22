@@ -23,8 +23,6 @@ const addFormValidator = new FormValidator(defaultConfig, addCardForm);
 //addFormValidator.enableValidation();
 
 //wrappers
-//const addCardModalWindow = document.querySelector('.popup_type_add-card');
-//const editProfileModalWindow = document.querySelector('.popup_type_edit-profile');
 const imageModalWindow = document.querySelector('.popup_type_image');
 
 //openButtons
@@ -156,43 +154,7 @@ initialCards.forEach(data => {
   const newCard = new Card(data, ".card-template");
   const newCardElement = newCard.getCardElement();
   list.prepend(newCardElement);
-  //newCard(data.name, data.link);
-  //list.prepend(newCard(data.name, data.link));
 });
-/*
-function newCard(title, image) {
-  //const cardElement = cardTemplate.cloneNode(true);
-  const cardElement = new Card(initialCards, ".card-template");
-
-  const cardImage = cardElement.querySelector('.card__image');
-  const cardTitle = cardElement.querySelector('.card__title');
-  const cardLikeButton = cardElement.querySelector('.card__heart');
-  const cardDeleteButton = cardElement.querySelector('.card__delete');
-
-  cardTitle.textContent = title;
-  cardImage.setAttribute("alt", title);
-  cardImage.style.backgroundImage = `url(${image})`;
-
-  cardLikeButton.addEventListener('click', () => {
-    cardLikeButton.classList.toggle('card__heart_mode_like');
-  });
-
-  cardDeleteButton.addEventListener('click', () => {
-    const cardRemove = cardDeleteButton.closest('.card');
-    cardRemove.remove();
-  });
-
-  cardImage.addEventListener('click', () => {
-    popupImage.src = image;
-    popupImage.setAttribute("alt", title);
-    popupImageTitle.textContent = title;
-
-    toggleModalWindow(imageModalWindow);
-  });
-
-  return cardElement;  
-};
-*/
 
 export default function handleCardClick(data) {
   popupImage.src = data.link;
@@ -202,14 +164,14 @@ export default function handleCardClick(data) {
   toggleModalWindow(imageModalWindow);
 }
 
-//addCardSubmitButton.addEventListener("click", submitButtonClick);
-
 addCardSubmitButton.addEventListener("click", (event) => {
-  submitButtonClick(event, addCardModalWindow);
+  submitButtonClick(event);
 });
 
-function submitButtonClick(event, data) {
+function submitButtonClick(event) {
   event.preventDefault();
+  
+  const data = { name: cardTitle.value, link: cardLink.value }
   console.log(data);
   const newCard = new Card(data, ".card-template");
   const newCardElement = newCard.getCardElement();
