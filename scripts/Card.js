@@ -1,21 +1,26 @@
-import handleCardClick from "./index.js";
-import imageModalWindow from "./index.js";
-import popupImage from "./index.js";
-import activeModal from "./index.js";
+import handleCardClick from "./utils.js";
+import imageModalWindow from "./utils.js";
+import popupImage from "./utils.js";
+//import activeModal from "./utils.js";
+import toggleModalWindow from "./utils.js";
+//import handleModalClick from "./utils.js";
+import popupImageTitle from "./utils.js";
 
-
+/*
 function handleModalEsc(event) {
     if (event.key === "Escape") {
       toggleModalWindow(activeModal);
   }
   }
-
+  */
+/*
   const handleModalClick = ({ target }) => {
     if (target.classList.contains("popup") || target.classList.contains("popup__close")) {
       toggleModalWindow(activeModal);
     }
 };
-
+*/
+/*
 function toggleModalWindow(modal) {
     const isModalOpened = modal.classList.contains("popup_opened");
 
@@ -31,7 +36,7 @@ function toggleModalWindow(modal) {
       modal.addEventListener("click", handleModalClick);
     }
 }
-
+*/
 
 
 class Card {
