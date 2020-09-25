@@ -1,10 +1,10 @@
-import handleCardClick from "./utils.js";
-import imageModalWindow from "./utils.js";
-import popupImage from "./utils.js";
+import { handleCardClick, imageModalWindow, toggleModalWindow, popupImage, popupImageTitle } from "./utils.js";
+//import { imageModalWindow } from "./utils.js";
+//import { popupImage } from "./utils.js";
 //import activeModal from "./utils.js";
-import toggleModalWindow from "./utils.js";
+//import { toggleModalWindow } from "./utils.js";
 //import handleModalClick from "./utils.js";
-import popupImageTitle from "./utils.js";
+//import { popupImageTitle } from "./utils.js";
 
 /*
 function handleModalEsc(event) {
@@ -52,7 +52,9 @@ class Card {
     };
 
     _handleDeleteCard(event) {
-      event.target.closest('.card').remove();
+      //event.target.closest('.card').remove();
+      console.log(this._cardTemplate);
+      event.target.closest(this._cardTemplate).remove();
     };
 
     _handlePreviewPicture() {

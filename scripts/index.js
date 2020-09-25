@@ -1,10 +1,10 @@
 //import FormValidator from './FormValidation.js';
 import Card from './Card.js';
-import toggleModalWindow from "./utils.js";
-import activeModal from "./utils.js";
-import popupImage from "./utils.js";
-import popupImageTitle from "./utils.js";
-import imageModalWindow from "./utils.js";
+import { toggleModalWindow, activeModal, popupImage, popupImageTitle, imageModalWindow } from "./utils.js";
+//import { activeModal } from "./utils.js";
+//import { popupImage } from "./utils.js";
+//import { popupImageTitle } from "./utils.js";
+//import { imageModalWindow } from "./utils.js";
 
 const defaultConfig = {
   formSelector: ".popup__form",

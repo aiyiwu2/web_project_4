@@ -1,4 +1,4 @@
-//import handleModalEsc from "./index.js";
+import { handleModalEsc } from "./index.js";
 
 export const imageModalWindow = document.querySelector('.popup_type_image');
 
@@ -15,7 +15,7 @@ export function handleCardClick(data) {
     toggleModalWindow(imageModalWindow);
   }
 
-export default function toggleModalWindow(modal) {
+export function toggleModalWindow(modal) {
     console.log(modal);
 const isModalOpened = modal.classList.contains("popup_opened");
 
@@ -31,13 +31,13 @@ if (isModalOpened) {
     modal.addEventListener("click", handleModalClick);
 }
 }
-
+/*
 export function handleModalEsc(event) {
     if (event.key == "Escape") {
       toggleModalWindow(activeModal);
   }
   }
-
+*/
  export const handleModalClick = ({ target }) => {
     if (target.classList.contains("popup") || target.classList.contains("popup__close")) {
       toggleModalWindow(activeModal);
