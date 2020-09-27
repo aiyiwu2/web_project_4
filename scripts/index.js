@@ -1,6 +1,6 @@
 import Card from './Card.js';
 import { FormValidator, defaultConfig } from './FormValidation.js';
-import { toggleModalWindow, popupImage, popupImageTitle, imageModalWindow, handleModalEsc } from "./utils.js";
+import { toggleModalWindow, imageModalWindow, handleModalEsc } from "./utils.js";
 
 const addCardModalWindow = document.querySelector('.popup_type_add-card');
 const editProfileModalWindow = document.querySelector('.popup_type_edit-profile');
