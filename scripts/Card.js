@@ -1,43 +1,4 @@
 import { handleCardClick, imageModalWindow, toggleModalWindow, popupImage, popupImageTitle } from "./utils.js";
-//import { imageModalWindow } from "./utils.js";
-//import { popupImage } from "./utils.js";
-//import activeModal from "./utils.js";
-//import { toggleModalWindow } from "./utils.js";
-//import handleModalClick from "./utils.js";
-//import { popupImageTitle } from "./utils.js";
-
-/*
-function handleModalEsc(event) {
-    if (event.key === "Escape") {
-      toggleModalWindow(activeModal);
-  }
-  }
-  */
-/*
-  const handleModalClick = ({ target }) => {
-    if (target.classList.contains("popup") || target.classList.contains("popup__close")) {
-      toggleModalWindow(activeModal);
-    }
-};
-*/
-/*
-function toggleModalWindow(modal) {
-    const isModalOpened = modal.classList.contains("popup_opened");
-
-    activeModal = modal;
-    modal.classList.toggle("popup_opened");
-
-    if (isModalOpened) {
-      document.removeEventListener("keydown", handleModalEsc);
-      modal.removeEventListener("click", handleModalClick);
-      activeModal = null;
-    } else {
-      document.addEventListener("keydown", handleModalEsc);
-      modal.addEventListener("click", handleModalClick);
-    }
-}
-*/
-
 
 class Card {
     constructor(data, cardTemplateSelector) {
@@ -51,10 +12,8 @@ class Card {
       event.target.classList.toggle('card__heart_mode_like');
     };
 
-    _handleDeleteCard(event) {
-      //event.target.closest('.card').remove();
-      console.log(this._cardTemplate);
-      event.target.closest(this._cardTemplate).remove();
+    _handleDeleteCard() {
+      this._card.remove();
     };
 
     _handlePreviewPicture() {
@@ -72,7 +31,7 @@ class Card {
 
         cardLikeButton.addEventListener('click', this._handleLikeIcon);
         
-          cardDeleteButton.addEventListener('click', this._handleDeleteCard);
+          cardDeleteButton.addEventListener('click', this._handleDeleteCard.bind(this));
         
           cardImage.addEventListener('click', () => {
             handleCardClick(this._data);

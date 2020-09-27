@@ -1,11 +1,8 @@
-//import FormValidator from './FormValidation.js';
 import Card from './Card.js';
+import { FormValidator, defaultConfig } from './FormValidation.js';
 import { toggleModalWindow, activeModal, popupImage, popupImageTitle, imageModalWindow } from "./utils.js";
-//import { activeModal } from "./utils.js";
-//import { popupImage } from "./utils.js";
-//import { popupImageTitle } from "./utils.js";
-//import { imageModalWindow } from "./utils.js";
 
+/*
 const defaultConfig = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
@@ -14,6 +11,7 @@ const defaultConfig = {
   inputErrorClass: "popup__input_type_error",
   errorClass: "popup__error_visible"
 };
+*/
 
 const addCardModalWindow = document.querySelector('.popup_type_add-card');
 const editProfileModalWindow = document.querySelector('.popup_type_edit-profile');
@@ -21,11 +19,11 @@ const editProfileModalWindow = document.querySelector('.popup_type_edit-profile'
 const addCardForm = addCardModalWindow.querySelector('.popup__form');
 const editProfileForm = editProfileModalWindow.querySelector('.popup__form');
 
-//const editFormValidator = new FormValidator(defaultConfig, editProfileForm);
-//const addFormValidator = new FormValidator(defaultConfig, addCardForm);
+const editFormValidator = new FormValidator(defaultConfig, editProfileForm);
+const addFormValidator = new FormValidator(defaultConfig, addCardForm);
 
-//editFormValidator.enableValidation();
-//addFormValidator.enableValidation();
+editFormValidator.enableValidation();
+addFormValidator.enableValidation();
 
 //wrappers
 //const imageModalWindow = document.querySelector('.popup_type_image');
