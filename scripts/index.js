@@ -2,17 +2,6 @@ import Card from './Card.js';
 import { FormValidator, defaultConfig } from './FormValidation.js';
 import { toggleModalWindow, activeModal, popupImage, popupImageTitle, imageModalWindow } from "./utils.js";
 
-/*
-const defaultConfig = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__button",
-  inactiveButtonClass: "popup__button_disabled",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__error_visible"
-};
-*/
-
 const addCardModalWindow = document.querySelector('.popup_type_add-card');
 const editProfileModalWindow = document.querySelector('.popup_type_edit-profile');
 
@@ -24,9 +13,6 @@ const addFormValidator = new FormValidator(defaultConfig, addCardForm);
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
-
-//wrappers
-//const imageModalWindow = document.querySelector('.popup_type_image');
 
 //openButtons
 const profileEditButton = document.querySelector('.profile__edit');
@@ -52,34 +38,6 @@ const descriptionInputValue = formEdit.querySelector('.popup__input_type_bio');
 const cardLink = document.querySelector('.popup__input_type_url');
 const cardTitle = document.querySelector('.popup__input_type_card-title');
 
-//image
-//const popupImage = imageModalWindow.querySelector('.popup__image');
-
-//let activeModal = null;
-/*
-function toggleModalWindow(modal) {
-    const isModalOpened = modal.classList.contains("popup_opened");
-
-    activeModal = modal;
-    modal.classList.toggle("popup_opened");
-
-    if (isModalOpened) {
-      document.removeEventListener("keydown", handleModalEsc);
-      modal.removeEventListener("click", handleModalClick);
-      activeModal = null;
-    } else {
-      document.addEventListener("keydown", handleModalEsc);
-      modal.addEventListener("click", handleModalClick);
-    }
-}
-*/
-/*
-const handleModalClick = ({ target }) => {
-    if (target.classList.contains("popup") || target.classList.contains("popup__close")) {
-      toggleModalWindow(activeModal);
-    }
-};
-*/
 export function handleModalEsc(event) {
   if (event.key == "Escape") {
     toggleModalWindow(activeModal);
@@ -178,8 +136,7 @@ function submitButtonClick(event) {
   const newCard = new Card(data, ".card-template");
   const newCardElement = newCard.getCardElement();
   list.prepend(newCardElement);
-  
-  //list.prepend(newCard(cardTitle.value, cardLink.value));
+
   cardTitle.value = "";
   cardLink.value = "";
   toggleModalWindow(addCardModalWindow);

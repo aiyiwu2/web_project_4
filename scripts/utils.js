@@ -16,7 +16,6 @@ export function handleCardClick(data) {
   }
 
 export function toggleModalWindow(modal) {
-    console.log(modal);
 const isModalOpened = modal.classList.contains("popup_opened");
 
 activeModal = modal;
@@ -31,13 +30,7 @@ if (isModalOpened) {
     modal.addEventListener("click", handleModalClick);
 }
 }
-/*
-export function handleModalEsc(event) {
-    if (event.key == "Escape") {
-      toggleModalWindow(activeModal);
-  }
-  }
-*/
+
  export const handleModalClick = ({ target }) => {
     if (target.classList.contains("popup") || target.classList.contains("popup__close")) {
       toggleModalWindow(activeModal);

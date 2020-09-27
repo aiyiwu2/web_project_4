@@ -60,7 +60,7 @@ export class FormValidator {
    _showInputError(inputElement, errorMessage) {
     const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
 inputElement.classList.add(this._settings.inputErrorClass);
-errorElement.textContent = errorMessage;
+errorElement.textContent = inputElement.validationMessage;
 errorElement.classList.add(this._settings.errorClass);
    }
 
@@ -111,8 +111,6 @@ enableValidation() {
 
 }
 
-//export default FormValidator;
-
 
 export const defaultConfig = {
         formSelector: ".popup__form",
@@ -122,7 +120,3 @@ export const defaultConfig = {
         inputErrorClass: "popup__input_type_error",
         errorClass: "popup__error_visible"
 };
-
-//const editForm = document.querySelector('.popup_type_add-card .popup__form');
-
-//const formValidator = new FormValidator(defaultConfig, editForm);
