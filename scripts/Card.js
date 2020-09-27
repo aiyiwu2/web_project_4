@@ -1,11 +1,12 @@
 import { handleCardClick, imageModalWindow, toggleModalWindow, popupImage, popupImageTitle } from "./utils.js";
 
 class Card {
-    constructor(data, cardTemplateSelector) {
+    constructor({data, handleCardClick}, cardTemplateSelector) {
         this._text = data.name;
         this._link = data.link;
         this._data = data;
         this._cardTemplate = document.querySelector(cardTemplateSelector).content.querySelector('.card');
+        this._handleCardClick = handleCardClick;
     }
 
     _handleLikeIcon(event) {
@@ -34,7 +35,7 @@ class Card {
           cardDeleteButton.addEventListener('click', this._handleDeleteCard.bind(this));
         
           cardImage.addEventListener('click', () => {
-            handleCardClick(this._data);
+            handleCardClick(this._text, this._link);
           });
     }
 
@@ -56,3 +57,20 @@ class Card {
 }
 
 export default Card;
+
+/* Add these to index.js
+
+const imageModal = new PopupWithImage('.popup_type_image');
+imageModal.setEventListeners();
+
+new Card(
+  {
+    data: {..},
+    handleCardClick: () => {
+      imageModal.open();
+    },
+    'card-template'
+  }
+)
+
+*/
