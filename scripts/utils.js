@@ -1,5 +1,3 @@
-import { handleModalEsc } from "./index.js";
-
 export const imageModalWindow = document.querySelector('.popup_type_image');
 
 export const popupImage = imageModalWindow.querySelector('.popup__image');
@@ -37,3 +35,8 @@ if (isModalOpened) {
     }
 };
 
+export function handleModalEsc(event) {
+  if (event.key == "Escape") {
+    toggleModalWindow(activeModal);
+}
+};

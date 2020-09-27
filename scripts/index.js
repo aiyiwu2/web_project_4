@@ -1,6 +1,6 @@
 import Card from './Card.js';
 import { FormValidator, defaultConfig } from './FormValidation.js';
-import { toggleModalWindow, activeModal, popupImage, popupImageTitle, imageModalWindow } from "./utils.js";
+import { toggleModalWindow, popupImage, popupImageTitle, imageModalWindow, handleModalEsc } from "./utils.js";
 
 const addCardModalWindow = document.querySelector('.popup_type_add-card');
 const editProfileModalWindow = document.querySelector('.popup_type_edit-profile');
@@ -38,49 +38,6 @@ const descriptionInputValue = formEdit.querySelector('.popup__input_type_bio');
 const cardLink = document.querySelector('.popup__input_type_url');
 const cardTitle = document.querySelector('.popup__input_type_card-title');
 
-export function handleModalEsc(event) {
-  if (event.key == "Escape") {
-    toggleModalWindow(activeModal);
-}
-}
-
-window.addEventListener('keydown', handleModalEsc);
-
-function handleEditProfileFormSubmit(evt) {
-    evt.preventDefault();
-    profileTitle.textContent = titleInputValue.value;
-    profileDescription.textContent = descriptionInputValue.value;
-    toggleModalWindow(editProfileModalWindow);
-}
-
-
-formEdit.addEventListener('submit', handleEditProfileFormSubmit);
-
-profileEditButton.addEventListener('click', () => {
-    if (!editProfileModalWindow.classList.contains('popup_opened')) {
-        titleInputValue.value = profileTitle.textContent;
-        descriptionInputValue.value = profileDescription.textContent;
-    }
-    toggleModalWindow(editProfileModalWindow);
-});
-
-modalCloseButton.addEventListener('click', () => {
-    toggleModalWindow(editProfileModalWindow);
-});
-
-addCardModalButton.addEventListener('click', () => {
-    toggleModalWindow(addCardModalWindow);
-});
-
-addCardModalCloseButton.addEventListener('click', () => {
-    toggleModalWindow(addCardModalWindow);
-});
-
-imagePopupCloseButton.addEventListener('click', () => {
-  toggleModalWindow(imageModalWindow);
-});
-
-
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -111,23 +68,12 @@ const initialCards = [
 const cardTemplate = document.querySelector('.card-template').content.querySelector('.card');
 const list = document.querySelector('.cards');
 
-initialCards.forEach(data => {
-  const newCard = new Card(data, ".card-template");
-  const newCardElement = newCard.getCardElement();
-  list.prepend(newCardElement);
-});
-
-export default function handleCardClick(data) {
-  popupImage.src = data.link;
-  popupImage.setAttribute("alt", data.name);
-  popupImageTitle.textContent = data.name;
-
-  toggleModalWindow(imageModalWindow);
+function handleEditProfileFormSubmit(evt) {
+    evt.preventDefault();
+    profileTitle.textContent = titleInputValue.value;
+    profileDescription.textContent = descriptionInputValue.value;
+    toggleModalWindow(editProfileModalWindow);
 }
-
-addCardSubmitButton.addEventListener("click", (event) => {
-  submitButtonClick(event);
-});
 
 function submitButtonClick(event) {
   event.preventDefault();
@@ -141,3 +87,45 @@ function submitButtonClick(event) {
   cardLink.value = "";
   toggleModalWindow(addCardModalWindow);
 }
+
+window.addEventListener('keydown', handleModalEsc);
+
+formEdit.addEventListener('submit', handleEditProfileFormSubmit);
+
+profileEditButton.addEventListener('click', () => {
+    if (!editProfileModalWindow.classList.contains('popup_opened')) {
+        titleInputValue.value = profileTitle.textContent;
+        descriptionInputValue.value = profileDescription.textContent;
+    }
+    toggleModalWindow(editProfileModalWindow);
+});
+
+modalCloseButton.addEventListener('click', () => {
+    toggleModalWindow(editProfileModalWindow);
+});
+
+addCardModalButton.addEventListener('click', () => {
+    toggleModalWindow(addCardModalWindow);
+});
+
+addCardModalCloseButton.addEventListener('click', () => {
+    toggleModalWindow(addCardModalWindow);
+});
+
+imagePopupCloseButton.addEventListener('click', () => {
+  toggleModalWindow(imageModalWindow);
+});
+
+initialCards.forEach(data => {
+  const newCard = new Card(data, ".card-template");
+  const newCardElement = newCard.getCardElement();
+  list.prepend(newCardElement);
+});
+
+
+
+addCardSubmitButton.addEventListener("click", (event) => {
+  submitButtonClick(event);
+});
+
+

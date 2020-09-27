@@ -56,8 +56,3 @@ class Card {
 }
 
 export default Card;
-/*
-const card = new Card({ text: '123', link: 'src'}, '.card-template');
-
-card.getCardElement()
-*/
