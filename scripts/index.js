@@ -11,9 +11,6 @@ const editProfileForm = editProfileModalWindow.querySelector('.popup__form');
 const editFormValidator = new FormValidator(defaultConfig, editProfileForm);
 const addFormValidator = new FormValidator(defaultConfig, addCardForm);
 
-editFormValidator.enableValidation();
-addFormValidator.enableValidation();
-
 //openButtons
 const profileEditButton = document.querySelector('.profile__edit');
 const addCardModalButton = document.querySelector('.profile__add-button');
@@ -122,10 +119,9 @@ initialCards.forEach(data => {
   list.prepend(newCardElement);
 });
 
-
-
 addCardSubmitButton.addEventListener("click", (event) => {
   submitButtonClick(event);
 });
 
-
+editFormValidator.enableValidation();
+addFormValidator.enableValidation();
