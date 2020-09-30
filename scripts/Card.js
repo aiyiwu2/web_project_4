@@ -1,7 +1,7 @@
 import { handleCardClick, imageModalWindow, toggleModalWindow, popupImage, popupImageTitle } from "./utils.js";
 
 class Card {
-    constructor({data, handleCardClick}, cardTemplateSelector) {
+    constructor({ data, handleCardClick }, cardTemplateSelector) {
         this._text = data.name;
         this._link = data.link;
         this._data = data;
@@ -35,7 +35,7 @@ class Card {
           cardDeleteButton.addEventListener('click', this._handleDeleteCard.bind(this));
         
           cardImage.addEventListener('click', () => {
-            handleCardClick(this._text, this._link);
+            this._handleCardClick(this._text, this._link);
           });
     }
 

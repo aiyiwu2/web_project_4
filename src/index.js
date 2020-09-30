@@ -1,9 +1,13 @@
-import Card from './Card.js';
-import { FormValidator, defaultConfig } from './FormValidation.js';
-import { toggleModalWindow, imageModalWindow, handleModalEsc } from "./utils.js";
+import Card from '../scripts/Card.js';
+import PopupWithImage from '../scripts/PopupWithImage.js';
+import PopupWithForm from '../scripts/PopupWithForm.js';
+import Section from '../scripts/Section.js';
+import UserInfo from '../scripts/UserInfo.js';
+import { FormValidator, defaultConfig } from '../scripts/FormValidation.js';
+import { addCardModalWindow, editProfileModalWindow, toggleModalWindow, imageModalWindow, profileTitle, profileDescription, titleInputValue, descriptionInputValue, formEdit, list, handleModalEsc, handleCardClick, handleEditProfileFormSubmit, handleAddCardFormSubmit } from "../scripts/utils.js";
 
-const addCardModalWindow = document.querySelector('.popup_type_add-card');
-const editProfileModalWindow = document.querySelector('.popup_type_edit-profile');
+//const addCardModalWindow = document.querySelector('.popup_type_add-card');
+//const editProfileModalWindow = document.querySelector('.popup_type_edit-profile');
 
 const addCardForm = addCardModalWindow.querySelector('.popup__form');
 const editProfileForm = editProfileModalWindow.querySelector('.popup__form');
@@ -21,19 +25,19 @@ const modalCloseButton = editProfileModalWindow.querySelector('.popup__close');
 const imagePopupCloseButton = document.querySelector('.popup_type_image').querySelector('.popup__close');
 
 //Buttons and other DOM elements
-const formEdit = document.querySelector('.popup__form');
+//const formEdit = document.querySelector('.popup__form');
 const addCardSubmitButton = addCardModalWindow.querySelector('.popup__button');
 
 //profile
-const profileTitle = document.querySelector('.profile__title');
-const profileDescription = document.querySelector('.profile__subtitle');
+//const profileTitle = document.querySelector('.profile__title');
+//const profileDescription = document.querySelector('.profile__subtitle');
 //const popupImageTitle = imageModalWindow.querySelector('.popup__image-title');
 
 //form inputs
-const titleInputValue = formEdit.querySelector('.popup__input_type_name');
-const descriptionInputValue = formEdit.querySelector('.popup__input_type_bio');
-const cardLink = document.querySelector('.popup__input_type_url');
-const cardTitle = document.querySelector('.popup__input_type_card-title');
+//const titleInputValue = formEdit.querySelector('.popup__input_type_name');
+//const descriptionInputValue = formEdit.querySelector('.popup__input_type_bio');
+//const cardLink = document.querySelector('.popup__input_type_url');
+//const cardTitle = document.querySelector('.popup__input_type_card-title');
 
 const initialCards = [
   {
@@ -62,9 +66,12 @@ const initialCards = [
   }
 ];
 
-const cardTemplate = document.querySelector('.card-template').content.querySelector('.card');
-const list = document.querySelector('.cards');
+const popupImage = new PopupWithImage(imageModalWindow);
+//imageModalWindow.setEventListeners();
 
+//const cardTemplate = document.querySelector('.card-template').content.querySelector('.card');
+//const list = document.querySelector('.cards');
+/*
 function handleEditProfileFormSubmit(evt) {
     evt.preventDefault();
     profileTitle.textContent = titleInputValue.value;
@@ -76,7 +83,7 @@ function submitButtonClick(event) {
   event.preventDefault();
   
   const data = { name: cardTitle.value, link: cardLink.value }
-  const newCard = new Card(data, ".card-template");
+  const newCard = new Card({ data, handleCardClick }, ".card-template");
   const newCardElement = newCard.getCardElement();
   list.prepend(newCardElement);
 
@@ -84,7 +91,7 @@ function submitButtonClick(event) {
   cardLink.value = "";
   toggleModalWindow(addCardModalWindow);
 }
-
+*/
 window.addEventListener('keydown', handleModalEsc);
 
 formEdit.addEventListener('submit', handleEditProfileFormSubmit);
@@ -114,13 +121,13 @@ imagePopupCloseButton.addEventListener('click', () => {
 });
 
 initialCards.forEach(data => {
-  const newCard = new Card(data, ".card-template");
+  const newCard = new Card({ data, handleCardClick }, ".card-template");
   const newCardElement = newCard.getCardElement();
   list.prepend(newCardElement);
 });
 
 addCardSubmitButton.addEventListener("click", (event) => {
-  submitButtonClick(event);
+  handleAddCardFormSubmit(event);
 });
 
 editFormValidator.enableValidation();

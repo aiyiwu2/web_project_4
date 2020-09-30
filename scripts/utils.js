@@ -1,9 +1,24 @@
+import Card from './Card.js';
+
+export const addCardModalWindow = document.querySelector('.popup_type_add-card');
+export const editProfileModalWindow = document.querySelector('.popup_type_edit-profile');
 export const imageModalWindow = document.querySelector('.popup_type_image');
+
+export const profileTitle = document.querySelector('.profile__title');
+export const profileDescription = document.querySelector('.profile__subtitle');
 
 export const popupImage = imageModalWindow.querySelector('.popup__image');
 export const popupImageTitle = imageModalWindow.querySelector('.popup__image-title');
 
 export let activeModal = null;
+export const formEdit = document.querySelector('.popup__form');
+
+export const titleInputValue = formEdit.querySelector('.popup__input_type_name');
+export const descriptionInputValue = formEdit.querySelector('.popup__input_type_bio');
+export const cardLink = document.querySelector('.popup__input_type_url');
+export const cardTitle = document.querySelector('.popup__input_type_card-title');
+
+export const list = document.querySelector('.cards');
 
 export function handleCardClick(data) {
     popupImage.src = data.link;
@@ -40,3 +55,23 @@ export function handleModalEsc(event) {
     toggleModalWindow(activeModal);
 }
 };
+
+export function handleEditProfileFormSubmit(evt) {
+  evt.preventDefault();
+  profileTitle.textContent = titleInputValue.value;
+  profileDescription.textContent = descriptionInputValue.value;
+  toggleModalWindow(editProfileModalWindow);
+}
+
+export function handleAddCardFormSubmit(event) {
+event.preventDefault();
+
+const data = { name: cardTitle.value, link: cardLink.value }
+const newCard = new Card({ data, handleCardClick }, ".card-template");
+const newCardElement = newCard.getCardElement();
+list.prepend(newCardElement);
+
+cardTitle.value = "";
+cardLink.value = "";
+toggleModalWindow(addCardModalWindow);
+}
