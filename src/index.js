@@ -66,8 +66,10 @@ const initialCards = [
   }
 ];
 
+const cardTemplate = document.querySelector('.card-template').content.querySelector('.card');
+
 const popupImage = new PopupWithImage(imageModalWindow);
-imageModalWindow.addEventListener('click', popupImage.open(initialCards.link, initialCards.name))
+cardTemplate.addEventListener('click', popupImage.open(initialCards.link, initialCards.name))
 //const popupImageOpen = popupImage.open();
 //imageModalWindow.addEventListener('click', popupImageOpen);
   
@@ -75,7 +77,7 @@ imageModalWindow.addEventListener('click', popupImage.open(initialCards.link, in
 
 
 
-//const cardTemplate = document.querySelector('.card-template').content.querySelector('.card');
+
 //const list = document.querySelector('.cards');
 /*
 function handleEditProfileFormSubmit(evt) {
