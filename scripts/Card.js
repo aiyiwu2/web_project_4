@@ -1,4 +1,4 @@
-import { handleCardClick, imageModalWindow, toggleModalWindow, popupImage, popupImageTitle } from "./utils.js";
+import { imageModalWindow, toggleModalWindow, popupImage, popupImageTitle } from "./utils.js";
 
 class Card {
     constructor({ data, handleCardClick }, cardTemplateSelector) {
@@ -18,7 +18,7 @@ class Card {
     };
 
     _handlePreviewPicture() {
-      popupImage.src = this._data.link;
+      popupImage.src = this._link;
       popupImage.setAttribute("alt", this._text);
       popupImageTitle.textContent = this._text;
   

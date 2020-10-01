@@ -21,10 +21,11 @@ export const cardTitle = document.querySelector('.popup__input_type_card-title')
 export const list = document.querySelector('.cards');
 
 export function handleCardClick(data) {
+  /*
     popupImage.src = data.link;
     popupImage.setAttribute("alt", data.name);
     popupImageTitle.textContent = data.name;
-  
+  */
     toggleModalWindow(imageModalWindow);
   }
 

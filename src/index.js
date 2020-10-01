@@ -67,7 +67,13 @@ const initialCards = [
 ];
 
 const popupImage = new PopupWithImage(imageModalWindow);
-//imageModalWindow.setEventListeners();
+imageModalWindow.addEventListener('click', popupImage.open(initialCards.link, initialCards.name))
+//const popupImageOpen = popupImage.open();
+//imageModalWindow.addEventListener('click', popupImageOpen);
+  
+//popupImage.setEventListeners();
+
+
 
 //const cardTemplate = document.querySelector('.card-template').content.querySelector('.card');
 //const list = document.querySelector('.cards');
