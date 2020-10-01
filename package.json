@@ -1,0 +1,24 @@
+{
+  "name": "web_project_4",
+  "version": "1.0.0",
+  "description": "In this website, the user will be able to:\r - edit profile information\r - add a card with title and URL\r - like a card\r - delete a card",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aiyiwu2/web_project_4.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aiyiwu2/web_project_4/issues"
+  },
+  "homepage": "https://github.com/aiyiwu2/web_project_4#readme",
+  "devDependencies": {
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
