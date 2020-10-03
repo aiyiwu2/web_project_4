@@ -1,4 +1,6 @@
 import Card from './Card.js';
+import PopupWithImage from './PopupWithImage.js';
+import { initialCards } from './index.js';
 
 export const addCardModalWindow = document.querySelector('.popup_type_add-card');
 export const editProfileModalWindow = document.querySelector('.popup_type_edit-profile');
@@ -20,13 +22,15 @@ export const cardTitle = document.querySelector('.popup__input_type_card-title')
 
 export const list = document.querySelector('.cards');
 
-export function handleCardClick(data) {
-  /*
-    popupImage.src = data.link;
-    popupImage.setAttribute("alt", data.name);
-    popupImageTitle.textContent = data.name;
-  */
+export const popupImageInstantiation = new PopupWithImage(imageModalWindow);
+
+export function handleCardClick() {
+  
     toggleModalWindow(imageModalWindow);
+
+    initialCards.forEach(data => {
+      popupImageInstantiation.open(data.link, data.name);
+    });
   }
 
 export function toggleModalWindow(modal) {

@@ -4,7 +4,7 @@ import PopupWithForm from '../scripts/PopupWithForm.js';
 import Section from '../scripts/Section.js';
 import UserInfo from '../scripts/UserInfo.js';
 import { FormValidator, defaultConfig } from '../scripts/FormValidation.js';
-import { addCardModalWindow, editProfileModalWindow, toggleModalWindow, imageModalWindow, profileTitle, profileDescription, titleInputValue, descriptionInputValue, formEdit, list, handleModalEsc, handleCardClick, handleEditProfileFormSubmit, handleAddCardFormSubmit } from "../scripts/utils.js";
+import { addCardModalWindow, editProfileModalWindow, toggleModalWindow, imageModalWindow, profileTitle, profileDescription, titleInputValue, descriptionInputValue, formEdit, list, popupImageInstantiation, handleModalEsc, handleCardClick, handleEditProfileFormSubmit, handleAddCardFormSubmit } from "../scripts/utils.js";
 
 //const addCardModalWindow = document.querySelector('.popup_type_add-card');
 //const editProfileModalWindow = document.querySelector('.popup_type_edit-profile');
@@ -39,7 +39,7 @@ const addCardSubmitButton = addCardModalWindow.querySelector('.popup__button');
 //const cardLink = document.querySelector('.popup__input_type_url');
 //const cardTitle = document.querySelector('.popup__input_type_card-title');
 
-const initialCards = [
+export const initialCards = [
   {
     name: "Yosemite Valley",
     link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
@@ -68,38 +68,8 @@ const initialCards = [
 
 const cardTemplate = document.querySelector('.card-template').content.querySelector('.card');
 
-const popupImage = new PopupWithImage(imageModalWindow);
-cardTemplate.addEventListener('click', popupImage.open(initialCards.link, initialCards.name))
-//const popupImageOpen = popupImage.open();
-//imageModalWindow.addEventListener('click', popupImageOpen);
-  
-//popupImage.setEventListeners();
+popupImageInstantiation.setEventListeners();
 
-
-
-
-//const list = document.querySelector('.cards');
-/*
-function handleEditProfileFormSubmit(evt) {
-    evt.preventDefault();
-    profileTitle.textContent = titleInputValue.value;
-    profileDescription.textContent = descriptionInputValue.value;
-    toggleModalWindow(editProfileModalWindow);
-}
-
-function submitButtonClick(event) {
-  event.preventDefault();
-  
-  const data = { name: cardTitle.value, link: cardLink.value }
-  const newCard = new Card({ data, handleCardClick }, ".card-template");
-  const newCardElement = newCard.getCardElement();
-  list.prepend(newCardElement);
-
-  cardTitle.value = "";
-  cardLink.value = "";
-  toggleModalWindow(addCardModalWindow);
-}
-*/
 window.addEventListener('keydown', handleModalEsc);
 
 formEdit.addEventListener('submit', handleEditProfileFormSubmit);
@@ -131,7 +101,7 @@ imagePopupCloseButton.addEventListener('click', () => {
 initialCards.forEach(data => {
   const newCard = new Card({ data, handleCardClick }, ".card-template");
   const newCardElement = newCard.getCardElement();
-  list.prepend(newCardElement);
+  list.append(newCardElement);
 });
 
 addCardSubmitButton.addEventListener("click", (event) => {
