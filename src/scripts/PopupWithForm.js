@@ -22,16 +22,20 @@ class PopupWithForm extends Popup {
     setEventListeners() {
         super.setEventListeners();
         if (this._popupElement.classList.contains('popup_type_edit-profile')) {
-            this._popupElement.querySelector('.popup__close').addEventListener('click', handleEditProfileFormSubmit);
+            this._popupElement.querySelector('.popup__button').addEventListener('click', handleEditProfileFormSubmit);
         } else if (this._popupElement.classList.contains('popup_type_add-card')) {
-            this._popupElement.querySelector('.popup__close').addEventListener('click', handleAddCardFormSubmit);
+            this._popupElement.querySelector('.popup__button').addEventListener('click', handleAddCardFormSubmit);
         }
+
+        this._popupElement.querySelector('.popup__close').addEventListener('click', () => {
+            this._popupElement.querySelector('.popup__close').closest.querySelector('.popup__form').reset();
+        })
         
     }
 
     close() {
         super.close();
-        this._popupElement.querySelector('.popup__form').querySelectorAll("input").value = "";
+        this._popupElement.querySelector('.popup__form').reset();
     }
 }
 

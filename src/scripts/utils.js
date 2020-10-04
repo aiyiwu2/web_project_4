@@ -1,5 +1,6 @@
 import Card from './Card.js';
 import PopupWithImage from './PopupWithImage.js';
+import PopupWithForm from './PopupWithForm.js';
 import { initialCards } from './index.js';
 
 export const addCardModalWindow = document.querySelector('.popup_type_add-card');
@@ -23,15 +24,24 @@ export const cardTitle = document.querySelector('.popup__input_type_card-title')
 export const list = document.querySelector('.cards');
 
 export const popupImageInstantiation = new PopupWithImage(imageModalWindow);
+export const editProfilePopup = new PopupWithForm(editProfileModalWindow);
+export const addCardPopup = new PopupWithForm(addCardModalWindow);
 
-export function handleCardClick() {
+
+
+export function handleCardClick(name, link) {
   
-    toggleModalWindow(imageModalWindow);
-
-    initialCards.forEach(data => {
-      popupImageInstantiation.open(data.link, data.name);
-    });
+    popupImageInstantiation.open(name, link);
+    
   }
+
+export function openProfileEdit() {
+editProfilePopup.open();
+}
+
+export function openAddCard() {
+  addCardPopup.open();
+}
 
 export function toggleModalWindow(modal) {
 const isModalOpened = modal.classList.contains("popup_opened");
