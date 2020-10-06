@@ -2,34 +2,42 @@ import Popup from './Popup.js';
 import { handleEditProfileFormSubmit, handleAddCardFormSubmit } from './utils.js';
 
 class PopupWithForm extends Popup {
-    constructor(popupSelector) {
+    constructor(popupSelector, handleEditProfileFormSubmit, handleAddCardFormSubmit) {
         super(popupSelector);
+        this._handleEditProfileFormSubmit = handleEditProfileFormSubmit;
+        this._handleAddCardFormSubmit = handleAddCardFormSubmit;
     }
 
     _getInputValues() {
-        this._inputValues = [];
+        this.inputValues = [];
         if (this._popupElement.classList.contains('popup_type_edit-profile')) {
-            this._inputValues.push(this._popupElement.querySelector('.popup__input_type_name').value)
-            this._inputValues.push(this._popupElement.querySelector('.popup__input_type_bio').value)
+            this.inputValues.push(this._popupElement.querySelector('.popup__input_type_name').value)
+            this.inputValues.push(this._popupElement.querySelector('.popup__input_type_bio').value)
         } else if (this._popupElement.classList.contains('popup_type_add-card')) {
-            this._inputValues.push(this._popupElement.querySelector('.popup__input_type_card-title').value)
-            this._inputValues.push(this._popupElement.querySelector('.popup__input_type_url').value)
+            this.inputValues.push(this._popupElement.querySelector('.popup__input_type_card-title').value)
+            this.inputValues.push(this._popupElement.querySelector('.popup__input_type_url').value)
         }
         
-        return this._inputValues;
+        return this.inputValues;
     }
 
     setEventListeners() {
         super.setEventListeners();
         if (this._popupElement.classList.contains('popup_type_edit-profile')) {
-            this._popupElement.querySelector('.popup__button').addEventListener('click', handleEditProfileFormSubmit);
+            this._popupElement.querySelector('.popup__button').addEventListener('click', (event) => {
+this._handleEditProfileFormSubmit(event, this._getInputValues())
+            });
         } else if (this._popupElement.classList.contains('popup_type_add-card')) {
-            this._popupElement.querySelector('.popup__button').addEventListener('click', handleAddCardFormSubmit);
+            this._popupElement.querySelector('.popup__button').addEventListener('click', (event) => {
+                this._handleAddCardFormSubmit(event, this._getInputValues())
+            });
         }
 
         this._popupElement.querySelector('.popup__close').addEventListener('click', () => {
-            this._popupElement.querySelector('.popup__close').closest.querySelector('.popup__form').reset();
+            this._popupElement.querySelector('.popup__close').closest('.popup__form').reset();
         })
+
+
         
     }
 

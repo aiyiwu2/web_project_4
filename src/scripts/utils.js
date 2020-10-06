@@ -1,6 +1,7 @@
 import Card from './Card.js';
 import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
+import UserInfo from './UserInfo.js';
 import { initialCards } from './index.js';
 
 export const addCardModalWindow = document.querySelector('.popup_type_add-card');
@@ -24,8 +25,8 @@ export const cardTitle = document.querySelector('.popup__input_type_card-title')
 export const list = document.querySelector('.cards');
 
 export const popupImageInstantiation = new PopupWithImage(imageModalWindow);
-export const editProfilePopup = new PopupWithForm(editProfileModalWindow);
-export const addCardPopup = new PopupWithForm(addCardModalWindow);
+export const editProfilePopup = new PopupWithForm(editProfileModalWindow, handleEditProfileFormSubmit, handleAddCardFormSubmit);
+export const addCardPopup = new PopupWithForm(addCardModalWindow, handleEditProfileFormSubmit, handleAddCardFormSubmit);
 
 
 
@@ -71,11 +72,17 @@ export function handleModalEsc(event) {
 }
 };
 
-export function handleEditProfileFormSubmit(evt) {
+export function handleEditProfileFormSubmit(evt, inputValues) {
   evt.preventDefault();
+  /*
   profileTitle.textContent = titleInputValue.value;
   profileDescription.textContent = descriptionInputValue.value;
-  toggleModalWindow(editProfileModalWindow);
+  */
+ const userInfo = new UserInfo(inputValues[0], inputValues[1]);
+ userInfo.setUserInfo();
+  editProfilePopup.close();
+  
+
 }
 
 export function handleAddCardFormSubmit(event) {
@@ -88,5 +95,5 @@ list.prepend(newCardElement);
 
 cardTitle.value = "";
 cardLink.value = "";
-toggleModalWindow(addCardModalWindow);
+addCardPopup.close();
 }

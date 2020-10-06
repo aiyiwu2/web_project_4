@@ -7,16 +7,18 @@ class UserInfo {
     }
 
     getUserInfo() {
+        /*
         let userInfo = {
             name: titleInputValue.value,
             job: descriptionInputValue.value
         };
-/*
+        */
+
         let userInfo = {
             name: this._name,
             job: this._job
         }
-*/
+
         return userInfo;
     }
 

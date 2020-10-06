@@ -26,6 +26,7 @@ const imagePopupCloseButton = document.querySelector('.popup_type_image').queryS
 //Buttons and other DOM elements
 //const formEdit = document.querySelector('.popup__form');
 const addCardSubmitButton = addCardModalWindow.querySelector('.popup__button');
+const editProfileSubmitButton = editProfileModalWindow.querySelector('.popup__button');
 
 //profile
 //const profileTitle = document.querySelector('.profile__title');
@@ -79,6 +80,10 @@ addCardOpenButton.addEventListener('click', () => {
 })
 
 popupImageInstantiation.setEventListeners();
+
+editProfileSubmitButton.addEventListener('click', handleEditProfileFormSubmit);
+
+addCardSubmitButton.addEventListener('click', handleAddCardFormSubmit);
 
 window.addEventListener('keydown', handleModalEsc);
 
