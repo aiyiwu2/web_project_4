@@ -72,8 +72,8 @@ export function handleModalEsc(event) {
 }
 };
 
-export function handleEditProfileFormSubmit(evt, inputValues) {
-  evt.preventDefault();
+export function handleEditProfileFormSubmit(event, inputValues) {
+  event.preventDefault();
   /*
   profileTitle.textContent = titleInputValue.value;
   profileDescription.textContent = descriptionInputValue.value;
