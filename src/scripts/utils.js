@@ -27,7 +27,10 @@ export const list = document.querySelector('.cards');
 export const popupImageInstantiation = new PopupWithImage(imageModalWindow);
 export const editProfilePopup = new PopupWithForm(editProfileModalWindow, handleEditProfileFormSubmit, handleAddCardFormSubmit);
 export const addCardPopup = new PopupWithForm(addCardModalWindow, handleEditProfileFormSubmit, handleAddCardFormSubmit);
+export const userInfo = new UserInfo(profileTitle, profileDescription);
 
+
+//addCardPopup.
 
 
 export function handleCardClick(name, link) {
@@ -74,21 +77,14 @@ export function handleModalEsc(event) {
 
 export function handleEditProfileFormSubmit(event, inputValues) {
   event.preventDefault();
-  /*
-  profileTitle.textContent = titleInputValue.value;
-  profileDescription.textContent = descriptionInputValue.value;
-  */
- const userInfo = new UserInfo(inputValues[0], inputValues[1]);
- userInfo.setUserInfo();
+  userInfo.setUserInfo(inputValues[0], inputValues[1]);
   editProfilePopup.close();
-  
-
 }
 
-export function handleAddCardFormSubmit(event) {
+export function handleAddCardFormSubmit(event, inputValues) {
 event.preventDefault();
 
-const data = { name: cardTitle.value, link: cardLink.value }
+const data = { name: inputValues[0], link: inputValues[1] }
 const newCard = new Card({ data, handleCardClick }, ".card-template");
 const newCardElement = newCard.getCardElement();
 list.prepend(newCardElement);

@@ -3,7 +3,7 @@ import PopupWithForm from '../scripts/PopupWithForm.js';
 import Section from '../scripts/Section.js';
 import UserInfo from '../scripts/UserInfo.js';
 import { FormValidator, defaultConfig } from '../scripts/FormValidation.js';
-import { addCardModalWindow, editProfileModalWindow, toggleModalWindow, imageModalWindow, profileTitle, profileDescription, titleInputValue, descriptionInputValue, formEdit, list, popupImageInstantiation, handleModalEsc, handleCardClick, handleEditProfileFormSubmit, handleAddCardFormSubmit, editProfilePopup, addCardPopup, openProfileEdit, openAddCard } from "../scripts/utils.js";
+import { addCardModalWindow, editProfileModalWindow, toggleModalWindow, imageModalWindow, profileTitle, profileDescription, titleInputValue, descriptionInputValue, formEdit, list, popupImageInstantiation, handleModalEsc, handleCardClick, handleEditProfileFormSubmit, handleAddCardFormSubmit, editProfilePopup, addCardPopup, openProfileEdit, openAddCard, userInfo } from "../scripts/utils.js";
 
 //const addCardModalWindow = document.querySelector('.popup_type_add-card');
 //const editProfileModalWindow = document.querySelector('.popup_type_edit-profile');
@@ -116,8 +116,18 @@ imagePopupCloseButton.addEventListener('click', () => {
 initialCards.forEach(data => {
   const newCard = new Card({ data, handleCardClick }, ".card-template");
   const newCardElement = newCard.getCardElement();
-  list.append(newCardElement);
+  //list.append(newCardElement);
+console.log(newCardElement)
+  const displayCards = new Section({ items: initialCards, renderer: newCardElement }, list);
+displayCards.renderer();
+displayCards.addItem();
 });
+
+/*
+const displayCards = new Section({ items: initialCards, renderer: newCardElement }, ".card-template");
+displayCards.renderer();
+displayCards.addItem();
+*/
 /*
 addCardSubmitButton.addEventListener("click", (event) => {
   handleAddCardFormSubmit(event);

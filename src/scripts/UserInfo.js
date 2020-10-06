@@ -7,24 +7,17 @@ class UserInfo {
     }
 
     getUserInfo() {
-        /*
-        let userInfo = {
-            name: titleInputValue.value,
-            job: descriptionInputValue.value
-        };
-        */
-
-        let userInfo = {
-            name: this._name,
-            job: this._job
+        this.userInfo = {
+            name: this._name.textContent,
+            job: this._job.textContent
         }
 
-        return userInfo;
+        return this.userInfo;
     }
 
-    setUserInfo() {
-        this.userInfo.name = profileTitle.textContent;
-        this.userInfo.job = profileDescription.textContent;
+    setUserInfo(nameInput, jobInput) {
+        this._name.textContent = nameInput;
+        this._job.textContent = jobInput;
     }
 }
 

@@ -27,7 +27,8 @@ class PopupWithForm extends Popup {
             this._popupElement.querySelector('.popup__button').addEventListener('click', (event) => {
 this._handleEditProfileFormSubmit(event, this._getInputValues())
             });
-        } else if (this._popupElement.classList.contains('popup_type_add-card')) {
+        } 
+        else if (this._popupElement.classList.contains('popup_type_add-card')) {
             this._popupElement.querySelector('.popup__button').addEventListener('click', (event) => {
                 this._handleAddCardFormSubmit(event, this._getInputValues())
             });
