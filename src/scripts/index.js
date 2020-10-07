@@ -118,10 +118,15 @@ initialCards.forEach(data => {
   const newCardElement = newCard.getCardElement();
   //list.append(newCardElement);
 console.log(newCardElement)
-  const displayCards = new Section({ items: initialCards, renderer: newCardElement }, list);
+});
+
+function appendCard() {
+  list.append(newCardElement);
+}
+
+const displayCards = new Section({ items: initialCards, renderer: appendCard }, list);
 displayCards.renderer();
 displayCards.addItem();
-});
 
 /*
 const displayCards = new Section({ items: initialCards, renderer: newCardElement }, ".card-template");
