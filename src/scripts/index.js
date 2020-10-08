@@ -127,9 +127,10 @@ const displayCards = new Section(
   { 
     items: initialCards, 
     renderer: (obj) => {
+      console.log(obj)
       // now process initialCards --> make elements out of the card objects
-      document.createElement(obj);
-      displayCards.addItem(obj); 
+      const card = new Card({ obj, handleCardClick }, ".card-template")
+      displayCards.addItem(card); 
     }
    }, 
     list);
