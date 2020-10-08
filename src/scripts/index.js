@@ -112,21 +112,28 @@ addCardModalCloseButton.addEventListener('click', () => {
 imagePopupCloseButton.addEventListener('click', () => {
   toggleModalWindow(imageModalWindow);
 });
-
+/*
 initialCards.forEach(data => {
   const newCard = new Card({ data, handleCardClick }, ".card-template");
   const newCardElement = newCard.getCardElement();
   //list.append(newCardElement);
-console.log(newCardElement)
 });
 
 function appendCard() {
   list.append(newCardElement);
 }
-
-const displayCards = new Section({ items: initialCards, renderer: appendCard }, list);
+*/
+const displayCards = new Section(
+  { 
+    items: initialCards, 
+    renderer: (obj) => {
+      // now process initialCards --> make elements out of the card objects
+      document.createElement(obj);
+      displayCards.addItem(obj); 
+    }
+   }, 
+    list);
 displayCards.renderer();
-displayCards.addItem();
 
 /*
 const displayCards = new Section({ items: initialCards, renderer: newCardElement }, ".card-template");
