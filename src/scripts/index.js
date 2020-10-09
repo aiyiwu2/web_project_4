@@ -1,4 +1,4 @@
-import "./pages/index.css"; // add import of the main stylesheets file
+import "../pages/index.css"; // add import of the main stylesheets file
 import Card from '../scripts/Card.js';
 import PopupWithForm from '../scripts/PopupWithForm.js';
 import Section from '../scripts/Section.js';
