@@ -30,15 +30,3 @@ class Popup {
 }
 
 export default Popup;
-
-// || !e.target.closest('popup__container'))
-
-/* Add these to index.js
-
-const editPopup = new PopupWithForm('.popup_type_edit-profile');
-editPopup.setEventListeners()
-const addCardPopup = new PopupWithForm('.popup_type_add-card');
-addCardPopup.setEventListeners()
-const imagePopup = new PopupWithImage('popup_type_image');
-imagePopup.setEventListeners()
-*/

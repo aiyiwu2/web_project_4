@@ -1,5 +1,4 @@
 import Popup from './Popup.js';
-import { handleEditProfileFormSubmit, handleAddCardFormSubmit } from './utils.js';
 
 class PopupWithForm extends Popup {
     constructor(popupSelector, handleEditProfileFormSubmit, handleAddCardFormSubmit) {
@@ -36,10 +35,7 @@ this._handleEditProfileFormSubmit(event, this._getInputValues())
 
         this._popupElement.querySelector('.popup__close').addEventListener('click', () => {
             this._popupElement.querySelector('.popup__close').closest('.popup__form').reset();
-        })
-
-
-        
+        })  
     }
 
     close() {

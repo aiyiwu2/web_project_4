@@ -2,7 +2,6 @@ import Card from './Card.js';
 import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
 import UserInfo from './UserInfo.js';
-import { initialCards } from './index.js';
 
 export const addCardModalWindow = document.querySelector('.popup_type_add-card');
 export const editProfileModalWindow = document.querySelector('.popup_type_edit-profile');
@@ -29,14 +28,35 @@ export const editProfilePopup = new PopupWithForm(editProfileModalWindow, handle
 export const addCardPopup = new PopupWithForm(addCardModalWindow, handleEditProfileFormSubmit, handleAddCardFormSubmit);
 export const userInfo = new UserInfo(profileTitle, profileDescription);
 
-
-//addCardPopup.
-
+export const initialCards = [
+  {
+    name: "Yosemite Valley",
+    link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
+  },
+  {
+    name: "Lake Louise",
+    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
+  },
+  {
+    name: "Bald Mountains",
+    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
+  },
+  {
+    name: "Latemar",
+    link: "https://code.s3.yandex.net/web-code/latemar.jpg"
+  },
+  {
+    name: "Vanoise National Park",
+    link: "https://code.s3.yandex.net/web-code/vanoise.jpg"
+  },
+  {
+    name: "Lago di Braies",
+    link: "https://code.s3.yandex.net/web-code/lago.jpg"
+  }
+];
 
 export function handleCardClick(name, link) {
-  
     popupImageInstance.open(name, link);
-    
   }
 
 export function openProfileEdit() {
@@ -46,34 +66,6 @@ editProfilePopup.open();
 export function openAddCard() {
   addCardPopup.open();
 }
-
-export function toggleModalWindow(modal) {
-const isModalOpened = modal.classList.contains("popup_opened");
-
-activeModal = modal;
-modal.classList.toggle("popup_opened");
-
-if (isModalOpened) {
-    document.removeEventListener("keydown", handleModalEsc);
-    modal.removeEventListener("click", handleModalClick);
-    activeModal = null;
-} else {
-    document.addEventListener("keydown", handleModalEsc);
-    modal.addEventListener("click", handleModalClick);
-}
-}
-
- export const handleModalClick = ({ target }) => {
-    if (target.classList.contains("popup") || target.classList.contains("popup__close")) {
-      toggleModalWindow(activeModal);
-    }
-};
-
-export function handleModalEsc(event) {
-  if (event.key == "Escape") {
-    toggleModalWindow(activeModal);
-}
-};
 
 export function handleEditProfileFormSubmit(event, inputValues) {
   event.preventDefault();

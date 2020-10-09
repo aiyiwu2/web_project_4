@@ -1,5 +1,3 @@
-import { profileTitle, profileDescription, titleInputValue, descriptionInputValue } from './utils.js';
-
 class UserInfo {
     constructor(name, job) {
         this._name = name;

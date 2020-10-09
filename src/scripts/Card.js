@@ -1,5 +1,3 @@
-import { imageModalWindow, toggleModalWindow, popupImage, popupImageTitle } from "./utils.js";
-
 class Card {
     constructor({ data, handleCardClick }, cardTemplateSelector) {
         this._text = data.name;
@@ -15,14 +13,6 @@ class Card {
 
     _handleDeleteCard() {
       this._card.remove();
-    };
-
-    _handlePreviewPicture() {
-      popupImage.src = this._link;
-      popupImage.setAttribute("alt", this._text);
-      popupImageTitle.textContent = this._text;
-  
-      toggleModalWindow(imageModalWindow);
     };
 
     _addEventListeners() {
@@ -57,20 +47,3 @@ class Card {
 }
 
 export default Card;
-
-/* Add these to index.js
-
-const imageModal = new PopupWithImage('.popup_type_image');
-imageModal.setEventListeners();
-
-new Card(
-  {
-    data: {..},
-    handleCardClick: () => {
-      imageModal.open();
-    },
-    'card-template'
-  }
-)
-
-*/
