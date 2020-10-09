@@ -3,7 +3,7 @@ import PopupWithForm from '../scripts/PopupWithForm.js';
 import Section from '../scripts/Section.js';
 import UserInfo from '../scripts/UserInfo.js';
 import { FormValidator, defaultConfig } from '../scripts/FormValidation.js';
-import { addCardModalWindow, editProfileModalWindow, toggleModalWindow, imageModalWindow, profileTitle, profileDescription, titleInputValue, descriptionInputValue, formEdit, list, popupImageInstantiation, handleModalEsc, handleCardClick, handleEditProfileFormSubmit, handleAddCardFormSubmit, editProfilePopup, addCardPopup, openProfileEdit, openAddCard, userInfo } from "../scripts/utils.js";
+import { addCardModalWindow, editProfileModalWindow, toggleModalWindow, imageModalWindow, profileTitle, profileDescription, titleInputValue, descriptionInputValue, formEdit, list, popupImageInstance, handleModalEsc, handleCardClick, handleEditProfileFormSubmit, handleAddCardFormSubmit, editProfilePopup, addCardPopup, openProfileEdit, openAddCard, userInfo } from "../scripts/utils.js";
 
 //const addCardModalWindow = document.querySelector('.popup_type_add-card');
 //const editProfileModalWindow = document.querySelector('.popup_type_edit-profile');
@@ -79,7 +79,7 @@ addCardOpenButton.addEventListener('click', () => {
   openAddCard();
 })
 
-popupImageInstantiation.setEventListeners();
+popupImageInstance.setEventListeners();
 
 editProfileSubmitButton.addEventListener('click', handleEditProfileFormSubmit);
 
@@ -126,11 +126,10 @@ function appendCard() {
 const displayCards = new Section(
   { 
     items: initialCards, 
-    renderer: (obj) => {
-      console.log(obj)
-      // now process initialCards --> make elements out of the card objects
-      const card = new Card({ obj, handleCardClick }, ".card-template")
-      displayCards.addItem(card); 
+    renderer: (data) => {
+      const card = new Card({ data, handleCardClick }, ".card-template")
+      const generatedCard = card.getCardElement();
+      displayCards.addItem(generatedCard); 
     }
    }, 
     list);

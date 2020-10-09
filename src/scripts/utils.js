@@ -24,7 +24,7 @@ export const cardTitle = document.querySelector('.popup__input_type_card-title')
 
 export const list = document.querySelector('.cards');
 
-export const popupImageInstantiation = new PopupWithImage(imageModalWindow);
+export const popupImageInstance = new PopupWithImage(imageModalWindow);
 export const editProfilePopup = new PopupWithForm(editProfileModalWindow, handleEditProfileFormSubmit, handleAddCardFormSubmit);
 export const addCardPopup = new PopupWithForm(addCardModalWindow, handleEditProfileFormSubmit, handleAddCardFormSubmit);
 export const userInfo = new UserInfo(profileTitle, profileDescription);
@@ -35,7 +35,7 @@ export const userInfo = new UserInfo(profileTitle, profileDescription);
 
 export function handleCardClick(name, link) {
   
-    popupImageInstantiation.open(name, link);
+    popupImageInstance.open(name, link);
     
   }
 
