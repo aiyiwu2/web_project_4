@@ -4,7 +4,7 @@
   "description": "In this website, the user will be able to:\r - edit profile information\r - add a card with title and URL\r - like a card\r - delete a card",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf dist && webpack",
+    "build": "rimraf -rf dist && webpack",
     "dev": "webpack-dev-server --open --watch"
   },
   "repository": {
