@@ -3,6 +3,7 @@ import Card from './Card.js';
 import Section from './Section.js';
 import { FormValidator, defaultConfig } from './FormValidation.js';
 import { initialCards, addCardModalWindow, editProfileModalWindow, list, popupImageInstance, handleCardClick, handleEditProfileFormSubmit, handleAddCardFormSubmit, editProfilePopup, addCardPopup, openProfileEdit, openAddCard } from "./utils.js";
+import Api from './Api.js';
 
 const addCardForm = addCardModalWindow.querySelector('.popup__form');
 const editProfileForm = editProfileModalWindow.querySelector('.popup__form');

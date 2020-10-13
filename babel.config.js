@@ -7,11 +7,13 @@ const presets = [
         chrome: '64',
         safari: '11.1'
       },
-    
+  
       // use polyfills for the browsers specified in the above targets option
-          // Babel uses polyfills from the core-js library
+      // Babel uses polyfills from the core-js library
       useBuiltIns: "entry"
     }]
-    ];
-    
-    module.exports = { presets };
+  ];
+  
+  module.exports = {
+    presets
+  };
