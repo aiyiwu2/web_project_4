@@ -20,7 +20,11 @@
 
                 <section class="profile">
 
-                    <div class="profile__avatar"></div>
+                    <div class="profile__avatar">
+
+                        <div class="profile__avatar-edit"></div>
+
+                    </div>
 
                     <div class="profile__info">
 
@@ -49,6 +53,28 @@
                 </p>
 
             </footer>
+
+            <div class="popup popup_type_edit-avatar">
+
+                <div class="popup__container">
+
+                    <form class="popup__form popup__form_type_edit-avatar">
+
+                        <div class="popup__close"></div>
+
+                        <h3 class="popup__heading">
+                            Change profile picture
+                        </h3>
+
+                        <input id="avatar-image" type="text" placeholder="Profile picture" class="popup__input popup__input_type_avatar" required>
+
+                        <button type="submit" value="Save" class="popup__button popup__button_disabled">Save</button>
+
+                    </form>
+
+                </div>
+
+            </div>
 
             <div class="popup popup_type_edit-profile">
 
@@ -103,6 +129,26 @@
                         <span id="card-url-error" class="popup__error"></span>
 
                         <button type="submit" value="Create" class="popup__button popup__button_disabled">Create</button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            <div class="popup popup_type_delete-card">
+
+                <div class="popup__container">
+
+                    <form class="popup__form popup__form_type_delete-card">
+
+                        <div class="popup__close"></div>
+
+                        <h3 class="popup__heading">
+                            Are you sure?
+                        </h3>
+
+                        <button type="submit" value="Yes" class="popup__button popup__button_disabled">Yes</button>
 
                     </form>
 

@@ -3,8 +3,10 @@ import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
 import UserInfo from './UserInfo.js';
 
+export const editAvatarModalWindow = document.querySelector('.popup_type_edit-avatar');
 export const addCardModalWindow = document.querySelector('.popup_type_add-card');
 export const editProfileModalWindow = document.querySelector('.popup_type_edit-profile');
+export const deleteCardModalWindow = document.querySelector('.popup_type_delete-card');
 export const imageModalWindow = document.querySelector('.popup_type_image');
 
 export const profileTitle = document.querySelector('.profile__title');
@@ -26,6 +28,8 @@ export const list = document.querySelector('.cards');
 export const popupImageInstance = new PopupWithImage(imageModalWindow);
 export const editProfilePopup = new PopupWithForm(editProfileModalWindow, handleEditProfileFormSubmit, handleAddCardFormSubmit);
 export const addCardPopup = new PopupWithForm(addCardModalWindow, handleEditProfileFormSubmit, handleAddCardFormSubmit);
+export const editAvatarPopup = new PopupWithForm(editAvatarModalWindow, handleEditProfileFormSubmit, handleAddCardFormSubmit);
+export const deleteCardPopup = new PopupWithForm(deleteCardModalWindow, handleEditProfileFormSubmit, handleAddCardFormSubmit);
 export const userInfo = new UserInfo(profileTitle, profileDescription);
 
 export const initialCards = [
@@ -59,12 +63,20 @@ export function handleCardClick(name, link) {
     popupImageInstance.open(name, link);
   }
 
+export function openAvatarEdit() {
+  editAvatarPopup.open();
+}
+
 export function openProfileEdit() {
 editProfilePopup.open();
 }
 
 export function openAddCard() {
   addCardPopup.open();
+}
+
+export function openDeleteCard() {
+  deleteCardPopup.open();
 }
 
 export function handleEditProfileFormSubmit(event, inputValues) {

@@ -1,10 +1,18 @@
+import { deleteCardModalWindow } from "./utils.js";
+
 class Card {
-    constructor({ data, handleCardClick }, cardTemplateSelector) {
+    constructor({ data, handleCardClick, handleDeleteClick }, cardTemplateSelector) {
         this._text = data.name;
         this._link = data.link;
         this._data = data;
+        this._id = data.id;
         this._cardTemplate = document.querySelector(cardTemplateSelector).content.querySelector('.card');
         this._handleCardClick = handleCardClick;
+        this._handleDeleteClick = handleDeleteClick;
+    }
+
+    _id() {
+      return this._id();
     }
 
     _handleLikeIcon(event) {
@@ -12,8 +20,9 @@ class Card {
     };
 
     _handleDeleteCard() {
-      this._card.remove();
-      this._card = null;
+      deleteCardModalWindow.classList.add('popup_opened');
+      //this._card.remove();
+      //this._card = null;
     };
 
     _addEventListeners() {
@@ -23,7 +32,7 @@ class Card {
 
         cardLikeButton.addEventListener('click', this._handleLikeIcon);
         
-          cardDeleteButton.addEventListener('click', this._handleDeleteCard.bind(this));
+          //cardDeleteButton.addEventListener('click', this._handleDeleteCard.bind(this));
         
           cardImage.addEventListener('click', () => {
             this._handleCardClick(this._text, this._link);

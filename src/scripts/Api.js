@@ -6,12 +6,20 @@ class Api {
   
     // GET https://around.nomoreparties.co/v1/groupId/cards
     getCardList() {
-
+      return fetch(this._baseUrl + '/cards', {
+        headers: this._headers
+      })
+      .then(res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
+      .catch(err => console.log(err))
     }
 
     // GET https://around.nomoreparties.co/v1/groupId/users/me
     getUserInfo() {
-
+      return fetch(this._baseUrl + '/users/me', {
+        headers: this._headers
+      })
+      .then(res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
+      .catch(err => console.log(err))
     }
 
     getAppInfo() {
@@ -20,12 +28,26 @@ class Api {
 
     // POST https://around.nomoreparties.co/v1/groupId/cards
     addCard({ name, link }) {
-
+      return fetch(this._baseUrl + '/cards', {
+        headers: this._headers,
+        method: "POST",
+        body: JSON.stringify({
+          name,
+          link
+        })
+      })
+      .then(res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
+      .catch(err => console.log(err))
     }
 
     // DELETE https://around.nomoreparties.co/v1/groupId/cards/cardId
     removeCard(cardID) {
-
+      return fetch(this._baseUrl + '/cards/' + cardID, {
+        headers: this._headers,
+        method: "DELETE"
+      })
+      .then(res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
+      .catch(err => console.log(err))
     }
 
     // PUT https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
@@ -46,11 +68,12 @@ class Api {
   }
 
   export default Api;
-  
+  /*
   const api = new Api({
-    baseUrl: "https://around.nomoreparties.co/v1/group-42",
+    baseUrl: "https://around.nomoreparties.co/v1/group-5",
     headers: {
-      authorization: "c56e30dc-2883-4270-a59e-b2f7bae969c6",
+      authorization: "ed300335-e1bd-4128-98db-8b10403a3044",
       "Content-Type": "application/json"
     }
   });
+  */
