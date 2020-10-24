@@ -19,7 +19,11 @@ api.getCardList()
     { 
       items: res, 
       renderer: (data) => {
-        const card = new Card({ data, handleCardClick }, ".card-template")
+        const card = new Card({ 
+          data, 
+          handleCardClick,
+          
+        }, ".card-template")
         const generatedCard = card.getCardElement();
         displayCards.addItem(generatedCard); 
       }
@@ -96,7 +100,11 @@ const displayCards = new Section(
   { 
     items: initialCards, 
     renderer: (data) => {
-      const card = new Card({ data, handleCardClick }, ".card-template")
+      const card = new Card({ 
+        data, 
+        handleCardClick,
+        
+      }, ".card-template")
       const generatedCard = card.getCardElement();
       displayCards.addItem(generatedCard); 
     }
