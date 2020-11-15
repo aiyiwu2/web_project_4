@@ -2,8 +2,26 @@ import "../pages/index.css"; // add import of the main stylesheets file
 import Card from './Card.js';
 import Section from './Section.js';
 import { FormValidator, defaultConfig } from './FormValidation.js';
-import { initialCards, editAvatarModalWindow, addCardModalWindow, editProfileModalWindow, deleteCardModalWindow, list, popupImageInstance, handleCardClick, handleEditProfileFormSubmit, handleAddCardFormSubmit, editAvatarPopup, editProfilePopup, addCardPopup, deleteCardPopup, openAvatarEdit, openProfileEdit, openAddCard, openDeleteCard, userInfo } from "./utils.js";
+import { initialCards, editAvatarModalWindow, addCardModalWindow, editProfileModalWindow, deleteCardModalWindow, list, imageModalWindow, profileTitle, profileDescription } from "./utils.js";
 import Api from './Api.js';
+import PopupWithImage from './PopupWithImage.js';
+import PopupWithForm from './PopupWithForm.js';
+import UserInfo from './UserInfo.js';
+
+export const userInfo = new UserInfo(profileTitle, profileDescription);
+
+// fetch("https://around.nomoreparties.co/v1/group-5/users/ed300335-e1bd-4128-98db-8b10403a3044")
+// .then(res => res.json())
+// .then(response => {
+//    console.log(response)
+//  })
+
+// fetch("https://around.nomoreparties.co/v1/group-5/cards/")
+// .then(res => res.json())
+// .then(response => {
+//   console.log(response)
+// })
+
 
 const api = new Api({
     baseUrl: "https://around.nomoreparties.co/v1/group-5",
@@ -13,6 +31,7 @@ const api = new Api({
     }
   });
 
+//displays all users' cards
 api.getCardList()
 .then(res => {
   const displayCards = new Section(
@@ -21,8 +40,12 @@ api.getCardList()
       renderer: (data) => {
         const card = new Card({ 
           data, 
-          handleCardClick,
-          
+          handleCardClick: () => {
+            imageModalWindow.open(data);
+          },
+          handleDeleteClick: (card) => {
+            deleteCardPopup.open(card);
+          }
         }, ".card-template")
         const generatedCard = card.getCardElement();
         displayCards.addItem(generatedCard); 
@@ -33,12 +56,38 @@ api.getCardList()
 }
 )
 
+//loads user information from the server
 api.getUserInfo()
 .then(res => {
-  console.log('profile!!', res)
-
   userInfo.setUserInfo(res.name, res.about)
 })
+
+//displays my cards
+const displayCards = new Section(
+  { 
+    items: initialCards, 
+    renderer: (data) => {
+      const card = new Card({ 
+        data, 
+        handleCardClick: () => {
+          imageModalWindow.open(data);
+        },
+        handleDeleteClick: (card) => {
+          deleteCardPopup.open(card);
+        }
+      }, ".card-template")
+      const generatedCard = card.getCardElement();
+      displayCards.addItem(generatedCard); 
+    }
+   }, 
+    list);
+    
+displayCards.renderer();
+
+// const deleteCardPopup = new PopupWithForm({
+//   popupSelector: ".popup_type_delete-card"
+// });
+// deleteCardPopup.setEventListeners();
 
 const addCardForm = addCardModalWindow.querySelector('.popup__form');
 const editProfileForm = editProfileModalWindow.querySelector('.popup__form');
@@ -62,6 +111,41 @@ const profileAvatarEdit = document.querySelector('.profile__avatar-edit');
 const addCardSubmitButton = addCardModalWindow.querySelector('.popup__button');
 const editProfileSubmitButton = editProfileModalWindow.querySelector('.popup__button');
 
+export const popupImageInstance = new PopupWithImage(imageModalWindow);
+// export const editProfilePopup = new PopupWithForm(
+//   {popupSelector: editProfileModalWindow, 
+//   submitPopup: () => userInfo.setUserInfo(".popup__input_type_name", ".popup__input_type_bio")
+//   });
+export const addCardPopup = new PopupWithForm(
+  {popupSelector: addCardModalWindow, 
+    submitPopup: (data) => {
+      api.addCard(data);
+      const card = new Card({
+        data,
+        handleCardClick: () => {
+          imageModalWindow.open(data);
+        },
+        handleDeleteClick: (card) => {
+          deleteCardPopup.open(card);
+        }
+      }, ".card-template");
+      const generatedCard = card.getCardElement();
+        displayCards.addItem(generatedCard); 
+    }
+    
+  });
+// export const editAvatarPopup = new PopupWithForm({
+//   popupSelector: editAvatarModalWindow,
+//   submitPopup:  
+// });
+// export const deleteCardPopup = new PopupWithForm({
+//   popupSelector: deleteCardModalWindow, 
+//   submitPopup: 
+// });
+//console.log(UserInfo)
+
+//console.log(userInfo)
+
 function showAvatarEdit() {
   profileAvatarEdit.classList.toggle('profile__avatar-edit_visible');
 }
@@ -69,22 +153,22 @@ function showAvatarEdit() {
 avatarOpenButton.addEventListener('mouseenter', showAvatarEdit);
 avatarOpenButton.addEventListener('mouseleave', showAvatarEdit);
 
-editAvatarPopup.setEventListeners();
+//editAvatarPopup.setEventListeners();
 avatarOpenButton.addEventListener('click', () => {
   openAvatarEdit();
 })
 
-editProfilePopup.setEventListeners();
+//editProfilePopup.setEventListeners();
 profileEditOpenButton.addEventListener('click', () => {
 openProfileEdit();
 })
 
-addCardPopup.setEventListeners();
+//addCardPopup.setEventListeners();
 addCardOpenButton.addEventListener('click', () => {
   openAddCard();
 })
 
-deleteCardPopup.setEventListeners();
+//deleteCardPopup.setEventListeners();
 deleteCardOpenButton.addEventListener('click', () => {
   openDeleteCard();
 })
@@ -92,26 +176,11 @@ deleteCardOpenButton.addEventListener('click', () => {
 
 popupImageInstance.setEventListeners();
 
-editProfileSubmitButton.addEventListener('click', handleEditProfileFormSubmit);
+//editProfileSubmitButton.addEventListener('click', handleEditProfileFormSubmit);
 
-addCardSubmitButton.addEventListener('click', handleAddCardFormSubmit);
+//addCardSubmitButton.addEventListener('click', handleAddCardFormSubmit);
 
-const displayCards = new Section(
-  { 
-    items: initialCards, 
-    renderer: (data) => {
-      const card = new Card({ 
-        data, 
-        handleCardClick,
-        
-      }, ".card-template")
-      const generatedCard = card.getCardElement();
-      displayCards.addItem(generatedCard); 
-    }
-   }, 
-    list);
-    
-displayCards.renderer();
+
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();

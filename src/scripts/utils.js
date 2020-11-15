@@ -2,6 +2,7 @@ import Card from './Card.js';
 import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
 import UserInfo from './UserInfo.js';
+import Api from './Api.js';
 
 export const editAvatarModalWindow = document.querySelector('.popup_type_edit-avatar');
 export const addCardModalWindow = document.querySelector('.popup_type_add-card');
@@ -25,12 +26,19 @@ export const cardTitle = document.querySelector('.popup__input_type_card-title')
 
 export const list = document.querySelector('.cards');
 
-export const popupImageInstance = new PopupWithImage(imageModalWindow);
-export const editProfilePopup = new PopupWithForm(editProfileModalWindow, handleEditProfileFormSubmit, handleAddCardFormSubmit);
-export const addCardPopup = new PopupWithForm(addCardModalWindow, handleEditProfileFormSubmit, handleAddCardFormSubmit);
-export const editAvatarPopup = new PopupWithForm(editAvatarModalWindow, handleEditProfileFormSubmit, handleAddCardFormSubmit);
-export const deleteCardPopup = new PopupWithForm(deleteCardModalWindow, handleEditProfileFormSubmit, handleAddCardFormSubmit);
-export const userInfo = new UserInfo(profileTitle, profileDescription);
+// export const popupImageInstance = new PopupWithImage(imageModalWindow);
+// export const editProfilePopup = new PopupWithForm(
+//   {popupSelector: editProfileModalWindow, 
+//   submitPopup: () => userInfo.setUserInfo(nameInput.value, jobInput.value)
+//   });
+// export const addCardPopup = new PopupWithForm(
+//   {popupSelector: addCardModalWindow, 
+//     submitPopup: (data) => 
+    
+//   });
+// export const editAvatarPopup = new PopupWithForm(editAvatarModalWindow, handleEditProfileFormSubmit, handleAddCardFormSubmit);
+// export const deleteCardPopup = new PopupWithForm(deleteCardModalWindow, handleEditProfileFormSubmit, handleAddCardFormSubmit);
+// export const userInfo = new UserInfo(profileTitle, profileDescription);
 
 export const initialCards = [
   {
@@ -59,41 +67,40 @@ export const initialCards = [
   }
 ];
 
-export function handleCardClick(name, link) {
-    popupImageInstance.open(name, link);
-  }
+// export function handleCardClick(name, link) {
+//     popupImageInstance.open(name, link);
+//   }
 
-export function openAvatarEdit() {
-  editAvatarPopup.open();
-}
+// export function openAvatarEdit() {
+//   editAvatarPopup.open();
+// }
 
-export function openProfileEdit() {
-editProfilePopup.open();
-}
+// export function openProfileEdit() {
+// editProfilePopup.open();
+// }
 
-export function openAddCard() {
-  addCardPopup.open();
-}
+// export function openAddCard() {
+//   addCardPopup.open();
+// }
 
-export function openDeleteCard() {
-  deleteCardPopup.open();
-}
+// export function openDeleteCard() {
+//   deleteCardPopup.open();
+// }
 
-export function handleEditProfileFormSubmit(event, inputValues) {
-  event.preventDefault();
-  userInfo.setUserInfo(inputValues[0], inputValues[1]);
-  editProfilePopup.close();
-}
+// export function handleEditProfileFormSubmit(event, inputValues) {
+//   event.preventDefault();
+//   userInfo.setUserInfo(inputValues[0], inputValues[1]);
+//   editProfilePopup.close();
+// }
 
-export function handleAddCardFormSubmit(event, inputValues) {
-event.preventDefault();
+// export function handleAddCardFormSubmit(event, inputValues) {
+// event.preventDefault();
 
-const data = { name: inputValues[0], link: inputValues[1] }
-const newCard = new Card({ data, handleCardClick }, ".card-template");
-const newCardElement = newCard.getCardElement();
-list.prepend(newCardElement);
+//const data = { name: inputValues[0], link: inputValues[1] }
+//const newCard = new Card({ data, handleCardClick }, ".card-template");
+//const newCardElement = newCard.getCardElement();
+//list.prepend(newCardElement);
 
 cardTitle.value = "";
 cardLink.value = "";
-addCardPopup.close();
-}
+//addCardPopup.close();

@@ -20,9 +20,8 @@ class Card {
     };
 
     _handleDeleteCard() {
-      deleteCardModalWindow.classList.add('popup_opened');
-      //this._card.remove();
-      //this._card = null;
+      this._card.remove();
+      this._card = null;
     };
 
     _addEventListeners() {
@@ -32,7 +31,7 @@ class Card {
 
         cardLikeButton.addEventListener('click', this._handleLikeIcon);
         
-          //cardDeleteButton.addEventListener('click', this._handleDeleteCard.bind(this));
+          cardDeleteButton.addEventListener('click', this._handleDeleteCard.bind(this));
         
           cardImage.addEventListener('click', () => {
             this._handleCardClick(this._text, this._link);
