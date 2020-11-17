@@ -2,7 +2,7 @@ import "../pages/index.css"; // add import of the main stylesheets file
 import Card from './Card.js';
 import Section from './Section.js';
 import { FormValidator, defaultConfig } from './FormValidation.js';
-import { initialCards, editAvatarModalWindow, addCardModalWindow, editProfileModalWindow, deleteCardModalWindow, list, imageModalWindow, profileTitle, profileDescription } from "./utils.js";
+import { initialCards, editAvatarModalWindow, addCardModalWindow, editProfileModalWindow, deleteCardModalWindow, list, imageModalWindow, profileTitle, profileDescription, openAddCard, handleAddCardFormSubmit, formEdit, titleInputValue, descriptionInputValue } from "./utils.js";
 import Api from './Api.js';
 import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
@@ -41,10 +41,10 @@ api.getCardList()
         const card = new Card({ 
           data, 
           handleCardClick: () => {
-            imageModalWindow.open(data);
+            imageModalWindow.open();
           },
           handleDeleteClick: (card) => {
-            deleteCardPopup.open(card);
+            deleteCardModalWindow.open(card);
           }
         }, ".card-template")
         const generatedCard = card.getCardElement();
@@ -73,7 +73,7 @@ const displayCards = new Section(
           imageModalWindow.open(data);
         },
         handleDeleteClick: (card) => {
-          deleteCardPopup.open(card);
+          deleteCardModalWindow.open(card);
         }
       }, ".card-template")
       const generatedCard = card.getCardElement();
@@ -111,11 +111,14 @@ const profileAvatarEdit = document.querySelector('.profile__avatar-edit');
 const addCardSubmitButton = addCardModalWindow.querySelector('.popup__button');
 const editProfileSubmitButton = editProfileModalWindow.querySelector('.popup__button');
 
+const titleInput = document.querySelector(".popup__input_type_name")
+const descriptionInput = document.querySelector('.popup__input_type_bio');
+
 export const popupImageInstance = new PopupWithImage(imageModalWindow);
-// export const editProfilePopup = new PopupWithForm(
-//   {popupSelector: editProfileModalWindow, 
-//   submitPopup: () => userInfo.setUserInfo(".popup__input_type_name", ".popup__input_type_bio")
-//   });
+export const editProfilePopup = new PopupWithForm(
+  {popupSelector: editProfileModalWindow, 
+  submitPopup: () => userInfo.setUserInfo(titleInput.value, descriptionInput.value)
+  });
 export const addCardPopup = new PopupWithForm(
   {popupSelector: addCardModalWindow, 
     submitPopup: (data) => {
@@ -150,21 +153,31 @@ function showAvatarEdit() {
   profileAvatarEdit.classList.toggle('profile__avatar-edit_visible');
 }
 
+// export function openAvatarEdit() {
+//   editAvatarPopup.open();
+// }
+
+export function openProfileEdit() {
+editProfilePopup.open();
+}
+
 avatarOpenButton.addEventListener('mouseenter', showAvatarEdit);
 avatarOpenButton.addEventListener('mouseleave', showAvatarEdit);
 
-//editAvatarPopup.setEventListeners();
+// editAvatarPopup.setEventListeners();
 avatarOpenButton.addEventListener('click', () => {
   openAvatarEdit();
 })
 
-//editProfilePopup.setEventListeners();
+editProfilePopup.setEventListeners();
 profileEditOpenButton.addEventListener('click', () => {
 openProfileEdit();
 })
 
-//addCardPopup.setEventListeners();
+addCardPopup.setEventListeners();
 addCardOpenButton.addEventListener('click', () => {
+  console.log(3)
+  console.log(openAddCard)
   openAddCard();
 })
 

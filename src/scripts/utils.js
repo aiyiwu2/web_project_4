@@ -3,6 +3,7 @@ import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
 import UserInfo from './UserInfo.js';
 import Api from './Api.js';
+import { addCardPopup } from './index.js';
 
 export const editAvatarModalWindow = document.querySelector('.popup_type_edit-avatar');
 export const addCardModalWindow = document.querySelector('.popup_type_add-card');
@@ -71,17 +72,9 @@ export const initialCards = [
 //     popupImageInstance.open(name, link);
 //   }
 
-// export function openAvatarEdit() {
-//   editAvatarPopup.open();
-// }
-
-// export function openProfileEdit() {
-// editProfilePopup.open();
-// }
-
-// export function openAddCard() {
-//   addCardPopup.open();
-// }
+export function openAddCard() {
+  addCardPopup.open();
+}
 
 // export function openDeleteCard() {
 //   deleteCardPopup.open();
@@ -93,14 +86,14 @@ export const initialCards = [
 //   editProfilePopup.close();
 // }
 
-// export function handleAddCardFormSubmit(event, inputValues) {
-// event.preventDefault();
+export function handleAddCardFormSubmit(event, inputValues) {
+event.preventDefault();
 
-//const data = { name: inputValues[0], link: inputValues[1] }
-//const newCard = new Card({ data, handleCardClick }, ".card-template");
-//const newCardElement = newCard.getCardElement();
-//list.prepend(newCardElement);
+const data = { name: inputValues[0], link: inputValues[1] }
+const newCard = new Card({ data, handleCardClick }, ".card-template");
+const newCardElement = newCard.getCardElement();
+list.prepend(newCardElement);
 
 cardTitle.value = "";
 cardLink.value = "";
-//addCardPopup.close();
+addCardPopup.close();}
