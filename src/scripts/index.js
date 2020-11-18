@@ -142,10 +142,32 @@ export const addCardPopup = new PopupWithForm(
     }
     
   });
-// export const editAvatarPopup = new PopupWithForm({
-//   popupSelector: editAvatarModalWindow,
-//   submitPopup:  
-// });
+
+  function handleAvatarEdit(data) {
+    loadingAvatar(true, editAvatarModalWindow);
+    api.setUserAvatar({
+      avatar: data.avatarURL
+    })
+    .then(res => {
+      avatarOpenButton.src = res.avatar;
+      loadingAvatar(false, editAvatarModalWindow);
+      editAvatarPopup.close();
+    })
+    .catch(err => console.log(err));
+  }
+  
+  function loadingAvatar(isLoading, popup) {
+    if (isLoading) {
+      popup.querySelector(".popup__button").textContent = "Saving...";
+    } else {
+      popup.querySelector(".popup__button").textContent = "Save";
+    }
+  }
+
+export const editAvatarPopup = new PopupWithForm({
+  popupSelector: editAvatarModalWindow,
+  submitPopup: handleAvatarEdit
+});
 
 export const deleteCardPopup = new PopupWithForm({
   popupSelector: deleteCardModalWindow,
@@ -161,9 +183,9 @@ function showAvatarEdit() {
   profileAvatarEdit.classList.toggle('profile__avatar-edit_visible');
 }
 
-// export function openAvatarEdit() {
-//   editAvatarPopup.open();
-// }
+export function openAvatarEdit() {
+  editAvatarPopup.open();
+}
 
 export function openProfileEdit() {
 editProfilePopup.open();
@@ -177,7 +199,7 @@ function openDeleteCard() {
 avatarOpenButton.addEventListener('mouseenter', showAvatarEdit);
 avatarOpenButton.addEventListener('mouseleave', showAvatarEdit);
 
-// editAvatarPopup.setEventListeners();
+editAvatarPopup.setEventListeners();
 avatarOpenButton.addEventListener('click', () => {
   openAvatarEdit();
 })
