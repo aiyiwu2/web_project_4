@@ -76,9 +76,7 @@ export function openAddCard() {
   addCardPopup.open();
 }
 
-// export function openDeleteCard() {
-//   deleteCardPopup.open();
-// }
+
 
 // export function handleEditProfileFormSubmit(event, inputValues) {
 //   event.preventDefault();

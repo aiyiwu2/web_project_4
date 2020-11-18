@@ -40,11 +40,14 @@ api.getCardList()
       renderer: (data) => {
         const card = new Card({ 
           data, 
-          handleCardClick: () => {
-            imageModalWindow.open();
+          handleCardClick: (name, link) => {
+            popupImageInstance.open(name, link);
           },
           handleDeleteClick: (card) => {
-            deleteCardModalWindow.open(card);
+            console.log(card)
+            console.log(deleteCardPopup)
+            
+            deleteCardPopup.open(card);
           }
         }, ".card-template")
         const generatedCard = card.getCardElement();
@@ -69,11 +72,13 @@ const displayCards = new Section(
     renderer: (data) => {
       const card = new Card({ 
         data, 
-        handleCardClick: () => {
-          imageModalWindow.open(data);
+        handleCardClick: (name, link) => {
+          popupImageInstance.open(name, link);
         },
         handleDeleteClick: (card) => {
-          deleteCardModalWindow.open(card);
+          console.log(card)
+          console.log(deleteCardPopup)
+          deleteCardPopup.open(card);
         }
       }, ".card-template")
       const generatedCard = card.getCardElement();
@@ -122,11 +127,11 @@ export const editProfilePopup = new PopupWithForm(
 export const addCardPopup = new PopupWithForm(
   {popupSelector: addCardModalWindow, 
     submitPopup: (data) => {
-      api.addCard(data);
+     // api.addCard(data);
       const card = new Card({
         data,
-        handleCardClick: () => {
-          imageModalWindow.open(data);
+        handleCardClick: (name, link) => {
+          popupImageInstance.open(name, link);
         },
         handleDeleteClick: (card) => {
           deleteCardPopup.open(card);
@@ -141,10 +146,13 @@ export const addCardPopup = new PopupWithForm(
 //   popupSelector: editAvatarModalWindow,
 //   submitPopup:  
 // });
-// export const deleteCardPopup = new PopupWithForm({
-//   popupSelector: deleteCardModalWindow, 
-//   submitPopup: 
-// });
+
+export const deleteCardPopup = new PopupWithForm({
+  popupSelector: deleteCardModalWindow,
+  submitPopup: (data) => {
+    data.closest(".card").remove();
+  }
+});
 //console.log(UserInfo)
 
 //console.log(userInfo)
@@ -159,6 +167,11 @@ function showAvatarEdit() {
 
 export function openProfileEdit() {
 editProfilePopup.open();
+}
+
+function openDeleteCard() {
+  console.log(deleteCardPopup)
+  deleteCardPopup.open();
 }
 
 avatarOpenButton.addEventListener('mouseenter', showAvatarEdit);
@@ -181,7 +194,7 @@ addCardOpenButton.addEventListener('click', () => {
   openAddCard();
 })
 
-//deleteCardPopup.setEventListeners();
+deleteCardPopup.setEventListeners();
 deleteCardOpenButton.addEventListener('click', () => {
   openDeleteCard();
 })
