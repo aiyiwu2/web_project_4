@@ -31,6 +31,13 @@ const api = new Api({
     }
   });
 
+  export const deleteCardPopup = new PopupWithForm({
+    popupSelector: deleteCardModalWindow,
+    submitPopup: (data) => {
+      data.closest(".card").remove();
+    }
+  });
+
 //displays all users' cards
 api.getCardList()
 .then(res => {
@@ -169,12 +176,7 @@ export const editAvatarPopup = new PopupWithForm({
   submitPopup: handleAvatarEdit
 });
 
-export const deleteCardPopup = new PopupWithForm({
-  popupSelector: deleteCardModalWindow,
-  submitPopup: (data) => {
-    data.closest(".card").remove();
-  }
-});
+
 //console.log(UserInfo)
 
 //console.log(userInfo)
