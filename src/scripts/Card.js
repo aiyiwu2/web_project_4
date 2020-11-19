@@ -19,7 +19,7 @@ class Card {
       event.target.classList.toggle('card__heart_mode_like');
     };
 
-    _handleDeleteCard() {
+    handleDeleteCard() {
       this._card.remove();
       this._card = null;
     };
@@ -31,8 +31,9 @@ class Card {
 
         cardLikeButton.addEventListener('click', this._handleLikeIcon);
         
-          cardDeleteButton.addEventListener('click', this._handleDeleteCard.bind(this));
-        
+          cardDeleteButton.addEventListener('click', () => this._handleDeleteClick(this.handleDeleteCard.bind(this)));
+        //this._handleDeleteClick(this.handleDeleteCard.bind(this))
+
           cardImage.addEventListener('click', () => {
             this._handleCardClick(this._text, this._link);
           });

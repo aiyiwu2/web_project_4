@@ -14,6 +14,8 @@ class PopupWithForm extends Popup {
     _getInputValues() {
         this._inputList = this._formElement.querySelectorAll(".popup__form");
         this._inputValues = {};
+        console.log(1);
+        console.log(this._inputList);
         this._inputList.forEach(
             (input) => (this._inputValues[input.name] = input.value));
         // if (popupSelector.classList.contains('popup_type_edit-profile')) {
@@ -23,6 +25,7 @@ class PopupWithForm extends Popup {
         //     this._inputValues.push(popupSelector.querySelector('.popup__input_type_card-title').value)
         //     this._inputValues.push(popupSelector.querySelector('.popup__input_type_url').value)
         // }
+        // console.log(this._inputValues)
         console.log(this._inputValues)
         return this._inputValues;
     }
@@ -44,17 +47,21 @@ class PopupWithForm extends Popup {
 //             this._popupElement.querySelector('.popup__close').closest('.popup__form').reset();
 //         })  
 
-this._formElement.addEventListener("submit", (event) => {
-    event.preventDefault();
-    this._submitPopup(this._getInputValues());
-    this.close();
-})
+    this._formElement.addEventListener("submit", (event) => {
+        event.preventDefault();
+            this._submitPopup(this._getInputValues());
+            this.close();
+        })
     }
 
     close() {
         super.close();
-        console.log(this._popupSelector)
+        // console.log(this._popupSelector)
         this._popupSelector.querySelector('.popup__form').reset();
+    }
+
+    submitData(submit) {
+        this._submitPopup = submit;
     }
 }
 

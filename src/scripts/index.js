@@ -7,6 +7,7 @@ import Api from './Api.js';
 import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
 import UserInfo from './UserInfo.js';
+import { data } from "jquery";
 
 export const userInfo = new UserInfo(profileTitle, profileDescription);
 
@@ -22,21 +23,31 @@ export const userInfo = new UserInfo(profileTitle, profileDescription);
 //   console.log(response)
 // })
 
+// fetch("https://around.nomoreparties.co/v1/groupId/users/me")
+// .then(res => res.json())
+// .then(response => {
+//   console.log(response)
+// })
+
+
 
 const api = new Api({
-    baseUrl: "https://around.nomoreparties.co/v1/group-5",
-    headers: {
-      authorization: "ed300335-e1bd-4128-98db-8b10403a3044",
-      "Content-Type": "application/json"
-    }
-  });
+  baseUrl: "https://around.nomoreparties.co/v1/group-5",
+  headers: {
+    authorization: "ed300335-e1bd-4128-98db-8b10403a3044",
+    "Content-Type": "application/json"
+  }
+});
 
-  export const deleteCardPopup = new PopupWithForm({
-    popupSelector: deleteCardModalWindow,
-    submitPopup: (data) => {
-      data.closest(".card").remove();
-    }
-  });
+export const deleteCardPopup = new PopupWithForm({
+  popupSelector: deleteCardModalWindow,
+  submitPopup: (data) => {
+    console.log(data)
+    //data.closest(".card").remove();
+  }
+});
+deleteCardPopup.setEventListeners();
+//api.getUserInfo();
 
 //displays all users' cards
 api.getCardList()
@@ -50,11 +61,16 @@ api.getCardList()
           handleCardClick: (name, link) => {
             popupImageInstance.open(name, link);
           },
-          handleDeleteClick: (card) => {
-            console.log(card)
-            console.log(deleteCardPopup)
-            
-            deleteCardPopup.open(card);
+          handleDeleteClick: (cardID) => {
+            deleteCardPopup.open(cardID);
+            deleteCardPopup.submitData(() => {
+              api.removeCard(cardID)
+              .then(() => {
+                card.handleDeleteCard(cardID);
+                deleteCardPopup.close();
+              })
+              .catch(error => console.log(error))
+            })
           }
         }, ".card-template")
         const generatedCard = card.getCardElement();
@@ -69,6 +85,7 @@ api.getCardList()
 //loads user information from the server
 api.getUserInfo()
 .then(res => {
+  console.log(res)
   userInfo.setUserInfo(res.name, res.about)
 })
 
@@ -82,10 +99,16 @@ const displayCards = new Section(
         handleCardClick: (name, link) => {
           popupImageInstance.open(name, link);
         },
-        handleDeleteClick: (card) => {
-          console.log(card)
-          console.log(deleteCardPopup)
-          deleteCardPopup.open(card);
+        handleDeleteClick: (cardID) => {
+          deleteCardPopup.open(cardID);
+          deleteCardPopup.submitData(() => {
+            api.removeCard(cardID)
+            .then(() => {
+              card.handleDeleteCard(cardID);
+              deleteCardPopup.close();
+            })
+            .catch(error => console.log(error))
+          })
         }
       }, ".card-template")
       const generatedCard = card.getCardElement();
@@ -127,10 +150,24 @@ const titleInput = document.querySelector(".popup__input_type_name")
 const descriptionInput = document.querySelector('.popup__input_type_bio');
 
 export const popupImageInstance = new PopupWithImage(imageModalWindow);
-export const editProfilePopup = new PopupWithForm(
-  {popupSelector: editProfileModalWindow, 
-  submitPopup: () => userInfo.setUserInfo(titleInput.value, descriptionInput.value)
-  });
+export const editProfilePopup = new PopupWithForm({
+  popupSelector: editProfileModalWindow, 
+  submitPopup: (data) => {
+    addCardSubmitButton.textContent = "Saving...";
+
+    // we need to check the data object, and take name and job from it
+    // but names inside this bject might be different, e.g. userName, userDescription
+    
+    api.setUserInfo({
+      name: data.name,
+      about: data.about
+
+    })
+    .then(res => {
+      userInfo.setUserInfo(res.name, res.about)
+    })
+  }
+});
 export const addCardPopup = new PopupWithForm(
   {popupSelector: addCardModalWindow, 
     submitPopup: (data) => {
@@ -151,11 +188,13 @@ export const addCardPopup = new PopupWithForm(
   });
 
   function handleAvatarEdit(data) {
+    console.log(data)
     loadingAvatar(true, editAvatarModalWindow);
     api.setUserAvatar({
-      avatar: data.avatarURL
+      avatar: data.avatar
     })
     .then(res => {
+      console.log(res)
       avatarOpenButton.src = res.avatar;
       loadingAvatar(false, editAvatarModalWindow);
       editAvatarPopup.close();
@@ -190,11 +229,11 @@ export function openAvatarEdit() {
 }
 
 export function openProfileEdit() {
-editProfilePopup.open();
+  editProfilePopup.open();
 }
 
 function openDeleteCard() {
-  console.log(deleteCardPopup)
+  // console.log(deleteCardPopup)
   deleteCardPopup.open();
 }
 
@@ -208,17 +247,17 @@ avatarOpenButton.addEventListener('click', () => {
 
 editProfilePopup.setEventListeners();
 profileEditOpenButton.addEventListener('click', () => {
-openProfileEdit();
+  openProfileEdit();
 })
 
 addCardPopup.setEventListeners();
 addCardOpenButton.addEventListener('click', () => {
-  console.log(3)
-  console.log(openAddCard)
+  // console.log(3)
+  // console.log(openAddCard)
   openAddCard();
 })
 
-deleteCardPopup.setEventListeners();
+
 deleteCardOpenButton.addEventListener('click', () => {
   openDeleteCard();
 })

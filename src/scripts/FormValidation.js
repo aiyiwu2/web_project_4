@@ -13,9 +13,9 @@ errorElement.classList.add(this._settings.errorClass);
 
 _hideInputError(inputElement) {
     const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
-inputElement.classList.remove(this._settings.inputErrorClass);
-errorElement.classList.remove(this._settings.errorClass);
-errorElement.textContent = "";
+    inputElement.classList.remove(this._settings.inputErrorClass);
+    errorElement.classList.remove(this._settings.errorClass);
+    errorElement.textContent = "";
 }
 
 _checkInputValidity(inputElement, form, rest) {
