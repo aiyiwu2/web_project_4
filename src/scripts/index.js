@@ -40,11 +40,7 @@ const api = new Api({
 });
 
 export const deleteCardPopup = new PopupWithForm({
-  popupSelector: deleteCardModalWindow,
-  submitPopup: (data) => {
-    console.log(data)
-    //data.closest(".card").remove();
-  }
+  popupSelector: deleteCardModalWindow
 });
 deleteCardPopup.setEventListeners();
 //api.getUserInfo();
@@ -52,6 +48,7 @@ deleteCardPopup.setEventListeners();
 //displays all users' cards
 api.getCardList()
 .then(res => {
+  console.log(res)
   const displayCards = new Section(
     { 
       items: res, 
@@ -62,15 +59,36 @@ api.getCardList()
             popupImageInstance.open(name, link);
           },
           handleDeleteClick: (cardID) => {
+            console.log(1)
             deleteCardPopup.open(cardID);
+            console.log(2)
             deleteCardPopup.submitData(() => {
+              console.log(3)
               api.removeCard(cardID)
               .then(() => {
+                console.log(4)
                 card.handleDeleteCard(cardID);
                 deleteCardPopup.close();
               })
               .catch(error => console.log(error))
             })
+          },
+          handleLikeClick: (cardID) => {
+            if (card.querySelector(".card__heart").classList.contains(".card__heart_mode_like")) {
+              card.querySelector(".card__heart").classList.remove(".card__heart_mode_like");
+              api.deleteCardLike(cardID)
+              .then((res) => {
+                card.displayLikeCount(res.likes.length)
+              })
+              .catch((error) => console.log(error))
+            } else {
+              card.querySelector(".card__heart").classList.add(".card__heart_mode_like");
+              api.addCardLike(cardID)
+              .then((res) => {
+                card.displayLikeCount(res.likes.length)
+              })
+              .catch((error) => console.log(error))
+            }
           }
         }, ".card-template")
         const generatedCard = card.getCardElement();
@@ -79,13 +97,65 @@ api.getCardList()
      }, 
       list);
       displayCards.renderer();
-}
+
+      const addCardPopup = new PopupWithForm({
+        popupSelector: addCardModalWindow, 
+          submitPopup: (data) => {
+            api.addCard(data)
+            .then((res) => {
+              const card = new Card({
+                data,
+                handleCardClick: (name, link) => {
+                  popupImageInstance.open(name, link);
+                },
+                handleDeleteClick: (cardID) => {
+                  console.log(1)
+                  deleteCardPopup.open(cardID);
+                  console.log(2)
+                  deleteCardPopup.submitData(() => {
+                    console.log(3)
+                    api.removeCard(cardID)
+                    .then((res) => {
+                      console.log(5)
+                      console.log(res)
+                      card.handleDeleteCard(cardID);
+                      deleteCardPopup.close();
+                    })
+                    .catch(error => console.log(error))
+                  })
+                }
+              }, ".card-template");
+              const generatedCard = card.getCardElement();
+              displayCards.addItem(generatedCard); 
+            })
+            // const card = new Card({
+            //   data,
+            //   handleCardClick: (name, link) => {
+            //     popupImageInstance.open(name, link);
+            //   },
+            //   handleDeleteClick: (card) => {
+            //     deleteCardPopup.open(card);
+            //   }
+            // }, ".card-template");
+            // const generatedCard = card.getCardElement();
+            //   displayCards.addItem(generatedCard); 
+          }
+          
+        });
+        addCardPopup.setEventListeners();
+
+        addCardOpenButton.addEventListener('click', () => {
+          // console.log(3)
+          // console.log(openAddCard)
+          //openAddCard();
+          addCardPopup.open();
+        })
+    }
 )
 
 //loads user information from the server
 api.getUserInfo()
 .then(res => {
-  console.log(res)
   userInfo.setUserInfo(res.name, res.about)
 })
 
@@ -118,11 +188,6 @@ const displayCards = new Section(
     list);
     
 displayCards.renderer();
-
-// const deleteCardPopup = new PopupWithForm({
-//   popupSelector: ".popup_type_delete-card"
-// });
-// deleteCardPopup.setEventListeners();
 
 const addCardForm = addCardModalWindow.querySelector('.popup__form');
 const editProfileForm = editProfileModalWindow.querySelector('.popup__form');
@@ -158,34 +223,48 @@ export const editProfilePopup = new PopupWithForm({
     // we need to check the data object, and take name and job from it
     // but names inside this bject might be different, e.g. userName, userDescription
     
-    api.setUserInfo({
-      name: data.name,
-      about: data.about
+    // api.setUserInfo({
+    //   name: data.name,
+    //   about: data.about
 
-    })
-    .then(res => {
-      userInfo.setUserInfo(res.name, res.about)
-    })
+    // })
+    // .then(res => {
+    //   console.log(res)
+    //   userInfo.setUserInfo(res.name, res.about)
+    // })
   }
 });
-export const addCardPopup = new PopupWithForm(
-  {popupSelector: addCardModalWindow, 
-    submitPopup: (data) => {
-     // api.addCard(data);
-      const card = new Card({
-        data,
-        handleCardClick: (name, link) => {
-          popupImageInstance.open(name, link);
-        },
-        handleDeleteClick: (card) => {
-          deleteCardPopup.open(card);
-        }
-      }, ".card-template");
-      const generatedCard = card.getCardElement();
-        displayCards.addItem(generatedCard); 
-    }
+// export const addCardPopup = new PopupWithForm({
+//   popupSelector: addCardModalWindow, 
+//     submitPopup: (data) => {
+//       api.addCard(data)
+//       .then((res) => {
+//         const card = new Card({
+//           data,
+//           handleCardClick: (name, link) => {
+//             popupImageInstance.open(name, link);
+//           },
+//           handleDeleteClick: (card) => {
+//             deleteCardPopup.open(card);
+//           }
+//         }, ".card-template");
+//         const generatedCard = card.getCardElement();
+//         displayCards.addItem(generatedCard); 
+//       })
+//       // const card = new Card({
+//       //   data,
+//       //   handleCardClick: (name, link) => {
+//       //     popupImageInstance.open(name, link);
+//       //   },
+//       //   handleDeleteClick: (card) => {
+//       //     deleteCardPopup.open(card);
+//       //   }
+//       // }, ".card-template");
+//       // const generatedCard = card.getCardElement();
+//       //   displayCards.addItem(generatedCard); 
+//     }
     
-  });
+//   });
 
   function handleAvatarEdit(data) {
     console.log(data)
@@ -250,12 +329,12 @@ profileEditOpenButton.addEventListener('click', () => {
   openProfileEdit();
 })
 
-addCardPopup.setEventListeners();
-addCardOpenButton.addEventListener('click', () => {
-  // console.log(3)
-  // console.log(openAddCard)
-  openAddCard();
-})
+// addCardPopup.setEventListeners();
+// addCardOpenButton.addEventListener('click', () => {
+//   // console.log(3)
+//   // console.log(openAddCard)
+//   openAddCard();
+// })
 
 
 deleteCardOpenButton.addEventListener('click', () => {

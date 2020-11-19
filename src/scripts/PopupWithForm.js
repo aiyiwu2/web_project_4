@@ -14,7 +14,6 @@ class PopupWithForm extends Popup {
     _getInputValues() {
         this._inputList = this._formElement.querySelectorAll(".popup__form");
         this._inputValues = {};
-        console.log(1);
         console.log(this._inputList);
         this._inputList.forEach(
             (input) => (this._inputValues[input.name] = input.value));

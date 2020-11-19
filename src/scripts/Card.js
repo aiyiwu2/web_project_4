@@ -1,7 +1,7 @@
 import { deleteCardModalWindow } from "./utils.js";
 
 class Card {
-    constructor({ data, handleCardClick, handleDeleteClick }, cardTemplateSelector) {
+    constructor({ data, handleCardClick, handleDeleteClick, handleLikeClick }, cardTemplateSelector) {
         this._text = data.name;
         this._link = data.link;
         this._data = data;
@@ -9,10 +9,11 @@ class Card {
         this._cardTemplate = document.querySelector(cardTemplateSelector).content.querySelector('.card');
         this._handleCardClick = handleCardClick;
         this._handleDeleteClick = handleDeleteClick;
+        this._handleLikeClick = handleLikeClick;
     }
 
-    _id() {
-      return this._id();
+    id() {
+      return this._id;
     }
 
     _handleLikeIcon(event) {
@@ -24,14 +25,23 @@ class Card {
       this._card = null;
     };
 
+    displayLikeCount(numberOfLikes) {
+      this._card.querySelector(".card__heart-score").textContent = numberOfLikes;
+    }
+
     _addEventListeners() {
         const cardImage = this._card.querySelector('.card__image');
         const cardLikeButton = this._card.querySelector('.card__heart');
         const cardDeleteButton = this._card.querySelector('.card__delete');
 
-        cardLikeButton.addEventListener('click', this._handleLikeIcon);
-        
-          cardDeleteButton.addEventListener('click', () => this._handleDeleteClick(this.handleDeleteCard.bind(this)));
+        //cardLikeButton.addEventListener('click', this._handleLikeIcon);
+        cardLikeButton.addEventListener('click', () => {
+          //console.log(this._handleLikeClick())
+          this._handleLikeClick(this.id());
+        })
+
+        cardDeleteButton.addEventListener('click', () => this._handleDeleteClick(this.id()));
+          // cardDeleteButton.addEventListener('click', () => this._handleDeleteClick(this.handleDeleteCard.bind(this)));
         //this._handleDeleteClick(this.handleDeleteCard.bind(this))
 
           cardImage.addEventListener('click', () => {

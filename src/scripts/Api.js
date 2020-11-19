@@ -9,7 +9,7 @@ class Api {
       return fetch(this._baseUrl + '/cards', {
         headers: this._headers
       })
-      .then(res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
+      .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
       .catch(err => console.log(err))
     }
 
@@ -18,7 +18,7 @@ class Api {
       return fetch(this._baseUrl + '/users/me', {
         headers: this._headers
       })
-      .then(res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
+      .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
       .catch(err => console.log(err))
     }
 
@@ -36,7 +36,7 @@ class Api {
           link
         })
       })
-      .then(res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
+      .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
       .catch(err => console.log(err))
     }
 
@@ -46,7 +46,7 @@ class Api {
         headers: this._headers,
         method: "DELETE"
       })
-      .then(res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
+      .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
       .catch(err => console.log(err))
     }
 
@@ -57,7 +57,7 @@ class Api {
         headers: this._headers,
         method: "PUT"
       })
-      .then(res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
+      .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
       .catch(err => console.log(err))
     }
 
@@ -66,7 +66,7 @@ class Api {
         headers: this._headers,
         method: "DELETE"
       })
-      .then(res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
+      .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
       .catch(err => console.log(err))
     }
 
@@ -80,7 +80,7 @@ class Api {
           about
         }),
       })
-      .then(res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
+      .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
       .catch(err => console.log(err))
     }
 
@@ -93,7 +93,7 @@ class Api {
           avatar
         }),
       })
-      .then(res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
+      .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
       .catch(err => console.log(err))
     }
   }
