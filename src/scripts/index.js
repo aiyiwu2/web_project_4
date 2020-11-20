@@ -90,7 +90,7 @@ api.getCardList()
             }
           }
         }, ".card-template")
-        console.log(res)
+        //console.log(res)
         //console.log(res.likes)
         const generatedCard = card.getCardElement();
         //generatedCard.displayLikeCount(res.likes.length)
@@ -256,7 +256,7 @@ export const editProfilePopup = new PopupWithForm({
   submitPopup: (data) => {
     editProfileSubmitButton.textContent = "Saving...";
 
-    //console.log(data)
+    console.log(data)
 
     // we need to check the data object, and take name and job from it
     // but names inside this bject might be different, e.g. userName, userDescription
@@ -267,7 +267,7 @@ export const editProfilePopup = new PopupWithForm({
 
     })
     .then(res => {
-      //console.log(res)
+      console.log(res)
       userInfo.setUserInfo(res.name, res.about)
     })
     userInfo.setUserInfo(titleInput.value, descriptionInput.value)
