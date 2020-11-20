@@ -91,9 +91,9 @@ api.getCardList()
           }
         }, ".card-template")
         console.log(res)
-        console.log(res.likes)
+        //console.log(res.likes)
         const generatedCard = card.getCardElement();
-        generatedCard.displayLikeCount(res.likes.length)
+        //generatedCard.displayLikeCount(res.likes.length)
         displayCards.addItem(generatedCard); 
 
       }
