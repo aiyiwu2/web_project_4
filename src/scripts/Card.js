@@ -10,6 +10,8 @@ class Card {
         this._handleCardClick = handleCardClick;
         this._handleDeleteClick = handleDeleteClick;
         this._handleLikeClick = handleLikeClick;
+        this._card = this._cardTemplate.cloneNode(true);
+        this.heart = this._card.querySelector(".card__heart");
     }
 
     id() {
@@ -36,8 +38,7 @@ class Card {
 
         //cardLikeButton.addEventListener('click', this._handleLikeIcon);
         cardLikeButton.addEventListener('click', () => {
-          //console.log(this._handleLikeClick())
-          this._handleLikeClick(this.id());
+          this._handleLikeClick(this.id);
         })
 
         cardDeleteButton.addEventListener('click', () => this._handleDeleteClick(this.id()));
@@ -50,7 +51,7 @@ class Card {
     }
 
     getCardElement() {
-        this._card = this._cardTemplate.cloneNode(true); 
+        // this._card = this._cardTemplate.cloneNode(true); 
         const cardImage = this._card.querySelector('.card__image');
         
         const cardTitle = this._card.querySelector('.card__title');

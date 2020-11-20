@@ -3,7 +3,7 @@ import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
 import UserInfo from './UserInfo.js';
 import Api from './Api.js';
-import { addCardPopup } from './index.js';
+//import { addCardPopup } from './index.js';
 
 export const editAvatarModalWindow = document.querySelector('.popup_type_edit-avatar');
 export const addCardModalWindow = document.querySelector('.popup_type_add-card');
@@ -72,9 +72,9 @@ export const initialCards = [
 //     popupImageInstance.open(name, link);
 //   }
 
-export function openAddCard() {
-  addCardPopup.open();
-}
+// export function openAddCard() {
+//   addCardPopup.open();
+// }
 
 
 

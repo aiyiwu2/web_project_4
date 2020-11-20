@@ -29,7 +29,8 @@ export const userInfo = new UserInfo(profileTitle, profileDescription);
 //   console.log(response)
 // })
 
-
+const cardTitleInput = document.querySelector(".popup__input_type_card-title");
+const cardURLInput = document.querySelector(".popup__input_type_url");
 
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-5",
@@ -59,14 +60,10 @@ api.getCardList()
             popupImageInstance.open(name, link);
           },
           handleDeleteClick: (cardID) => {
-            console.log(1)
             deleteCardPopup.open(cardID);
-            console.log(2)
             deleteCardPopup.submitData(() => {
-              console.log(3)
               api.removeCard(cardID)
               .then(() => {
-                console.log(4)
                 card.handleDeleteCard(cardID);
                 deleteCardPopup.close();
               })
@@ -74,17 +71,19 @@ api.getCardList()
             })
           },
           handleLikeClick: (cardID) => {
-            if (card.querySelector(".card__heart").classList.contains(".card__heart_mode_like")) {
-              card.querySelector(".card__heart").classList.remove(".card__heart_mode_like");
+            if (card.heart.classList.contains("card__heart_mode_like")) {
+              card.heart.classList.remove("card__heart_mode_like");
               api.deleteCardLike(cardID)
               .then((res) => {
+                console.log(res)
                 card.displayLikeCount(res.likes.length)
               })
               .catch((error) => console.log(error))
             } else {
-              card.querySelector(".card__heart").classList.add(".card__heart_mode_like");
+              card.heart.classList.add("card__heart_mode_like");
               api.addCardLike(cardID)
               .then((res) => {
+                console.log(res)
                 card.displayLikeCount(res.likes.length)
               })
               .catch((error) => console.log(error))
@@ -101,6 +100,8 @@ api.getCardList()
       const addCardPopup = new PopupWithForm({
         popupSelector: addCardModalWindow, 
           submitPopup: (data) => {
+            addCardModalWindow.querySelector(".popup__button").textContent = "Creating...";
+            data = { name: cardTitleInput.value, link: cardURLInput.value }
             api.addCard(data)
             .then((res) => {
               const card = new Card({
@@ -109,20 +110,32 @@ api.getCardList()
                   popupImageInstance.open(name, link);
                 },
                 handleDeleteClick: (cardID) => {
-                  console.log(1)
                   deleteCardPopup.open(cardID);
-                  console.log(2)
                   deleteCardPopup.submitData(() => {
-                    console.log(3)
                     api.removeCard(cardID)
                     .then((res) => {
-                      console.log(5)
-                      console.log(res)
                       card.handleDeleteCard(cardID);
                       deleteCardPopup.close();
                     })
                     .catch(error => console.log(error))
                   })
+                },
+                handleLikeClick: (cardID) => {
+                  if (card.heart.classList.contains("card__heart_mode_like")) {
+                    card.heart.classList.remove("card__heart_mode_like");
+                    api.deleteCardLike(cardID)
+                    .then((res) => {
+                      card.displayLikeCount(res.likes.length)
+                    })
+                    .catch((error) => console.log(error))
+                  } else {
+                    card.heart.classList.add("card__heart_mode_like");
+                    api.addCardLike(cardID)
+                    .then((res) => {
+                      card.displayLikeCount(res.likes.length)
+                    })
+                    .catch((error) => console.log(error))
+                  }
                 }
               }, ".card-template");
               const generatedCard = card.getCardElement();
@@ -179,6 +192,23 @@ const displayCards = new Section(
             })
             .catch(error => console.log(error))
           })
+        },
+        handleLikeClick: (cardID) => {
+          if (card.heart.classList.contains("card__heart_mode_like")) {
+            card.heart.classList.remove("card__heart_mode_like");
+            api.deleteCardLike(cardID)
+            .then((res) => {
+              card.displayLikeCount(res.likes.length)
+            })
+            .catch((error) => console.log(error))
+          } else {
+            card.heart.classList.add("card__heart_mode_like");
+            api.addCardLike(cardID)
+            .then((res) => {
+              card.displayLikeCount(res.likes.length)
+            })
+            .catch((error) => console.log(error))
+          }
         }
       }, ".card-template")
       const generatedCard = card.getCardElement();
@@ -214,24 +244,29 @@ const editProfileSubmitButton = editProfileModalWindow.querySelector('.popup__bu
 const titleInput = document.querySelector(".popup__input_type_name")
 const descriptionInput = document.querySelector('.popup__input_type_bio');
 
+
 export const popupImageInstance = new PopupWithImage(imageModalWindow);
 export const editProfilePopup = new PopupWithForm({
   popupSelector: editProfileModalWindow, 
   submitPopup: (data) => {
-    addCardSubmitButton.textContent = "Saving...";
+    editProfileSubmitButton.textContent = "Saving...";
+
+    //console.log(data)
 
     // we need to check the data object, and take name and job from it
     // but names inside this bject might be different, e.g. userName, userDescription
     
-    // api.setUserInfo({
-    //   name: data.name,
-    //   about: data.about
+    api.setUserInfo({
+      name: data.name,
+      about: data.about
 
-    // })
-    // .then(res => {
-    //   console.log(res)
-    //   userInfo.setUserInfo(res.name, res.about)
-    // })
+    })
+    .then(res => {
+      //console.log(res)
+      userInfo.setUserInfo(res.name, res.about)
+    })
+    userInfo.setUserInfo(titleInput.value, descriptionInput.value)
+    editProfileSubmitButton.textContent = "Save";
   }
 });
 // export const addCardPopup = new PopupWithForm({
