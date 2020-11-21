@@ -15,7 +15,7 @@ class Card {
     }
 
     id() {
-      return this._id;
+      return this._data._id;
     }
 
     _handleLikeIcon(event) {
@@ -38,11 +38,11 @@ class Card {
 
         //cardLikeButton.addEventListener('click', this._handleLikeIcon);
         cardLikeButton.addEventListener('click', () => {
-          this._handleLikeClick(this.id);
+          this._handleLikeClick(this.id());
         })
 
         cardDeleteButton.addEventListener('click', () => {
-          this._handleDeleteClick(this._id, this._card)
+          this._handleDeleteClick(this.id(), this._card)
         });
           // cardDeleteButton.addEventListener('click', () => this._handleDeleteClick(this.handleDeleteCard.bind(this)));
         //this._handleDeleteClick(this.handleDeleteCard.bind(this))

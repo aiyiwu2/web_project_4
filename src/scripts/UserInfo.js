@@ -1,21 +1,21 @@
 class UserInfo {
-    constructor(name, job) {
+    constructor(name, about) {
         this._name = name;
-        this._job = job;
+        this._about = about;
     }
 
     getUserInfo() {
         this.userInfo = {
             name: this._name.textContent,
-            job: this._job.textContent
+            about: this._about.textContent
         }
 
         return this.userInfo;
     }
 
-    setUserInfo(nameInput, jobInput) {
+    setUserInfo(nameInput, aboutInput) {
         this._name.textContent = nameInput;
-        this._job.textContent = jobInput;
+        this._about.textContent = aboutInput;
     }
 }
 

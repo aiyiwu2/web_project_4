@@ -72,6 +72,7 @@ api.getCardList()
             })
           },
           handleLikeClick: (cardID) => {
+            console.log(cardID)
             if (card.heart.classList.contains("card__heart_mode_like")) {
               card.heart.classList.remove("card__heart_mode_like");
               api.deleteCardLike(cardID)
@@ -131,11 +132,11 @@ api.getCardList()
               card.heart.classList.remove("card__heart_mode_like");
               api.deleteCardLike(cardID)
               .then((res) => {
-                console.log(res)
                 card.displayLikeCount(res.likes.length)
               })
               .catch((error) => console.log(error))
             } else {
+              //console.log(res)
               card.heart.classList.add("card__heart_mode_like");
               api.addCardLike(cardID)
               .then((res) => {
