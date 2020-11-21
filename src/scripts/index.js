@@ -50,7 +50,63 @@ deleteCardPopup.setEventListeners();
 api.getCardList()
 .then(res => {
   console.log(res)
-  const displayCards = new Section(
+
+  const displayCards1 = new Section(
+    { 
+      items: initialCards, 
+      renderer: (data) => {
+        const card = new Card({ 
+          data, 
+          handleCardClick: (name, link) => {
+            popupImageInstance.open(name, link);
+          },
+          handleDeleteClick: (cardID) => {
+            deleteCardPopup.open(cardID);
+            deleteCardPopup.submitData(() => {
+              api.removeCard(cardID)
+              .then(() => {
+                card.handleDeleteCard(cardID);
+                deleteCardPopup.close();
+              })
+              .catch(error => console.log(error))
+            })
+          },
+          handleLikeClick: (cardID) => {
+            if (card.heart.classList.contains("card__heart_mode_like")) {
+              card.heart.classList.remove("card__heart_mode_like");
+              api.deleteCardLike(cardID)
+              .then((res) => {
+                console.log(res)
+                card.displayLikeCount(res.likes.length)
+              })
+              .catch((error) => console.log(error))
+            } else {
+              card.heart.classList.add("card__heart_mode_like");
+              api.addCardLike(cardID)
+              .then((res) => {
+                console.log(res)
+                card.displayLikeCount(res.likes.length)
+              })
+              .catch((error) => console.log(error))
+            }
+          }
+        }, ".card-template")
+        //console.log(res)
+        //console.log(res.likes)
+        const generatedCard = card.getCardElement();
+        //generatedCard.displayLikeCount(res.likes.length)
+        // console.log(generatedCard)
+        console.log(card)
+        // console.log(card._data.likes.length)
+        //card.displayLikeCount(card._data.likes.length)
+        displayCards.addItem(generatedCard); 
+
+      }
+     }, 
+      list);
+      displayCards1.renderer();
+
+  const displayCards2 = new Section(
     { 
       items: res, 
       renderer: (data) => {
@@ -94,12 +150,16 @@ api.getCardList()
         //console.log(res.likes)
         const generatedCard = card.getCardElement();
         //generatedCard.displayLikeCount(res.likes.length)
+        // console.log(generatedCard)
+        console.log(card)
+        // console.log(card._data.likes.length)
+        card.displayLikeCount(card._data.likes.length)
         displayCards.addItem(generatedCard); 
 
       }
      }, 
       list);
-      displayCards.renderer();
+      displayCards2.renderer();
 
       const addCardPopup = new PopupWithForm({
         popupSelector: addCardModalWindow, 
@@ -217,6 +277,9 @@ const displayCards = new Section(
       }, ".card-template")
       const generatedCard = card.getCardElement();
       //generatedCard.displayLikeCount(res.likes.length)
+      console.log(generatedCard)
+        console.log(card)
+        // console.log(card._data.likes.length)
       displayCards.addItem(generatedCard); 
     }
    }, 

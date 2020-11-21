@@ -1,0 +1,7 @@
+.card__heart-container {
+    position: absolute;
+    width: 20px;
+    right: 24px;
+    bottom: 22px;
+    justify-content: center;
+}

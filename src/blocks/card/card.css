@@ -3,6 +3,8 @@
 @import url(./__title/card__title.css);
 @import url(./__heart/card__heart.css);
 @import url(./__delete/card__delete.css);
+@import url(./__heart-container/card__heart-container.css);
+@import url(./__heart-score/card__heart-score.css);
 
 @import url(./__heart/_mode/card__heart_mode_like.css);
 
