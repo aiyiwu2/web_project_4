@@ -165,10 +165,16 @@ api.getCardList()
       const addCardPopup = new PopupWithForm({
         popupSelector: addCardModalWindow, 
           submitPopup: (data) => {
+            console.log(data)
+            console.log(data.name)
+            console.log(data.link)
             addCardModalWindow.querySelector(".popup__button").textContent = "Creating...";
-            data = { name: cardTitleInput.value, link: cardURLInput.value }
-            api.addCard(data)
+            //data = { name: cardTitleInput.value, link: cardURLInput.value }
+            console.log(data)
+            api.addCard({ name: data.name, link: data.link })
             .then((res) => {
+              console.log(res)
+              console.log(data)
               const card = new Card({
                 data,
                 handleCardClick: (name, link) => {
