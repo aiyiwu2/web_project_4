@@ -2,7 +2,7 @@ import "../pages/index.css";
 import Card from './Card.js';
 import Section from './Section.js';
 import { FormValidator, defaultConfig } from './FormValidation.js';
-import { editAvatarModalWindow, addCardModalWindow, editProfileModalWindow, deleteCardModalWindow, list, imageModalWindow, profileTitle, profileDescription, profilePicture, editAvatarForm, editProfileForm, addCardForm, profileEditOpenButton, addCardOpenButton, avatarOpenButton, deleteCardOpenButton, profileAvatarEdit, editProfileSubmitButton, editAvatarSubmitButton, addCardSubmitButton, titleInput, descriptionInput } from "./utils.js";
+import { editAvatarModalWindow, addCardModalWindow, editProfileModalWindow, deleteCardModalWindow, list, imageModalWindow, profileTitle, profileDescription, profilePicture, editAvatarForm, editProfileForm, addCardForm, profileEditOpenButton, addCardOpenButton, avatarOpenButton, deleteCardOpenButton, profileAvatarEdit, editProfileSubmitButton, editAvatarSubmitButton, addCardSubmitButton, deleteCardSubmitButton, titleInput, descriptionInput } from "./utils.js";
 import Api from './Api.js';
 import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
@@ -109,10 +109,12 @@ api.getCardList()
           handleDeleteClick: (cardID) => {
             deleteCardPopup.open(cardID);
             deleteCardPopup.submitData(() => {
+              deleteCardSubmitButton.textContent = "Deleting...";
               api.removeCard(cardID)
               .then(() => {
                 card.handleDeleteCard(cardID);
                 deleteCardPopup.close();
+                deleteCardSubmitButton.textContent = "Yes";
               })
               .catch(error => console.log(error))
             })
@@ -204,7 +206,7 @@ api.getCardList()
               //   deleteCardOpenButton.classList.add("card__delete_mode_visible");
               // }
               //card.displayLikeCount(card._data.likes.length)
-              displayCards.addItem(generatedCard); 
+              displayCards.prependItem(generatedCard); 
             }) 
           }
           

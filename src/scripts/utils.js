@@ -27,6 +27,7 @@ export const profileAvatarEdit = document.querySelector('.profile__avatar-edit')
 export const editProfileSubmitButton = editProfileModalWindow.querySelector('.popup__button');
 export const editAvatarSubmitButton = editAvatarModalWindow.querySelector('.popup__button');
 export const addCardSubmitButton = addCardModalWindow.querySelector('.popup__button');
+export const deleteCardSubmitButton = deleteCardModalWindow.querySelector('.popup__button');
 
 export const titleInput = document.querySelector(".popup__input_type_name")
 export const descriptionInput = document.querySelector('.popup__input_type_bio');
