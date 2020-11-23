@@ -1,5 +1,3 @@
-import { deleteCardModalWindow } from "./utils.js";
-
 class Card {
     constructor({ data, handleCardClick, handleDeleteClick, handleLikeClick }, cardTemplateSelector) {
         this._text = data.name;
@@ -36,7 +34,6 @@ class Card {
         const cardLikeButton = this._card.querySelector('.card__heart');
         const cardDeleteButton = this._card.querySelector('.card__delete');
 
-        //cardLikeButton.addEventListener('click', this._handleLikeIcon);
         cardLikeButton.addEventListener('click', () => {
           this._handleLikeClick(this.id());
         })
@@ -44,8 +41,6 @@ class Card {
         cardDeleteButton.addEventListener('click', () => {
           this._handleDeleteClick(this.id(), this._card)
         });
-          // cardDeleteButton.addEventListener('click', () => this._handleDeleteClick(this.handleDeleteCard.bind(this)));
-        //this._handleDeleteClick(this.handleDeleteCard.bind(this))
 
           cardImage.addEventListener('click', () => {
             this._handleCardClick(this._text, this._link);
@@ -53,7 +48,6 @@ class Card {
     }
 
     getCardElement() {
-        // this._card = this._cardTemplate.cloneNode(true); 
         const cardImage = this._card.querySelector('.card__image');
         
         const cardTitle = this._card.querySelector('.card__title');

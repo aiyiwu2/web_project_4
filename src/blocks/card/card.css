@@ -7,6 +7,7 @@
 @import url(./__heart-score/card__heart-score.css);
 
 @import url(./__heart/_mode/card__heart_mode_like.css);
+@import url(./__delete/_mode/card__delete_mode_visible.css);
 
 .card {
     background: #FFFFFF;

@@ -7,15 +7,17 @@ class UserInfo {
     getUserInfo() {
         this.userInfo = {
             name: this._name.textContent,
-            about: this._about.textContent
+            about: this._about.textContent,
+            _id: this._id
         }
 
         return this.userInfo;
     }
 
-    setUserInfo(nameInput, aboutInput) {
+    setUserInfo(nameInput, aboutInput, IDInput) {
         this._name.textContent = nameInput;
         this._about.textContent = aboutInput;
+        this._id = IDInput;
     }
 }
 

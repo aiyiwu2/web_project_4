@@ -99,12 +99,3 @@ class Api {
   }
 
   export default Api;
-  /*
-  const api = new Api({
-    baseUrl: "https://around.nomoreparties.co/v1/group-5",
-    headers: {
-      authorization: "ed300335-e1bd-4128-98db-8b10403a3044",
-      "Content-Type": "application/json"
-    }
-  });
-  */

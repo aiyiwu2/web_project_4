@@ -1,5 +1,5 @@
-/*.card__delete {
-    background-image: url(../../../images/cardDelete.svg);
+.card__delete_mode_visible {
+    background-image: url(../../../../images/cardDelete.svg);
     top: 18px;
     left: 249px;
     position: absolute;
@@ -7,14 +7,10 @@
     height: 19.3px;
     border: none;
     background-color: transparent;
+    display: inline;
 }
 
-.card__delete:hover {
+.card__delete_mode_visible:hover {
     cursor: pointer;
     opacity: 0.6;
-}*/
-
-.card__delete {
-    background-color: red;
-    display: none;
 }
