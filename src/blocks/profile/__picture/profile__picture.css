@@ -1,16 +1,15 @@
-.profile__avatar {
-    /*background-image: url(../../../images/cousteau.jpg);*/
+.profile__picture {
     min-width: 120px;
     height: 120px;
+    border-radius: 50%;
+    background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
-    border-radius: 50%;
     margin-right: 30px;
 }
 
 @media (max-width : 861px) {
-    .profile__avatar {
+    .profile__picture {
         max-width: 120px;
         margin-left: auto;
         margin-right: auto;

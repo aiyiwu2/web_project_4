@@ -10,6 +10,7 @@ export const editAvatarForm = editAvatarModalWindow.querySelector('.popup__form'
 
 export const profileTitle = document.querySelector('.profile__title');
 export const profileDescription = document.querySelector('.profile__subtitle');
+export const profilePicture = document.querySelector('.profile__picture');
 
 export const popupImage = imageModalWindow.querySelector('.popup__image');
 export const popupImageTitle = imageModalWindow.querySelector('.popup__image-title');
@@ -25,6 +26,7 @@ export const profileAvatarEdit = document.querySelector('.profile__avatar-edit')
 
 export const editProfileSubmitButton = editProfileModalWindow.querySelector('.popup__button');
 export const editAvatarSubmitButton = editAvatarModalWindow.querySelector('.popup__button');
+export const addCardSubmitButton = addCardModalWindow.querySelector('.popup__button');
 
 export const titleInput = document.querySelector(".popup__input_type_name")
 export const descriptionInput = document.querySelector('.popup__input_type_bio');
