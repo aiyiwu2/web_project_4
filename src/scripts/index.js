@@ -136,20 +136,21 @@ api.getCardList()
               .catch((error) => console.log(error))
             }
           }
-        }, ".card-template")
+        }, userInfo._id, ".card-template")
         const generatedCard = card.getCardElement();
 
         console.log(card._data.owner._id)
         console.log(card)
         console.log(userInfo)
           console.log(userInfo._id)
+          console.log(userInfo._name)
           console.log(userInfo._about)
           console.log(card._data.owner._id === userInfo._id)
          // console.log(userInfo._about._id)
         // TODO
-        if (card._data.owner._id === userInfo._id) {
-          deleteCardOpenButton.classList.add("card__delete_mode_visible");
-        }
+        // if (card._data.owner._id === userInfo._id) {
+        //   deleteCardOpenButton.classList.add("card__delete_mode_visible");
+        // }
         card.displayLikeCount(card._data.likes.length)
         displayCards.addItem(generatedCard); 
 
@@ -162,6 +163,7 @@ api.getCardList()
         popupSelector: addCardModalWindow, 
           submitPopup: (data) => {
             console.log(data)
+            console.log(res)
             addCardSubmitButton.textContent = "Creating...";
             api.addCard({ name: data.name, link: data.link })
             .then((res) => {
@@ -199,7 +201,7 @@ api.getCardList()
                     .catch((error) => console.log(error))
                   }
                 }
-              }, ".card-template");
+              }, userInfo._id, ".card-template");
               const generatedCard = card.getCardElement();
               console.log(card)
               // if (card._data.owner._id === userInfo._id) {

@@ -1,9 +1,12 @@
 class Card {
-    constructor({ data, handleCardClick, handleDeleteClick, handleLikeClick }, cardTemplateSelector) {
+    constructor({ data, handleCardClick, handleDeleteClick, handleLikeClick }, userID, cardTemplateSelector) {
         this._text = data.name;
         this._link = data.link;
         this._data = data;
-        this._id = data.id;
+        this._id = data._id;
+        this._userID = userID;
+        this._likes = data.likes;
+        this._owner = data.owner;
         this._cardTemplate = document.querySelector(cardTemplateSelector).content.querySelector('.card');
         this._handleCardClick = handleCardClick;
         this._handleDeleteClick = handleDeleteClick;
@@ -45,6 +48,12 @@ class Card {
           cardImage.addEventListener('click', () => {
             this._handleCardClick(this._text, this._link);
           });
+
+          
+          // if (this._owner._id !== this._userID) {
+          //   cardDeleteButton.style.display = 'none';
+          //   console.log(cardDeleteButton.style.display)
+          // }
     }
 
     getCardElement() {
