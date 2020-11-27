@@ -1,6 +1,7 @@
 class Card {
     constructor({ data, handleCardClick, handleDeleteClick, handleLikeClick }, userID, cardTemplateSelector) {
-        this._text = data.name;
+      console.log(data)  
+      this._text = data.name;
         this._link = data.link;
         this._data = data;
         this._id = data._id;
@@ -49,11 +50,13 @@ class Card {
             this._handleCardClick(this._text, this._link);
           });
 
-          
-          // if (this._owner._id !== this._userID) {
-          //   cardDeleteButton.style.display = 'none';
-          //   console.log(cardDeleteButton.style.display)
-          // }
+          console.log(this._owner)
+          console.log(this._owner._id)
+          console.log(this._userID)
+          if (this._owner._id !== this._userID) {
+            cardDeleteButton.style.display = 'none';
+            console.log(cardDeleteButton.style.display)
+          }
     }
 
     getCardElement() {

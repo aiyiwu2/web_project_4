@@ -167,9 +167,15 @@ api.getCardList()
             addCardSubmitButton.textContent = "Creating...";
             api.addCard({ name: data.name, link: data.link })
             .then((res) => {
+              console.log(userInfo)
+              console.log(userInfo._name.textContent)
+              console.log(userInfo._id)
+              res = { likes: Array(0), _id: "c17c523d3b7a98d8459b3f6e", name: data.name, link: data.link, owner: userInfo._name.textContent }
+              console.log(res)
+              console.log(res.name)
               addCardSubmitButton.textContent = "Create";
               const card = new Card({
-                data,
+                data: res,
                 handleCardClick: (name, link) => {
                   popupImageInstance.open(name, link);
                 },
@@ -204,10 +210,7 @@ api.getCardList()
               }, userInfo._id, ".card-template");
               const generatedCard = card.getCardElement();
               console.log(card)
-              // if (card._data.owner._id === userInfo._id) {
-              //   deleteCardOpenButton.classList.add("card__delete_mode_visible");
-              // }
-              //card.displayLikeCount(card._data.likes.length)
+              card.displayLikeCount(card._data.likes.length)
               displayCards.prependItem(generatedCard); 
             }) 
           }
