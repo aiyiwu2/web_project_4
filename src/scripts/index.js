@@ -27,7 +27,6 @@ export const editProfilePopup = new PopupWithForm({
     api.setUserInfo({
       name: data.name,
       about: data.about
-
     })
     .then(res => {
       userInfo.setUserInfo(res.name, res.about)
@@ -53,10 +52,6 @@ function handleAvatarEdit(data) {
     editAvatarPopup.close();
   })
   .catch(err => console.log(err));
-}
-
-function showAvatarEdit() {
-profileAvatarEdit.classList.toggle('profile__avatar-edit_visible');
 }
 
 export function openAvatarEdit() {
@@ -138,22 +133,8 @@ api.getCardList()
           }
         }, userInfo._id, ".card-template")
         const generatedCard = card.getCardElement();
-
-        console.log(card._data.owner._id)
-        console.log(card)
-        console.log(userInfo)
-          console.log(userInfo._id)
-          console.log(userInfo._name)
-          console.log(userInfo._about)
-          console.log(card._data.owner._id === userInfo._id)
-         // console.log(userInfo._about._id)
-        // TODO
-        // if (card._data.owner._id === userInfo._id) {
-        //   deleteCardOpenButton.classList.add("card__delete_mode_visible");
-        // }
         card.displayLikeCount(card._data.likes.length)
         displayCards.addItem(generatedCard); 
-
       }
      }, 
       list);
@@ -162,17 +143,9 @@ api.getCardList()
       const addCardPopup = new PopupWithForm({
         popupSelector: addCardModalWindow, 
           submitPopup: (data) => {
-            console.log(data)
-            console.log(res)
             addCardSubmitButton.textContent = "Creating...";
             api.addCard({ name: data.name, link: data.link })
             .then((res) => {
-              console.log(userInfo)
-              console.log(userInfo._name.textContent)
-              console.log(userInfo._id)
-              res = { likes: Array(0), _id: "c17c523d3b7a98d8459b3f6e", name: data.name, link: data.link, owner: userInfo._name.textContent }
-              console.log(res)
-              console.log(res.name)
               addCardSubmitButton.textContent = "Create";
               const card = new Card({
                 data: res,
@@ -209,7 +182,6 @@ api.getCardList()
                 }
               }, userInfo._id, ".card-template");
               const generatedCard = card.getCardElement();
-              console.log(card)
               card.displayLikeCount(card._data.likes.length)
               displayCards.prependItem(generatedCard); 
             }) 
@@ -224,125 +196,6 @@ api.getCardList()
     }
 )
 })
-//displays all users' cards
-// api.getCardList()
-// .then(res => {
-
-//   const displayCards = new Section(
-//     { 
-//       items: res, 
-//       renderer: (data) => {
-//         const card = new Card({ 
-//           data, 
-//           handleCardClick: (name, link) => {
-//             popupImageInstance.open(name, link);
-//           },
-//           handleDeleteClick: (cardID) => {
-//             deleteCardPopup.open(cardID);
-//             deleteCardPopup.submitData(() => {
-//               api.removeCard(cardID)
-//               .then(() => {
-//                 card.handleDeleteCard(cardID);
-//                 deleteCardPopup.close();
-//               })
-//               .catch(error => console.log(error))
-//             })
-//           },
-//           handleLikeClick: (cardID) => {
-//             if (card.heart.classList.contains("card__heart_mode_like")) {
-//               card.heart.classList.remove("card__heart_mode_like");
-//               api.deleteCardLike(cardID)
-//               .then((res) => {
-//                 card.displayLikeCount(res.likes.length)
-//               })
-//               .catch((error) => console.log(error))
-//             } else {
-//               card.heart.classList.add("card__heart_mode_like");
-//               api.addCardLike(cardID)
-//               .then((res) => {
-//                 card.displayLikeCount(res.likes.length)
-//               })
-//               .catch((error) => console.log(error))
-//             }
-//           }
-//         }, ".card-template")
-//         const generatedCard = card.getCardElement();
-
-//         console.log(card._data.owner._id)
-//         console.log(card)
-//         console.log(userInfo)
-//           console.log(userInfo._id)
-//           console.log(userInfo._about)
-//           console.log(card._data.owner._id === userInfo._id)
-//          // console.log(userInfo._about._id)
-//         // TODO
-//         if (card._data.owner._id === userInfo._id) {
-//           deleteCardOpenButton.classList.add("card__delete_mode_visible");
-//         }
-//         card.displayLikeCount(card._data.likes.length)
-//         displayCards.addItem(generatedCard); 
-
-//       }
-//      }, 
-//       list);
-//       displayCards.renderer();
-
-//       const addCardPopup = new PopupWithForm({
-//         popupSelector: addCardModalWindow, 
-//           submitPopup: (data) => {
-//             addCardModalWindow.querySelector(".popup__button").textContent = "Creating...";
-//             api.addCard({ name: data.name, link: data.link })
-//             .then((res) => {
-//               const card = new Card({
-//                 data,
-//                 handleCardClick: (name, link) => {
-//                   popupImageInstance.open(name, link);
-//                 },
-//                 handleDeleteClick: (cardID) => {
-//                   deleteCardPopup.open(cardID);
-//                   deleteCardPopup.submitData(() => {
-//                     api.removeCard(cardID)
-//                     .then((res) => {
-//                       card.handleDeleteCard(cardID);
-//                       deleteCardPopup.close();
-//                     })
-//                     .catch(error => console.log(error))
-//                   })
-//                 },
-//                 handleLikeClick: (cardID) => {
-//                   if (card.heart.classList.contains("card__heart_mode_like")) {
-//                     card.heart.classList.remove("card__heart_mode_like");
-//                     api.deleteCardLike(cardID)
-//                     .then((res) => {
-//                       card.displayLikeCount(res.likes.length)
-//                     })
-//                     .catch((error) => console.log(error))
-//                   } else {
-//                     card.heart.classList.add("card__heart_mode_like");
-//                     api.addCardLike(cardID)
-//                     .then((res) => {
-//                       card.displayLikeCount(res.likes.length)
-//                     })
-//                     .catch((error) => console.log(error))
-//                   }
-//                 }
-//               }, ".card-template");
-//               const generatedCard = card.getCardElement();
-//               displayCards.addItem(generatedCard); 
-//             }) 
-//           }
-          
-//         });
-//         addCardPopup.setEventListeners();
-
-//         addCardOpenButton.addEventListener('click', () => {
-//           addCardPopup.open();
-//         })
-//     }
-// )
-
-avatarOpenButton.addEventListener('mouseenter', showAvatarEdit);
-avatarOpenButton.addEventListener('mouseleave', showAvatarEdit);
 
 avatarOpenButton.addEventListener('click', () => {
   openAvatarEdit();

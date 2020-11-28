@@ -6,6 +6,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     margin-right: 30px;
+    z-index: 1;
 }
 
 @media (max-width : 861px) {

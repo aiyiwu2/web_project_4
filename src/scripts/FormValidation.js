@@ -6,9 +6,9 @@ export class FormValidator {
 
    _showInputError(inputElement) {
     const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
-inputElement.classList.add(this._settings.inputErrorClass);
-errorElement.textContent = inputElement.validationMessage;
-errorElement.classList.add(this._settings.errorClass);
+    inputElement.classList.add(this._settings.inputErrorClass);
+    errorElement.textContent = inputElement.validationMessage;
+    errorElement.classList.add(this._settings.errorClass);
    }
 
 _hideInputError(inputElement) {
@@ -38,14 +38,14 @@ _toggleButtonState(inputs, button) {
 
 _setEventListeners() {
     const inputList = Array.from(this._formElement.querySelectorAll(this._settings.inputSelector));
-const buttonElement = this._formElement.querySelector(this._settings.submitButtonSelector);
+    const buttonElement = this._formElement.querySelector(this._settings.submitButtonSelector);
 
-inputList.forEach((inputElement) => {
-    inputElement.addEventListener('input', () => {
-        this._checkInputValidity(inputElement);
-        this._toggleButtonState(inputList, buttonElement);
+    inputList.forEach((inputElement) => {
+        inputElement.addEventListener('input', () => {
+            this._checkInputValidity(inputElement);
+            this._toggleButtonState(inputList, buttonElement);
+        });
     });
-});
 }
 
 enableValidation() {
@@ -60,10 +60,10 @@ enableValidation() {
 
 
 export const defaultConfig = {
-        formSelector: ".popup__form",
-        inputSelector: ".popup__input",
-        submitButtonSelector: ".popup__button",
-        inactiveButtonClass: "popup__button_disabled",
-        inputErrorClass: "popup__input_type_error",
-        errorClass: "popup__error_visible"
+    formSelector: ".popup__form",
+    inputSelector: ".popup__input",
+    submitButtonSelector: ".popup__button",
+    inactiveButtonClass: "popup__button_disabled",
+    inputErrorClass: "popup__input_type_error",
+    errorClass: "popup__error_visible"
 };

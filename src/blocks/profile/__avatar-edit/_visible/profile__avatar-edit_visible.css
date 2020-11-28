@@ -1,14 +1,18 @@
-.profile__avatar-edit_visible {
-    min-width: 120px;
-    height: 120px;
-    background-image: url(../../../../images/profileEditLarge.svg);
+.profile__avatar-edit {
+    width: 120px;
+    height: 100%;
+    left: 0px;
+    top: 0px;
     background-repeat: no-repeat;
     background-position: center;
     z-index: 2;
     opacity: 1;
     cursor: pointer;
+    position: absolute;
+    background-size: 26px;
 }
 
-.profile__avatar-edit_visible:hover {
+.profile__avatar-edit:hover {
     background-color: rgba(0, 0, 0, 0.8);
+    background-image: url(../../../../images/profileEditLarge.svg);
 }

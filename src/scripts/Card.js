@@ -1,19 +1,18 @@
 class Card {
-    constructor({ data, handleCardClick, handleDeleteClick, handleLikeClick }, userID, cardTemplateSelector) {
-      console.log(data)  
+    constructor({ data, handleCardClick, handleDeleteClick, handleLikeClick }, userID, cardTemplateSelector) {  
       this._text = data.name;
-        this._link = data.link;
-        this._data = data;
-        this._id = data._id;
-        this._userID = userID;
-        this._likes = data.likes;
-        this._owner = data.owner;
-        this._cardTemplate = document.querySelector(cardTemplateSelector).content.querySelector('.card');
-        this._handleCardClick = handleCardClick;
-        this._handleDeleteClick = handleDeleteClick;
-        this._handleLikeClick = handleLikeClick;
-        this._card = this._cardTemplate.cloneNode(true);
-        this.heart = this._card.querySelector(".card__heart");
+      this._link = data.link;
+      this._data = data;
+      this._id = data._id;
+      this._userID = userID;
+      this._likes = data.likes;
+      this._owner = data.owner;
+      this._cardTemplate = document.querySelector(cardTemplateSelector).content.querySelector('.card');
+      this._handleCardClick = handleCardClick;
+      this._handleDeleteClick = handleDeleteClick;
+      this._handleLikeClick = handleLikeClick;
+      this._card = this._cardTemplate.cloneNode(true);
+      this.heart = this._card.querySelector(".card__heart");
     }
 
     id() {
@@ -34,44 +33,38 @@ class Card {
     }
 
     _addEventListeners() {
-        const cardImage = this._card.querySelector('.card__image');
-        const cardLikeButton = this._card.querySelector('.card__heart');
-        const cardDeleteButton = this._card.querySelector('.card__delete');
+      const cardImage = this._card.querySelector('.card__image');
+      const cardLikeButton = this._card.querySelector('.card__heart');
+      const cardDeleteButton = this._card.querySelector('.card__delete');
 
-        cardLikeButton.addEventListener('click', () => {
-          this._handleLikeClick(this.id());
-        })
+      cardLikeButton.addEventListener('click', () => {
+        this._handleLikeClick(this.id());
+      })
 
-        cardDeleteButton.addEventListener('click', () => {
-          this._handleDeleteClick(this.id(), this._card)
-        });
+      cardDeleteButton.addEventListener('click', () => {
+        this._handleDeleteClick(this.id(), this._card)
+      });
 
-          cardImage.addEventListener('click', () => {
-            this._handleCardClick(this._text, this._link);
-          });
+      cardImage.addEventListener('click', () => {
+        this._handleCardClick(this._text, this._link);
+      });
 
-          console.log(this._owner)
-          console.log(this._owner._id)
-          console.log(this._userID)
-          if (this._owner._id !== this._userID) {
-            cardDeleteButton.style.display = 'none';
-            console.log(cardDeleteButton.style.display)
-          }
+      if (this._owner._id !== this._userID) {
+        cardDeleteButton.style.display = 'none';
+      }
     }
 
     getCardElement() {
-        const cardImage = this._card.querySelector('.card__image');
-        
-        const cardTitle = this._card.querySelector('.card__title');
-        
-      
-        cardTitle.textContent = this._text;
-        cardImage.setAttribute("alt", this._text);
-        cardImage.style.backgroundImage = `url(${this._link})`;
-      
-        this._addEventListeners();
-      
-        return this._card;  
+      const cardImage = this._card.querySelector('.card__image');
+      const cardTitle = this._card.querySelector('.card__title');
+    
+      cardTitle.textContent = this._text;
+      cardImage.setAttribute("alt", this._text);
+      cardImage.style.backgroundImage = `url(${this._link})`;
+    
+      this._addEventListeners();
+    
+      return this._card;  
       };
 }
 

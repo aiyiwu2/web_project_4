@@ -10,7 +10,6 @@ class PopupWithImage extends Popup {
         super.open();
         this._popupSelector.querySelector('.popup__image').src = link;
         this._popupSelector.querySelector('.popup__image-title').textContent = name;
-        
     }
 }
 
