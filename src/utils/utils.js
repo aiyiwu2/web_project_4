@@ -22,8 +22,6 @@ export const addCardOpenButton = document.querySelector('.profile__add-button');
 export const avatarOpenButton = document.querySelector('.profile__avatar');
 export const deleteCardOpenButton = cardTemplate.querySelector('.card__delete');
 
-export const profileAvatarEdit = document.querySelector('.profile__avatar-edit');
-
 export const editProfileSubmitButton = editProfileModalWindow.querySelector('.popup__button');
 export const editAvatarSubmitButton = editAvatarModalWindow.querySelector('.popup__button');
 export const addCardSubmitButton = addCardModalWindow.querySelector('.popup__button');
