@@ -68,10 +68,9 @@ function openDeleteCard() {
 deleteCardPopup.open();
 }
 
-function renderCard() {
-  (data) => {
-  const card = new Card({ 
-    data, 
+const renderCard = data =>
+  new Card({
+    data,
     handleCardClick: (name, link) => {
       popupImageInstance.open(name, link);
     },
@@ -105,12 +104,7 @@ function renderCard() {
         .catch((error) => console.log(error))
       }
     }
-  }, userInfo._id, ".card-template")
-  const generatedCard = card.getCardElement();
-  card.displayLikeCount(card._data.likes.length)
-  displayCards.addItem(generatedCard); 
-}
-}
+  }, userInfo._id, ".card-template");
 
 deleteCardPopup.setEventListeners();
 popupImageInstance.setEventListeners();
@@ -139,48 +133,12 @@ api.getCardList()
   const displayCards = new Section(
     { 
       items: res, 
-      renderer: 
-        renderCard(),
-        // const card = new Card({ 
-        //   data, 
-        //   handleCardClick: (name, link) => {
-        //     popupImageInstance.open(name, link);
-        //   },
-        //   handleDeleteClick: (cardID) => {
-        //     deleteCardPopup.open(cardID);
-        //     deleteCardPopup.submitData(() => {
-        //       deleteCardSubmitButton.textContent = "Deleting...";
-        //       api.removeCard(cardID)
-        //       .then(() => {
-        //         card.handleDeleteCard(cardID);
-        //         deleteCardPopup.close();
-        //         deleteCardSubmitButton.textContent = "Yes";
-        //       })
-        //       .catch(error => console.log(error))
-        //     })
-        //   },
-        //   handleLikeClick: (cardID) => {
-        //     if (card.heart.classList.contains("card__heart_mode_like")) {
-        //       card.heart.classList.remove("card__heart_mode_like");
-        //       api.deleteCardLike(cardID)
-        //       .then((res) => {
-        //         card.displayLikeCount(res.likes.length)
-        //       })
-        //       .catch((error) => console.log(error))
-        //     } else {
-        //       card.heart.classList.add("card__heart_mode_like");
-        //       api.addCardLike(cardID)
-        //       .then((res) => {
-        //         card.displayLikeCount(res.likes.length)
-        //       })
-        //       .catch((error) => console.log(error))
-        //     }
-        //   }
-        // }, userInfo._id, ".card-template")
-        // const generatedCard = card.getCardElement();
-        // card.displayLikeCount(card._data.likes.length)
-        // displayCards.addItem(generatedCard); 
-      
+      renderer: (data) => {
+        const card = renderCard(data);
+        const generatedCard = card.getCardElement();
+        card.displayLikeCount(card._data.likes.length)
+        displayCards.addItem(generatedCard);
+      },
      }, 
       list);
       displayCards.renderer();
@@ -191,41 +149,9 @@ api.getCardList()
             addCardSubmitButton.textContent = "Creating...";
             api.addCard({ name: data.name, link: data.link })
             .then((res) => {
+              console.log(res)
               addCardSubmitButton.textContent = "Create";
-              const card = new Card({
-                data: res,
-                handleCardClick: (name, link) => {
-                  popupImageInstance.open(name, link);
-                },
-                handleDeleteClick: (cardID) => {
-                  deleteCardPopup.open(cardID);
-                  deleteCardPopup.submitData(() => {
-                    api.removeCard(cardID)
-                    .then((res) => {
-                      card.handleDeleteCard(cardID);
-                      deleteCardPopup.close();
-                    })
-                    .catch(error => console.log(error))
-                  })
-                },
-                handleLikeClick: (cardID) => {
-                  if (card.heart.classList.contains("card__heart_mode_like")) {
-                    card.heart.classList.remove("card__heart_mode_like");
-                    api.deleteCardLike(cardID)
-                    .then((res) => {
-                      card.displayLikeCount(res.likes.length)
-                    })
-                    .catch((error) => console.log(error))
-                  } else {
-                    card.heart.classList.add("card__heart_mode_like");
-                    api.addCardLike(cardID)
-                    .then((res) => {
-                      card.displayLikeCount(res.likes.length)
-                    })
-                    .catch((error) => console.log(error))
-                  }
-                }
-              }, userInfo._id, ".card-template");
+              const card = renderCard(data);
               const generatedCard = card.getCardElement();
               card.displayLikeCount(card._data.likes.length)
               displayCards.prependItem(generatedCard); 
