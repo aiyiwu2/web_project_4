@@ -149,9 +149,8 @@ api.getCardList()
             addCardSubmitButton.textContent = "Creating...";
             api.addCard({ name: data.name, link: data.link })
             .then((res) => {
-              console.log(res)
               addCardSubmitButton.textContent = "Create";
-              const card = renderCard(data);
+              const card = renderCard(res);
               const generatedCard = card.getCardElement();
               card.displayLikeCount(card._data.likes.length)
               displayCards.prependItem(generatedCard); 

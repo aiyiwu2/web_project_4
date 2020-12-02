@@ -48,8 +48,7 @@ class Card {
       cardImage.addEventListener('click', () => {
         this._handleCardClick(this._text, this._link);
       });
-      console.log(this)
-      console.log(this._owner)
+      
       if (this._owner._id !== this._userID) {
         cardDeleteButton.style.display = 'none';
       }
