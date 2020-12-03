@@ -10,7 +10,6 @@ class Api {
         headers: this._headers
       })
       .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
-      .catch(err => console.log(err))
     }
 
     // GET https://around.nomoreparties.co/v1/groupId/users/me
@@ -19,11 +18,6 @@ class Api {
         headers: this._headers
       })
       .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
-      .catch(err => console.log(err))
-    }
-
-    getAppInfo() {
-
     }
 
     // POST https://around.nomoreparties.co/v1/groupId/cards
@@ -37,7 +31,6 @@ class Api {
         })
       })
       .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
-      .catch(err => console.log(err))
     }
 
     // DELETE https://around.nomoreparties.co/v1/groupId/cards/cardId
@@ -47,7 +40,6 @@ class Api {
         method: "DELETE"
       })
       .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
-      .catch(err => console.log(err))
     }
 
     // PUT https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
@@ -58,7 +50,6 @@ class Api {
         method: "PUT"
       })
       .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
-      .catch(err => console.log(err))
     }
 
     deleteCardLike(cardID) {
@@ -67,7 +58,6 @@ class Api {
         method: "DELETE"
       })
       .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
-      .catch(err => console.log(err))
     }
 
     // PATCH https://around.nomoreparties.co/v1/groupId/users/me
@@ -81,7 +71,6 @@ class Api {
         }),
       })
       .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
-      .catch(err => console.log(err))
     }
 
     // PATCH https://around.nomoreparties.co/v1/groupId/users/me/avatar
@@ -94,7 +83,6 @@ class Api {
         }),
       })
       .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
-      .catch(err => console.log(err))
     }
   }
 
