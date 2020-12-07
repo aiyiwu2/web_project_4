@@ -72,13 +72,13 @@ function handleCardClick(name, link) {
   popupImageInstance.open(name, link);
 }
 
-function handleDeleteClick(cardID, card) {
-  deleteCardPopup.open(cardID, card);
+function handleDeleteClick(cardID) {
+  deleteCardPopup.open(cardID);
       deleteCardPopup.submitData(() => {
         deleteCardSubmitButton.textContent = "Deleting...";
-        api.removeCard(cardID, card)
+        api.removeCard(cardID)
         .then(() => {
-          card.handleDeleteCard(cardID, card);
+          this.handleDeleteCard(cardID);
           deleteCardPopup.close();
           deleteCardSubmitButton.textContent = "Yes";
         })
@@ -86,19 +86,19 @@ function handleDeleteClick(cardID, card) {
       })
 }
 
-function handleLikeClick(cardID, card) {
-  if (card.heart.classList.contains("card__heart_mode_like")) {
-    card.heart.classList.remove("card__heart_mode_like");
-    api.deleteCardLike(cardID, card)
+function handleLikeClick(cardID) {
+  if (this.heart.classList.contains("card__heart_mode_like")) {
+    this.heart.classList.remove("card__heart_mode_like");
+    api.deleteCardLike(cardID)
     .then((res) => {
-      card.displayLikeCount(res.likes.length)
+      this.displayLikeCount(res.likes.length)
     })
     .catch((error) => console.log(error))
   } else {
-    card.heart.classList.add("card__heart_mode_like");
-    api.addCardLike(cardID, card)
+    this.heart.classList.add("card__heart_mode_like");
+    api.addCardLike(cardID)
     .then((res) => {
-      card.displayLikeCount(res.likes.length)
+      this.displayLikeCount(res.likes.length)
     })
     .catch((error) => console.log(error))
   }
@@ -186,7 +186,7 @@ api.getCardList()
             api.addCard({ name: data.name, link: data.link })
             .then((res) => {
               addCardSubmitButton.textContent = "Create";
-              const card = new Card({ res, handleCardClick, handleDeleteClick, handleLikeClick }, userInfo._id, ".card-template");
+              const card = new Card({ data: res, handleCardClick, handleDeleteClick, handleLikeClick }, userInfo._id, ".card-template");
               const generatedCard = card.getCardElement();
               card.displayLikeCount(card._data.likes.length)
               displayCards.prependItem(generatedCard); 

@@ -1,6 +1,5 @@
 class Card {
     constructor({ data, handleCardClick, handleDeleteClick, handleLikeClick }, userID, cardTemplateSelector) {  
-      console.log(data)
       this._text = data.name;
       this._link = data.link;
       this._data = data;
@@ -33,13 +32,19 @@ class Card {
       this._card.querySelector(".card__heart-score").textContent = numberOfLikes;
     }
 
+    _showMyLikes() {
+      if (this._likes.some((like) => like._id === this._userID)) {
+        this._card.querySelector(".card__heart").classList.add("card__heart_mode_like");
+      }
+    }
+
     _addEventListeners() {
       const cardImage = this._card.querySelector('.card__image');
       const cardLikeButton = this._card.querySelector('.card__heart');
       const cardDeleteButton = this._card.querySelector('.card__delete');
 
       cardLikeButton.addEventListener('click', () => {
-        this._handleLikeClick(this.id(), this._card);
+        this._handleLikeClick(this.id());
       })
 
       cardDeleteButton.addEventListener('click', () => {
@@ -53,6 +58,8 @@ class Card {
       if (this._owner._id !== this._userID) {
         cardDeleteButton.style.display = 'none';
       }
+
+      this._showMyLikes();
     }
 
     getCardElement() {
