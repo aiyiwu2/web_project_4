@@ -68,6 +68,42 @@ function openDeleteCard() {
 deleteCardPopup.open();
 }
 
+function handleCardClick(name, link) {
+  popupImageInstance.open(name, link);
+}
+
+function handleDeleteClick(cardID, card) {
+  deleteCardPopup.open(cardID, card);
+      deleteCardPopup.submitData(() => {
+        deleteCardSubmitButton.textContent = "Deleting...";
+        api.removeCard(cardID, card)
+        .then(() => {
+          card.handleDeleteCard(cardID, card);
+          deleteCardPopup.close();
+          deleteCardSubmitButton.textContent = "Yes";
+        })
+        .catch(error => console.log(error))
+      })
+}
+
+function handleLikeClick(cardID, card) {
+  if (card.heart.classList.contains("card__heart_mode_like")) {
+    card.heart.classList.remove("card__heart_mode_like");
+    api.deleteCardLike(cardID, card)
+    .then((res) => {
+      card.displayLikeCount(res.likes.length)
+    })
+    .catch((error) => console.log(error))
+  } else {
+    card.heart.classList.add("card__heart_mode_like");
+    api.addCardLike(cardID, card)
+    .then((res) => {
+      card.displayLikeCount(res.likes.length)
+    })
+    .catch((error) => console.log(error))
+  }
+}
+
 const renderCard = data =>
   new Card({
     data,
@@ -134,7 +170,7 @@ api.getCardList()
     { 
       items: res, 
       renderer: (data) => {
-        const card = renderCard(data);
+        const card = new Card({ data, handleCardClick, handleDeleteClick, handleLikeClick }, userInfo._id, ".card-template");
         const generatedCard = card.getCardElement();
         card.displayLikeCount(card._data.likes.length)
         displayCards.addItem(generatedCard);
@@ -150,7 +186,7 @@ api.getCardList()
             api.addCard({ name: data.name, link: data.link })
             .then((res) => {
               addCardSubmitButton.textContent = "Create";
-              const card = renderCard(res);
+              const card = new Card({ res, handleCardClick, handleDeleteClick, handleLikeClick }, userInfo._id, ".card-template");
               const generatedCard = card.getCardElement();
               card.displayLikeCount(card._data.likes.length)
               displayCards.prependItem(generatedCard); 

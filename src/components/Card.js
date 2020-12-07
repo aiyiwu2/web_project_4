@@ -1,5 +1,6 @@
 class Card {
     constructor({ data, handleCardClick, handleDeleteClick, handleLikeClick }, userID, cardTemplateSelector) {  
+      console.log(data)
       this._text = data.name;
       this._link = data.link;
       this._data = data;
@@ -38,7 +39,7 @@ class Card {
       const cardDeleteButton = this._card.querySelector('.card__delete');
 
       cardLikeButton.addEventListener('click', () => {
-        this._handleLikeClick(this.id());
+        this._handleLikeClick(this.id(), this._card);
       })
 
       cardDeleteButton.addEventListener('click', () => {
